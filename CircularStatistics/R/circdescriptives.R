@@ -1,0 +1,304 @@
+CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
+  # Get the correct period. This step is neccessary since pi is hard to specify in the GUI
+  if (options$periodGroup == "pi")
+    options$period <- pi
+  if (options$periodGroup == "pi_2")
+    options$period <- 2 * pi
+
+  # Set title
+  jaspResults$title <- "Circular Descriptives"
+
+  # Read dataset
+  dataset <- .circularDescriptivesReadData(dataset, options)
+
+  # Error checking
+  #errors <- .circularDescriptivesCheckErrors(dataset, options)
+  #if (length(errors) != 0)
+  #  .quitAnalysis(errors)
+
+  # Compute the results
+  #TODO(abahde): remove this workaround
+  # workaround for my problem that my data readin returns a df with 0 columns but xx > 0 rows when no variable is assigned
+  if (length(options$variables) != 0)
+    circularDescriptivesResults <- .circularDescriptivesComputeResults(jaspResults, dataset, options)
+  # Output tables and plots
+  .circularDescriptivesCreateTable(jaspResults, dataset, options, circularDescriptivesResults)
+  if (options$plotVariables)
+    .circularDescriptivesCreatePlot(jaspResults, dataset, options, circularDescriptivesResults)
+}
+
+# Preprocessing functions ----
+.circularDescriptivesReadData <- function(dataset, options) {
+  variables <- unlist(options$variables)
+  splitName <- options$splitby
+  makeSplit <- splitName != ""
+  if (makeSplit) {
+    dataset         <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = splitName)
+  } else {
+    dataset         <- .readDataSetToEnd(columns.as.numeric = variables)
+  }
+}
+.circularDescriptivesCheckErrors <- function(dataset, options){
+
+}
+# Results functions ----
+.circularDescriptivesComputeResults <- function(jaspResults, dataset, options) {
+
+  # Take results from state if possible
+  if (!is.null(jaspResults[["stateCircDescriptivesResults"]]))
+    return(jaspResults[["stateCircDescriptivesResults"]]$object)
+
+  wantsSplit <- options$splitby != ""
+  variables <- unlist(options$variables)
+
+  # This will be the object that we fill with results
+  results <- list()
+
+  if (wantsSplit)
+  {
+    split <- dataset[[.v(options$splitby)]]
+    splitLevels <- levels(split)
+
+    for (variable in variables)
+      for (level in splitLevels)
+      {
+        results[["descr"]][[variable]][[level]] <- list()
+        column <- dataset[[.v(variable)]][split == level]
+        results[["descr"]][[variable]][[level]] <- .circularDescriptivesComputeResultsSub(column, options)
+        }
+  } else {
+    for (variable in options$variables){
+      results[["descr"]][[variable]] <- list()
+      column <- dataset[[.v(variable)]]
+      results[["descr"]][[variable]] <- .circularDescriptivesComputeResultsSub(column, options)
+    }
+  }
+
+  # save results to state
+  jaspResults[["stateCircDescriptivesResults"]] <- createJaspState(results)
+  jaspResults[["stateCircDescriptivesResults"]]$dependOnOptions(c("variables", "splitby", "period", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
+  return(results)
+}
+.circularDescriptivesComputeResultsSub <- function(column, options){
+
+  nObs <- length(column)
+  validData <- column[!is.na(column)]
+  nValidObs <- length(validData)
+  nInvalidObs <- nObs - nValidObs
+
+  # normalizes the period of the data to 2pi to do the calculations
+  validDataNormalized <- .normalizeData(validData, options$period)
+  # convert the valid data to a circular object with period 2pi which is used by all circular package calculations
+  validDataCircular <- circular::circular(validDataNormalized, modulo = "2pi")
+
+  # some circular functions return a circular object. Always convert them back to a numeric.
+
+  meanDirection <- as.numeric(circular::mean.circular(validDataCircular))
+  meanLength <- as.numeric(circular::rho.circular(validDataCircular))
+
+  # by convention, the median is the lowest of all possible values.
+  medianCircular <- circular::median.circular(validDataCircular)
+  median <- min(attr(medianCircular, "medians"))
+
+  stdDev <- as.numeric(circular::sd.circular(validDataCircular))
+  variance <- as.numeric(circular::var.circular(validDataCircular))
+  range <- as.numeric(circular::range.circular(validDataCircular))
+
+  # Store the data that needs to be plotted
+  # Plotting data is also normalized
+  plotData <- data.frame(x = validDataNormalized)
+
+  # for interpretation, some measures are converted back to the original period
+  meanDirection <- .circularDescriptivesConvertBack(meanDirection,options$period)
+  median <- .circularDescriptivesConvertBack(median,options$period)
+  range <- .circularDescriptivesConvertBack(range,options$period)
+
+  results <- list(
+    nValidObs = nValidObs,
+    nInvalidObs = nInvalidObs,
+    total = nObs,
+    meanDirection = meanDirection,
+    meanLength = meanLength,
+    median = median,
+    stdDev = stdDev,
+    variance = variance,
+    range = range,
+    plotData = plotData)
+
+  return(results)
+}
+# Output functions ----
+.circularDescriptivesCreateTable <- function(jaspResults, dataset, options, circularDescriptivesResults) {
+
+
+  wantsSplit <- options$splitby != ""
+  variables <- unlist(options$variables)
+
+  # Create table
+  circularDescriptivesTable <- createJaspTable(title = "Circular Descriptives")
+  jaspResults[["circularDescriptivesTable"]] <- circularDescriptivesTable
+  jaspResults[["circularDescriptivesTable"]]$dependOnOptions(c("variables", "splitby", "period", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
+
+  circularDescriptivesTable$showSpecifiedColumnsOnly <- TRUE
+  circularDescriptivesTable$transpose <- TRUE
+
+  if (wantsSplit)
+  {
+    circularDescriptivesTable$transposeWithOvertitle <- TRUE
+    circularDescriptivesTable$addColumnInfo(name = "variable",  title = "", type = "string")
+    circularDescriptivesTable$addColumnInfo(name = "level",     title = "", type = "string")
+  } else {
+    circularDescriptivesTable$addColumnInfo(name = "variable",  title = "", type = "string")
+  }
+
+  # Add columns to table
+  circularDescriptivesTable$addColumnInfo(name = "nValidObs",     title = "Valid",     type = "integer")
+  circularDescriptivesTable$addColumnInfo(name = "nInvalidObs",      title = "Missing",      type = "integer")
+  if (options$meanDirection)
+    circularDescriptivesTable$addColumnInfo(name = "meanDirection", title = "Mean Direction", type = "number", format = "dp:3")
+  if (options$meanLength)
+    circularDescriptivesTable$addColumnInfo(name = "meanLength", title = "Mean Resultant Length", type = "number", format = "dp:3")
+  if (options$median)
+    circularDescriptivesTable$addColumnInfo(name = "median", title = "Median", type = "number", format = "dp:3")
+  if (options$standardDeviation)
+    circularDescriptivesTable$addColumnInfo(name = "stdDev", title = "Standard Deviation", type = "number", format = "dp:3")
+  if (options$variance)
+    circularDescriptivesTable$addColumnInfo(name = "variance", title = "Variance", type = "number", format = "dp:3")
+  if (options$range)
+    circularDescriptivesTable$addColumnInfo(name = "range", title = "Range", type = "number", format = "dp:3")
+
+
+  # If no data is loaded, we want the table to be displayed but empty
+  if (length(options$variables) == 0)
+    circularDescriptivesTable$addRows(rep(".", 5))
+
+  # Now fill the table differently depending on split or no split
+  if (wantsSplit)
+  {
+    split <- dataset[[.v(options$splitby)]]
+    splitLevels <- levels(split)
+
+    for (variable in variables)
+      for (level in splitLevels)
+      {
+        row <- circularDescriptivesResults[["descr"]][[variable]][[level]]
+        row[["variable"]] <- variable
+        row[["level"]] <- level
+        circularDescriptivesTable$addRows(row, rowNames = paste(variable))
+      }
+  } else {
+    for (variable in options$variables){
+      row <- circularDescriptivesResults[["descr"]][[variable]]
+      row[["variable"]] <- variable
+      circularDescriptivesTable$addRows(row, rowNames = paste(variable))
+      }
+  }
+
+  # create the footnotes
+  circularDescriptivesTable$addFootnote(symbol = "<em>Note.</em>", message = "If not stated otherwise, all values are calculated on a normalized period of 2pi.")
+
+  if (options$periodGroup != "pi_2")
+    circularDescriptivesTable$addFootnote(message = "Value is shown with respect to the original period.", col_names = list("meanDirection", "median", "range"))
+
+}
+.circularDescriptivesCreatePlot <- function(jaspResults, dataset, options, circularDescriptivesResults){
+
+  wantsSplit <- options$splitby != ""
+  variables <- unlist(options$variables)
+
+  # get a container for plots
+  jaspResults[["containerPlots"]] <- createJaspContainer("Circular Descriptives Plots")
+  jaspResults[["containerPlots"]]$dependOnOptions(c("variables", "splitby", "period", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
+
+  if (wantsSplit) {
+    split <- dataset[[.v(options$splitby)]]
+    splitLevels <- levels(split)
+    for (variable in variables){
+      splitPlotContainer <- createJaspContainer(title = variable)
+      splitPlotContainer$copyDependenciesFromJaspObject(jaspResults[["containerPlots"]])
+      for (level in splitLevels){
+        plotData <- circularDescriptivesResults[["descr"]][[variable]][[level]]$plotData
+        meanLength <- circularDescriptivesResults[["descr"]][[variable]][[level]]$meanLength
+        meanDirection <- circularDescriptivesResults[["descr"]][[variable]][[level]]$meanDirection
+        plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
+        splitPlotContainer[[level]] <- createJaspPlot(plot=plot, title=level, width = 320, height = 320)
+      }
+      jaspResults[["containerPlots"]][[variable]] <- splitPlotContainer
+    }
+  }
+  else {
+  for (variable in variables){
+    plotData <- circularDescriptivesResults[["descr"]][[variable]]$plotData
+    meanLength <- circularDescriptivesResults[["descr"]][[variable]]$meanLength
+    meanDirection <- circularDescriptivesResults[["descr"]][[variable]]$meanDirection
+    plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
+    jaspResults[["containerPlots"]][[variable]] <- createJaspPlot(plot = plot, title = variable, width = 320, height = 320)
+    }
+  }
+}
+.circularDescriptivesCreatePlotHelper <- function(plotData, meanDirection, meanLength, options){
+  # Add a column to the data to for the radius of each point (it is 1 for the unit circle)
+  plotData <- cbind(plotData, y = rep(1, length(plotData[[1]])))
+
+  # the meanDirection is unnormalized for interpretation. Here we normalize it for plotting on the unit circle (plotData is already normalized).
+  meanDirection <- .normalizeData(meanDirection, options$period)
+
+  if(options$plotStacking){
+    # bin all points for stacking
+    his <- hist(as.numeric(plotData$x), breaks = seq(from = 0, to = 2*pi, length.out =  175), plot = FALSE)
+    breaks <- his$breaks
+    mids <- his$mids
+    binOfDataPoints <- findInterval(plotData$x, breaks, all.inside = TRUE)
+
+    # set all x values to the bin center
+    plotData$x <- mids[binOfDataPoints]
+
+    # for every bin with more than one data point, stack the points
+    stackingBins <- which(his$counts>1)
+    for (bin in stackingBins){
+      points <- which(binOfDataPoints == bin)
+      plotData$y[points] <- seq(from = 1, by = 0.05, length.out = length(points))    # stack points
+    }
+  }
+
+  nBins <- 20    # used later for the density estimation
+
+  # get the labels for the plot
+  label1 <- 0
+  label2 <- round(options$period / 4, digits = 2)
+  label3 <- round(options$period / 2, digits = 2)
+  label4 <- round(3 * options$period / 4, digits = 2)
+  label5 <- round(options$period, digits = 2)
+
+  p <- ggplot2::ggplot(data = plotData, ggplot2::aes(x = x)) +
+    ggplot2::geom_point(ggplot2::aes(x = x, y = y)) +
+    ggplot2::coord_polar() +
+    ggplot2::theme_bw() +
+    ggplot2::scale_x_continuous("", limits = c(0, 2*pi), breaks = seq(0, 2*pi, length.out = 5), labels = c(label1, label2, label3, label4, label5)) +
+    ggplot2::ylim(0, max(plotData$y)) +    # set the y limit to the highest y value of all points determined in the routine for stacking
+    ggplot2::theme(axis.text.x = ggplot2::element_text(size = 14, face = "bold",
+                   margin = ggplot2::margin(t = 2, b = 2, l = 2, r = 2)),
+                   panel.border = ggplot2::element_blank(),
+                   panel.grid.minor.x  = ggplot2::element_blank(),
+                   axis.title.y  = ggplot2::element_blank(),
+                   axis.text.y  = ggplot2::element_blank(),
+                   axis.ticks.y  = ggplot2::element_blank(),
+                   panel.grid = ggplot2::element_line(size = 1)
+    ) +
+    ggplot2::geom_segment(ggplot2::aes(x = 0, y = 0.975, xend = 2*pi, yend = 0.975))
+
+  if (options$plotHistogram)
+    p <- p + ggplot2::geom_histogram(ggplot2::aes(x = x, y = sqrt(..ncount..) * 0.9), bins = nBins, color = "black", fill = "white", linetype = "dashed", binwidth = 2*pi / nBins, center = 2*pi / nBins / 2)
+
+  if (options$plotMean)
+    p <- p + ggplot2::geom_segment(x = meanDirection, y = 0, xend = meanDirection, yend = meanLength, size = 1)
+
+  return(p)
+}
+# Helper functions for circular statistics ----
+.normalizeData <- function(data, period){
+  return(((data %% period) / period) * 2 * pi)
+}
+.circularDescriptivesConvertBack <- function(value, period){
+  return((value / (2 * pi)) * period)
+}
