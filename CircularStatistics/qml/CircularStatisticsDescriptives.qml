@@ -29,7 +29,7 @@ Form
 	VariablesForm 
 	{
 		AssignedVariablesList { name: "variables";	title: qsTr("Variables") }
-		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleItem: true; allowedColumns: ["ordinal", "nominal"] }
+		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; allowedColumns: ["ordinal", "nominal"] }
 	}
 
     GridLayout
