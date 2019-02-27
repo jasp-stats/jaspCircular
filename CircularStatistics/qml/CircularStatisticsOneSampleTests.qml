@@ -32,39 +32,42 @@ Form
 		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; allowedColumns: ["ordinal", "nominal"] }
 	}
 
-    RadioButtonGroup
+    ColumnLayout
     {
-        name: "periodGroup"
-        title: qsTr("Period")
-        RadioButton { value: "pi";	text: qsTr("Pi")	}
-        RadioButton { value: "pi_2";	text: qsTr("2Pi")	}
-        RadioButton
+        RadioButtonGroup
         {
-            value: "custom";	text: qsTr("Custom:"); checked: true
-            childrenOnSameRow: true
-            DoubleField { name: "period"; defaultValue: 360; fieldWidth: 50; max: 999999; min: 0.00001}
-        }
-    }
-
-	Group
-    {
-        title: qsTr("Uniformity Tests")
-        CheckBox { name: "rao";			label: qsTr("Rao's Spacing")	}
-        CheckBox { name: "rayleigh";			label: qsTr("Rayleigh")}
-        CheckBox
-        {
-            childrenOnSameRow: true
-            name: "modifiedRayleigh";			label: qsTr("V (modified Rayleigh)")
-            DoubleField
+            name: "periodGroup"
+            title: qsTr("Period")
+            RadioButton { value: "pi";	text: qsTr("Pi")	}
+            RadioButton { value: "pi_2";	text: qsTr("2Pi")	}
+            RadioButton
             {
-             name: "testValue"; label: qsTr("Test value")
+                value: "custom";	text: qsTr("Custom:"); checked: true
+                childrenOnSameRow: true
+                DoubleField { name: "period"; defaultValue: 360; fieldWidth: 50; max: 999999; min: 0.00001}
             }
         }
+
+        Group
+        {
+            title: qsTr("Uniformity Tests")
+            CheckBox { name: "rao";			label: qsTr("Rao's Spacing")	}
+            CheckBox { name: "rayleigh";			label: qsTr("Rayleigh")}
+            CheckBox
+            {
+                childrenOnSameRow: true
+                name: "modifiedRayleigh";			label: qsTr("V (modified Rayleigh)")
+                DoubleField
+                {
+                 name: "testValue"; label: qsTr("Test value")
+                }
+            }
+        }
+
+        Group
+            {
+                title: qsTr("Assumption Checks")
+                CheckBox { name: "vonMisesCheck";	label: qsTr("Von Mises")}
+            }
     }
-	
-	Group
-		{
-			title: qsTr("Assumption Checks")
-			CheckBox { name: "vonMisesCheck";	label: qsTr("Von Mises")}
-        }		
 }

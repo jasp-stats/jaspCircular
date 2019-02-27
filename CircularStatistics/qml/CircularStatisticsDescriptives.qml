@@ -49,13 +49,13 @@ Form
 	ExpanderButton 
 	{
 		title: qsTr("Plots")
-		
-		Group 
-		{
-			CheckBox { name: "plotVariables";			text: qsTr("Distribution plots"); id: plotVariables							}
-            CheckBox { name: "plotStacking";			text: qsTr("Stack points"); enabled: plotVariables.checked; indent: true	}
-            CheckBox { name: "plotMean";                text: qsTr("Display mean vector")	; enabled: plotVariables.checked; indent: true}											}
-            CheckBox { name: "plotHistogram";				text: qsTr("Display histogram"); enabled: plotVariables.checked; indent: true}
+        Group
+        {
+            CheckBox { name: "plotVariables"; text: qsTr("Distribution plots"); id: plotVariables }
+            CheckBox { name: "plotStacking"; text: qsTr("Stack points"); enabled: plotVariables.checked; indent: true	}
+            CheckBox { name: "plotMean"; text: qsTr("Display mean vector")	; enabled: plotVariables.checked; indent: true}
+            CheckBox { name: "plotHistogram"; text: qsTr("Display histogram"); enabled: plotVariables.checked; indent: true}
+        }
     }
 
 	

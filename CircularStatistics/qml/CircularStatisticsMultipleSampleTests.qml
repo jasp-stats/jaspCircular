@@ -32,30 +32,33 @@ Form
         AssignedVariablesList { name: "fixedFactors";	title: qsTr("Fixed Factors");		allowedColumns: ["ordinal", "nominal"]		}
 	}
 
-    RadioButtonGroup
+    ColumnLayout
     {
-        name: "periodGroup"
-        title: qsTr("Period")
-        RadioButton { value: "pi";	text: qsTr("Pi")	}
-        RadioButton { value: "pi_2";	text: qsTr("2Pi")	}
-        RadioButton
+        RadioButtonGroup
         {
-            value: "custom";	text: qsTr("Custom:"); checked: true
-            childrenOnSameRow: true
-            DoubleField { name: "period"; defaultValue: 360; fieldWidth: 50; max: 999999; min: 0.00001}
+            name: "periodGroup"
+            title: qsTr("Period")
+            RadioButton { value: "pi";	text: qsTr("Pi")	}
+            RadioButton { value: "pi_2";	text: qsTr("2Pi")	}
+            RadioButton
+            {
+                value: "custom";	text: qsTr("Custom:"); checked: true
+                childrenOnSameRow: true
+                DoubleField { name: "period"; defaultValue: 360; fieldWidth: 50; max: 999999; min: 0.00001}
+            }
         }
-    }
 
-	Group
-    {
-        title: qsTr("One-way ANOVA")
-        CheckBox { name: "watsonWilliams";			label: qsTr("Watson-Williams (parametric)")	}
-        CheckBox { name: "watsonWheeler";			label: qsTr("Watson-Wheeler (non-parametric)")}
+        Group
+        {
+            title: qsTr("One-way ANOVA")
+            CheckBox { name: "watsonWilliams";			label: qsTr("Watson-Williams (parametric)")	}
+            CheckBox { name: "watsonWheeler";			label: qsTr("Watson-Wheeler (non-parametric)")}
+        }
+
+        Group
+            {
+                title: qsTr("Two-way ANOVA")
+                CheckBox { name: "harrisonKanji";	label: qsTr("Harrison-Kanji")}
+            }
     }
-	
-	Group
-		{
-            title: qsTr("Two-way ANOVA")
-            CheckBox { name: "harrisonKanji";	label: qsTr("Harrison-Kanji")}
-        }		
 }
