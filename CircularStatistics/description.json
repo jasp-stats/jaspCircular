@@ -33,14 +33,14 @@
 			[
 				{
 					"title":	"One-Sample Tests",
-					"qml": "OneSampleTests.qml",
-					"function":	"CircularStatisticsTestsOneSample",
+					"qml": "CircularStatisticsOneSampleTests.qml",
+					"function":	"CircularStatisticsOneSampleTests",
 					"usesJaspResults": true
 				},
 				{
 					"title":	"Multiple-Sample Tests",
-					"qml": "MultipleSampleTests.qml",
-					"function":	"CircularStatisticsTestsMultipleSample",
+					"qml": "CircularStatisticsMultipleSampleTests.qml",
+					"function":	"CircularStatisticsMultipleSampleTests",
 					"usesJaspResults": true
 				}
 			]

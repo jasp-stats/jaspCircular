@@ -45,41 +45,26 @@ Form
             DoubleField { name: "period"; defaultValue: 360; fieldWidth: 50; max: 999999; min: 0.00001}
         }
     }
-	
-	ExpanderButton 
-	{
-		title: qsTr("Plots")
-		
-		Group 
-		{
-			CheckBox { name: "plotVariables";			text: qsTr("Distribution plots"); id: plotVariables							}
-            CheckBox { name: "plotStacking";			text: qsTr("Stack points"); enabled: plotVariables.checked; indent: true	}
-            CheckBox { name: "plotMean";                text: qsTr("Display mean vector")	; enabled: plotVariables.checked; indent: true}											}
-            CheckBox { name: "plotHistogram";				text: qsTr("Display histogram"); enabled: plotVariables.checked; indent: true}
-    }
 
+	Group
+    {
+        title: qsTr("Uniformity Tests")
+        CheckBox { name: "rao";			label: qsTr("Rao's Spacing")	}
+        CheckBox { name: "rayleigh";			label: qsTr("Rayleigh")}
+        CheckBox
+        {
+            childrenOnSameRow: true
+            name: "modifiedRayleigh";			label: qsTr("V (modified Rayleigh)")
+            DoubleField
+            {
+             name: "testValue"; label: qsTr("Test value")
+            }
+        }
+    }
 	
-	ExpanderButton 
-	{
-		title: qsTr("Statistics")
-		
-		GridLayout 
-		{	
-			GroupBox 
-			{
-				title: qsTr("Central Tendency")
-                CheckBox { name: "meanDirection";			text: qsTr("Mean direction");		checked: true	}
-                CheckBox { name: "meanLength";			text: qsTr("Mean resultant length");}
-                CheckBox { name: "median";			text: qsTr("Median");				}
-            }
-			
-			GroupBox 
-			{
-				title: qsTr("Dispersion")
-				CheckBox { name: "standardDeviation";	text: qsTr("Std.deviation"); checked: true	}
-                CheckBox { name: "variance";			text: qsTr("Variance")						}
-				CheckBox { name: "range";				text: qsTr("Range")							}
-            }
-		}		
-	}
+	Group
+		{
+			title: qsTr("Assumption Checks")
+			CheckBox { name: "vonMisesCheck";	label: qsTr("Von Mises")}
+        }		
 }

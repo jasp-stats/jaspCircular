@@ -1,4 +1,4 @@
-CircularStatisticsTestsOneSample <- function(jaspResults, dataset, options, ...) {
+CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI
   if (options$periodGroup == "pi")
     options$period <- pi
@@ -16,7 +16,7 @@ CircularStatisticsTestsOneSample <- function(jaspResults, dataset, options, ...)
 
   circularTestsOneSampleResults <- .circularTestsOneSampleComputeResults(jaspResults, dataset, options)
   if(options$vonMisesCheck)
-    circularTestsOneSampleVonMisesResults <-.circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options)
+    circularTestsOneSampleVonMisesResults <- .circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options)
 
   # Output tables and plots
   .circularTestsOneSampleCreateTable(jaspResults, dataset, options, circularTestsOneSampleResults)

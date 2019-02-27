@@ -1,4 +1,4 @@
-CircularStatisticsTestsMultipleSample <- function(jaspResults, dataset, options, ...) {
+CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI
   if (options$periodGroup == "pi")
     options$period <- pi
