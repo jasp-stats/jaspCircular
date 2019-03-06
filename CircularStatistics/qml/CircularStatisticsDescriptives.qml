@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2013-2018 University of Amsterdam
+// Copyright (C) 2019 Aaron Bahde, University of Tuebingen
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -28,7 +28,8 @@ Form
 	
 	VariablesForm 
 	{
-		AssignedVariablesList { name: "variables";	title: qsTr("Variables") }
+        AvailableVariablesList { name: "allVariablesList" }
+        AssignedVariablesList { name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
 		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; allowedColumns: ["ordinal", "nominal"] }
 	}
 
@@ -36,13 +37,13 @@ Form
     {
         name: "periodGroup"
         title: qsTr("Period")
-        RadioButton { value: "pi";	text: qsTr("Pi")	}
-        RadioButton { value: "pi_2";	text: qsTr("2Pi")	}
+        RadioButton { value: "pi";	label: qsTr("Pi")	}
+        RadioButton { value: "pi_2";	label: qsTr("2Pi")	}
         RadioButton
         {
-            value: "custom";	text: qsTr("Custom:"); checked: true
+            value: "custom";	label: qsTr("Custom:"); checked: true
             childrenOnSameRow: true
-            DoubleField { name: "period"; defaultValue: 360; fieldWidth: 50; max: 999999; min: 0.00001}
+            DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; max: 999999; min: 0.00001}
         }
     }
 	
@@ -51,10 +52,10 @@ Form
 		title: qsTr("Plots")
         Group
         {
-            CheckBox { name: "plotVariables"; text: qsTr("Distribution plots"); id: plotVariables }
-            CheckBox { name: "plotStacking"; text: qsTr("Stack points"); enabled: plotVariables.checked; indent: true	}
-            CheckBox { name: "plotMean"; text: qsTr("Display mean vector")	; enabled: plotVariables.checked; indent: true}
-            CheckBox { name: "plotHistogram"; text: qsTr("Display histogram"); enabled: plotVariables.checked; indent: true}
+            CheckBox { name: "plotVariables"; label: qsTr("Distribution plots"); id: plotVariables }
+            CheckBox { name: "plotStacking"; label: qsTr("Stack points"); enabled: plotVariables.checked; indent: true	}
+            CheckBox { name: "plotMean"; label: qsTr("Display mean vector")	; enabled: plotVariables.checked; indent: true}
+            CheckBox { name: "plotHistogram"; label: qsTr("Display histogram"); enabled: plotVariables.checked; indent: true}
         }
     }
 

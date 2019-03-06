@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2013-2018 University of Amsterdam
+// Copyright (C) 2019 Aaron Bahde, University of Tuebingen
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -28,6 +28,7 @@ Form
 	
     VariablesForm
     {
+        AvailableVariablesList { name: "allVariablesList" }
         AssignedVariablesList { name: "dependent";		title: qsTr("Dependent Variable");	allowedColumns: ["scale"]; singleVariable: true }
         AssignedVariablesList { name: "fixedFactors";	title: qsTr("Fixed Factors");		allowedColumns: ["ordinal", "nominal"]		}
 	}
@@ -38,13 +39,13 @@ Form
         {
             name: "periodGroup"
             title: qsTr("Period")
-            RadioButton { value: "pi";	text: qsTr("Pi")	}
-            RadioButton { value: "pi_2";	text: qsTr("2Pi")	}
+            RadioButton { value: "pi";	label: qsTr("Pi")	}
+            RadioButton { value: "pi_2";	label: qsTr("2Pi")	}
             RadioButton
             {
-                value: "custom";	text: qsTr("Custom:"); checked: true
+                value: "custom";	label: qsTr("Custom:"); checked: true
                 childrenOnSameRow: true
-                DoubleField { name: "period"; defaultValue: 360; fieldWidth: 50; max: 999999; min: 0.00001}
+                DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; max: 999999; min: 0.00001}
             }
         }
 
@@ -52,7 +53,7 @@ Form
         {
             title: qsTr("One-way ANOVA")
             CheckBox { name: "watsonWilliams";			label: qsTr("Watson-Williams (parametric)")	}
-            CheckBox { name: "watsonWheeler";			label: qsTr("Watson-Wheeler (non-parametric)")}
+            CheckBox { name: "watsonWheeler";			label: qsTr("Watson-Wheeler (non-parametric)"); checked: true}
         }
 
         Group

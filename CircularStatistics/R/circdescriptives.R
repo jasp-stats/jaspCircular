@@ -1,3 +1,20 @@
+#
+# Copyright (C) 2019 Aaron Bahde, University of Tuebingen
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
 CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI
   if (options$periodGroup == "pi")
@@ -8,36 +25,45 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   # Set title
   jaspResults$title <- "Circular Descriptives"
 
+  ready <- (length(options$variables) > 0)
+  
+  # Determine if the user splits the calculation or not. It has an effect on the whole analysis.
+  wantsSplit <- options$splitby != ""
+  
   # Read dataset
-  dataset <- .circularDescriptivesReadData(dataset, options)
+  if (ready)
+    dataset <- .circularDescriptivesReadData(dataset, options, wantsSplit)
 
   # Error checking
   #errors <- .circularDescriptivesCheckErrors(dataset, options)
   #if (length(errors) != 0)
   #  .quitAnalysis(errors)
 
-  # Compute the results
-  #TODO(abahde): remove this workaround
-  # workaround for my problem that my data readin returns a df with 0 columns but xx > 0 rows when no variable is assigned
-  if (length(options$variables) != 0)
+  # If ready, calculate the results
+  if (ready)
     circularDescriptivesResults <- .circularDescriptivesComputeResults(jaspResults, dataset, options)
-  # Output tables and plots
-  .circularDescriptivesCreateTable(jaspResults, dataset, options, circularDescriptivesResults)
-  if (options$plotVariables)
-    .circularDescriptivesCreatePlot(jaspResults, dataset, options, circularDescriptivesResults)
+  
+  # Output tables
+  if(is.null(jaspResults[["circularDescriptivesTable"]]))
+    .circularDescriptivesCreateTable(jaspResults, circularDescriptivesResults, dataset, options, ready, wantsSplit)
+
+  # Output plots
+  if(options$plotVariables && is.null(jaspResults[["Plots"]]))
+    .circularDescriptivesCreatePlot(jaspResults, dataset, options, circularDescriptivesResults, wantsSplit)
+  return()
 }
 
 # Preprocessing functions ----
-.circularDescriptivesReadData <- function(dataset, options) {
+.circularDescriptivesReadData <- function(dataset, options, wantsSplit) {
   variables <- unlist(options$variables)
-  splitName <- options$splitby
-  makeSplit <- splitName != ""
-  if (makeSplit) {
+  if (wantsSplit) {
+    splitName <- options$splitby
     dataset         <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = splitName)
   } else {
     dataset         <- .readDataSetToEnd(columns.as.numeric = variables)
   }
 }
+
 .circularDescriptivesCheckErrors <- function(dataset, options){
 
 }
@@ -76,7 +102,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 
   # save results to state
   jaspResults[["stateCircDescriptivesResults"]] <- createJaspState(results)
-  jaspResults[["stateCircDescriptivesResults"]]$dependOnOptions(c("variables", "splitby", "period", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
+  jaspResults[["stateCircDescriptivesResults"]]$dependOnOptions(c("variables", "splitby", "period", "periodGroup", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
   return(results)
 }
 .circularDescriptivesComputeResultsSub <- function(column, options){
@@ -128,20 +154,14 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   return(results)
 }
 # Output functions ----
-.circularDescriptivesCreateTable <- function(jaspResults, dataset, options, circularDescriptivesResults) {
-
-
-  wantsSplit <- options$splitby != ""
-  variables <- unlist(options$variables)
-
-  # Create table
+.circularDescriptivesCreateTable <- function(jaspResults, circularDescriptivesResults, dataset, options, ready, wantsSplit) {
+  
   circularDescriptivesTable <- createJaspTable(title = "Circular Descriptives")
-  jaspResults[["circularDescriptivesTable"]] <- circularDescriptivesTable
-  jaspResults[["circularDescriptivesTable"]]$dependOnOptions(c("variables", "splitby", "period", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
-
+  circularDescriptivesTable$dependOnOptions(c("variables", "splitby", "period", "periodGroup", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
+  
   circularDescriptivesTable$showSpecifiedColumnsOnly <- TRUE
   circularDescriptivesTable$transpose <- TRUE
-
+  
   if (wantsSplit)
   {
     circularDescriptivesTable$transposeWithOvertitle <- TRUE
@@ -150,7 +170,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   } else {
     circularDescriptivesTable$addColumnInfo(name = "variable",  title = "", type = "string")
   }
-
+  
   # Add columns to table
   circularDescriptivesTable$addColumnInfo(name = "nValidObs",     title = "Valid",     type = "integer")
   circularDescriptivesTable$addColumnInfo(name = "nInvalidObs",      title = "Missing",      type = "integer")
@@ -166,18 +186,28 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
     circularDescriptivesTable$addColumnInfo(name = "variance", title = "Variance", type = "number", format = "dp:3")
   if (options$range)
     circularDescriptivesTable$addColumnInfo(name = "range", title = "Range", type = "number", format = "dp:3")
-
-
-  # If no data is loaded, we want the table to be displayed but empty
-  if (length(options$variables) == 0)
-    circularDescriptivesTable$addRows(rep(".", 5))
-
-  # Now fill the table differently depending on split or no split
+  
+  # create the footnotes
+  circularDescriptivesTable$addFootnote(symbol = "<em>Note.</em>", message = "If not stated otherwise, all values are calculated on a normalized period of 2pi.")
+  if (options$periodGroup != "pi_2")
+    circularDescriptivesTable$addFootnote(message = "Value is shown with respect to the original period.", col_names = list("meanDirection", "median", "range"))
+  
+  jaspResults[["circularDescriptivesTable"]] <- circularDescriptivesTable
+  
+  if(!ready)
+    return()
+  
+  # if ready, go on with filling the table with the results
+  .circularDescriptivesFillTable(circularDescriptivesTable, circularDescriptivesResults, options, dataset, wantsSplit)
+}
+.circularDescriptivesFillTable <- function(circularDescriptivesTable, circularDescriptivesResults, options, dataset, wantsSplit){
+  variables <- unlist(options$variables)
   if (wantsSplit)
   {
+    # TODO: get the splitLevels not from the dataset such that I can remove it as argument to this function
     split <- dataset[[.v(options$splitby)]]
     splitLevels <- levels(split)
-
+    
     for (variable in variables)
       for (level in splitLevels)
       {
@@ -191,51 +221,49 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
       row <- circularDescriptivesResults[["descr"]][[variable]]
       row[["variable"]] <- variable
       circularDescriptivesTable$addRows(row, rowNames = paste(variable))
-      }
+    }
   }
-
-  # create the footnotes
-  circularDescriptivesTable$addFootnote(symbol = "<em>Note.</em>", message = "If not stated otherwise, all values are calculated on a normalized period of 2pi.")
-
-  if (options$periodGroup != "pi_2")
-    circularDescriptivesTable$addFootnote(message = "Value is shown with respect to the original period.", col_names = list("meanDirection", "median", "range"))
-
 }
-.circularDescriptivesCreatePlot <- function(jaspResults, dataset, options, circularDescriptivesResults){
 
-  wantsSplit <- options$splitby != ""
-  variables <- unlist(options$variables)
 
+.circularDescriptivesCreatePlot <- function(jaspResults, dataset, options, circularDescriptivesResults, wantsSplit){
   # get a container for plots
-  jaspResults[["containerPlots"]] <- createJaspContainer("Circular Descriptives Plots")
-  jaspResults[["containerPlots"]]$dependOnOptions(c("variables", "splitby", "period", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
-
+  containerPlots <- createJaspContainer(title = "Circular Descriptives Plots")
+  containerPlots$dependOnOptions(c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
+  jaspResults[["Plots"]] <- containerPlots
+  
+  variables <- unlist(options$variables)
   if (wantsSplit) {
     split <- dataset[[.v(options$splitby)]]
     splitLevels <- levels(split)
     for (variable in variables){
       splitPlotContainer <- createJaspContainer(title = variable)
-      splitPlotContainer$copyDependenciesFromJaspObject(jaspResults[["containerPlots"]])
       for (level in splitLevels){
         plotData <- circularDescriptivesResults[["descr"]][[variable]][[level]]$plotData
         meanLength <- circularDescriptivesResults[["descr"]][[variable]][[level]]$meanLength
         meanDirection <- circularDescriptivesResults[["descr"]][[variable]][[level]]$meanDirection
         plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
-        splitPlotContainer[[level]] <- createJaspPlot(plot=plot, title=level, width = 320, height = 320)
+        jaspPlot <- createJaspPlot(plot=plot, title=level, width = 320, height = 320)
+        splitPlotContainer[[level]] <- jaspPlot
       }
-      jaspResults[["containerPlots"]][[variable]] <- splitPlotContainer
+      containerPlots[[variable]] <- splitPlotContainer
     }
   }
   else {
-  for (variable in variables){
-    plotData <- circularDescriptivesResults[["descr"]][[variable]]$plotData
-    meanLength <- circularDescriptivesResults[["descr"]][[variable]]$meanLength
-    meanDirection <- circularDescriptivesResults[["descr"]][[variable]]$meanDirection
-    plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
-    jaspResults[["containerPlots"]][[variable]] <- createJaspPlot(plot = plot, title = variable, width = 320, height = 320)
+    for (variable in variables){
+      if(!is.null(containerPlots[[variable]]))    # skip the costly creation of the plot for that variable if it is not affected by a change
+        next
+      plotData <- circularDescriptivesResults[["descr"]][[variable]]$plotData
+      meanLength <- circularDescriptivesResults[["descr"]][[variable]]$meanLength
+      meanDirection <- circularDescriptivesResults[["descr"]][[variable]]$meanDirection
+      plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
+      jaspPlot <- createJaspPlot(plot = plot, title = variable, width = 320, height = 320)
+      jaspPlot$setOptionMustContainDependency("variables", variable)    # make sure that the plot is only dependent on the variable it plots
+      containerPlots[[variable]] <- jaspPlot
     }
   }
 }
+
 .circularDescriptivesCreatePlotHelper <- function(plotData, meanDirection, meanLength, options){
   # Add a column to the data to for the radius of each point (it is 1 for the unit circle)
   plotData <- cbind(plotData, y = rep(1, length(plotData[[1]])))

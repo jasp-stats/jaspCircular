@@ -1,3 +1,20 @@
+#
+# Copyright (C) 2019 Aaron Bahde, University of Tuebingen
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
 CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI
   if (options$periodGroup == "pi")
@@ -8,6 +25,8 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   # Set title
   jaspResults$title <- "Test Results"
 
+  ready <- (length(options$variables) > 0)
+  
   # Read dataset
   dataset <- .circularTestsOneSampleReadData(dataset, options)
 
@@ -15,13 +34,13 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   #errors <- .circularTestsOneSampleCheckErrors(dataset, options)
 
   circularTestsOneSampleResults <- .circularTestsOneSampleComputeResults(jaspResults, dataset, options)
-  if(options$vonMisesCheck)
-    circularTestsOneSampleVonMisesResults <- .circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options)
+  circularTestsOneSampleVonMisesResults <- .circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options)
 
   # Output tables and plots
-  .circularTestsOneSampleCreateTable(jaspResults, dataset, options, circularTestsOneSampleResults)
+  if(options$rao || options$rayleigh || options$modifiedRayleigh)
+    .circularTestsOneSampleCreateTable(jaspResults, dataset, options, circularTestsOneSampleResults, ready)
   if(options$vonMisesCheck)
-    .circularTestsOneSampleCreateTableVonMises(jaspResults, dataset, options, circularTestsOneSampleVonMisesResults)
+    .circularTestsOneSampleCreateTableVonMises(jaspResults, dataset, options, circularTestsOneSampleVonMisesResults, ready)
 }
 
 # Preprocessing functions ----
@@ -136,7 +155,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 .circularTestsOneSampleComputeResultsRao <- function(jaspResults, data, options) {
   # the test will always run with a p value of 0.01.
   # TODO (abahde): make it possible to specify the p-value of the test as 0.001, 0.01, 0.05, or 0.1 in the GUI
-  p <- 0.01
+  p <- as.numeric(options$pValueRao)
   testResult <- circular::rao.spacing.test(data,alpha=p)
   U <- testResult$statistic
   n <- testResult$n
@@ -178,6 +197,7 @@ return(results)
   results <- list(p = p, statistic = r0Bar)
   return(results)
 }
+
 .circularTestsOneSampleComputeResultsVonMises <- function(jaspResults, dataset, options){
   splitName <- options$splitby
   wantsSplit <- splitName != ""
@@ -224,8 +244,7 @@ return(results)
   return(circularTestsOneSampleVonMisesTestResults)
 }
 .circularTestsOneSampleComputeResultsVonMisesSub <- function(data, options, dist = "vonmises"){
-  # at the moment we only support this assumption check for a p-value of 0.01 (it is called "alpha" in the circular package)
-  alpha <- 0.01
+  alpha <- as.numeric(options$pValueVonMises)
 
   # Get the estimated kappa for the footnote. If kappa is too small, the data might be rather uniform.
   kappa <- circular::mle.vonmises(data, bias = FALSE)$kappa
@@ -253,15 +272,14 @@ return(results)
   return(list(critical = critical, statistic = statistic, p = alpha, kappa = kappa))
 }
 # Output functions ----
-.circularTestsOneSampleCreateTable <- function(jaspResults, dataset, options, circularTestsOneSampleResults) {
-  splitName <- options$splitby
-  wantsSplit <- splitName != ""
-  variables <- unlist(options$variables)
+.circularTestsOneSampleCreateTable <- function(jaspResults, dataset, options, circularTestsOneSampleResults, ready) {
 
+  wantsSplit <- options$splitby != ""
+  
   # Create table
   oneSampleTable <- createJaspTable(title = "Uniformity Tests")
   jaspResults[["oneSampleTable"]] <- oneSampleTable
-  jaspResults[["oneSampleTable"]]$dependOnOptions(c("variables", "splitby", "rayleigh", "modifiedRayleigh", "period"))
+  jaspResults[["oneSampleTable"]]$dependOnOptions(c("variables", "splitby", "rao", "pValueRao", "rayleigh", "modifiedRayleigh", "period", "periodGroup"))
 
   oneSampleTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -275,21 +293,32 @@ return(results)
   oneSampleTable$addColumnInfo(name = "statistic",   title = "Statistic",   type = "number", format = "dp:3")
   if (options$rao)
     oneSampleTable$addColumnInfo(name = "criticalValue",   title = "Critical",   type = "number", format = "dp:3")
+  
+  
+  oneSampleTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
+  
+  if(ready)
+    .circularTestsOneSampleFillTable(oneSampleTable, circularTestsOneSampleResults, options, dataset)
+}
+.circularTestsOneSampleFillTable <- function(oneSampleTable, circularTestsOneSampleResults, options, dataset) {
+  splitName <- options$splitby
+  wantsSplit <- splitName != ""
+  variables <- unlist(options$variables)
   if (wantsSplit){
     split <- dataset[[.v(options$splitby)]]
     splitLevels <- levels(split)
-
+    
     rowNamesForRaoFootnote <- c()
-
+    
     for(variable in variables){
       for(level in splitLevels){
         if (options$rao){
           row <- circularTestsOneSampleResults[[variable]][[level]][["rao"]]
           rowName <- paste(variable, level, "rao")
           oneSampleTable$addRows(row, rowNames = rowName)
-
+          
           rowNamesForRaoFootnote <- c(rowNamesForRaoFootnote, rowName)
-          }
+        }
         if (options$rayleigh){
           row <- circularTestsOneSampleResults[[variable]][[level]][["rayleigh"]]
           oneSampleTable$addRows(row, rowNames = paste(variable))
@@ -302,15 +331,15 @@ return(results)
     }
   }
   else {
-
+    
     rowNamesForRaoFootnote <- c()
-
+    
     for (variable in variables){
       if (options$rao){
         row <- circularTestsOneSampleResults[[variable]][["rao"]]
         rowName <- paste(variable, "rao")
         oneSampleTable$addRows(row, rowNames = rowName)
-
+        
         rowNamesForRaoFootnote <- c(rowNamesForRaoFootnote, rowName)
       }
       if (options$rayleigh){
@@ -323,19 +352,17 @@ return(results)
       }
     }
   }
-  oneSampleTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
   if (options$rao)
-    oneSampleTable$addFootnote(message = "The test is run with p = 0.01, so please compare the statistics to the critical value.", col_names = "testName", row_names = rowNamesForRaoFootnote)
+    oneSampleTable$addFootnote(message = paste("The test is run with p = ", options$pValueRao, "so please compare the statistics to the critical value."), col_names = "testName", row_names = rowNamesForRaoFootnote)
 }
-.circularTestsOneSampleCreateTableVonMises <-function (jaspResults, dataset, options, circularTestsOneSampleVonMisesTestResults){
-  splitName <- options$splitby
-  wantsSplit <- splitName != ""
-  variables <- unlist(options$variables)
 
+.circularTestsOneSampleCreateTableVonMises <-function (jaspResults, dataset, options, circularTestsOneSampleVonMisesTestResults, ready){
+  wantsSplit <- options$splitby != ""
+  
   # Create table
   vonMisesCheckTable <- createJaspTable(title = "Von Mises Assumption Check")
   jaspResults[["vonMisesCheckTable"]] <- vonMisesCheckTable
-  jaspResults[["vonMisesCheckTable"]]$dependOnOptions(c("variables", "splitby", "vonMisesCheck", "alpha", "period"))
+  jaspResults[["vonMisesCheckTable"]]$dependOnOptions(c("variables", "splitby", "vonMisesCheck", "pValueVonMises", "alpha", "period", "periodGroup"))
 
   vonMisesCheckTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -343,32 +370,40 @@ return(results)
   vonMisesCheckTable$addColumnInfo(name = "variable",   title = "Variable",   type = "string", combine=TRUE)
   if (wantsSplit)
     vonMisesCheckTable$addColumnInfo(name = "level",   title = "Level",   type = "string", combine = TRUE)
-
+  vonMisesCheckTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:2")
   vonMisesCheckTable$addColumnInfo(name = "statistic",   title = "U\u00B2",   type = "number", format = "dp:3")
   vonMisesCheckTable$addColumnInfo(name = "critical",   title = "Critical",   type = "number", format = "dp:3")
-  vonMisesCheckTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:2")
   vonMisesCheckTable$addColumnInfo(name = "kappa",   title = "Est. Kappa",   type = "number", format = "dp:2")
+  
+  if(ready)
+    .circularTestsOneSampleFillTableVonMises(vonMisesCheckTable, circularTestsOneSampleVonMisesTestResults, options, dataset)
+}
+.circularTestsOneSampleFillTableVonMises <- function(vonMisesCheckTable, circularTestsOneSampleVonMisesTestResults, options, dataset) {
+  splitName <- options$splitby
+  wantsSplit <- splitName != ""
+  variables <- unlist(options$variables)
+  
   if (wantsSplit){
     split       <- dataset[[.v(options$splitby)]]
     splitLevels <- levels(split)
-
+    
     rowsForKappaFootnote <- c()
-
+    
     for(variable in variables){
       for(level in splitLevels){
         row <- circularTestsOneSampleVonMisesTestResults[[variable]][[level]]
         vonMisesCheckTable$addRows(row, rowNames = paste(variable, level))
-
+        
         if (row$kappa < 1)
           rowsForKappaFootnote <- c(rowsForKappaFootnote, paste(variable, level))
-
+        
       }
     }
     vonMisesCheckTable$addFootnote(message = "Do not trust a significant result where kappa is small (< 1). The data could rather be uniform.", col_names = "kappa", row_names = rowsForKappaFootnote)
   }
   else {
     rowsForKappaFootnote <- c()
-
+    
     for(variable in variables){
       row <- circularTestsOneSampleVonMisesTestResults[[variable]]
       vonMisesCheckTable$addRows(row, rowNames = paste(variable))
@@ -376,10 +411,9 @@ return(results)
         rowsForKappaFootnote <- c(rowsForKappaFootnote, paste(variable))
     }
     vonMisesCheckTable$addFootnote(message = "Do not trust a significant result where kappa is small (< 1). The data could rather be uniform.", col_names = "kappa", row_names = rowsForKappaFootnote)
-    vonMisesCheckTable$addFootnote(symbol = "<em>Note.</em>", message = "The test is run with p = 0.01, so please compare the statistics to the critical value.")
+    vonMisesCheckTable$addFootnote(symbol = "<em>Note.</em>", message = paste("The test is run with p = ",  options$pValueVonMises, "so please compare the statistics to the critical value."))
   }
 }
-
 
 # Helper functions for circular statistics ----
 .normalizeData <- function(data, period){

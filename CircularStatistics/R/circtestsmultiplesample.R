@@ -1,3 +1,20 @@
+#
+# Copyright (C) 2019 Aaron Bahde, University of Tuebingen
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
 CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI
   if (options$periodGroup == "pi")
@@ -8,22 +25,25 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Set title
   jaspResults$title <- "Test Results"
 
-  # workaround
-  #TODO remove workaround
-  if (length(options$dependent) != 0 && length(options$fixedFactors != 0)){
+  ready <- (options$dependent != "") && (length(options$fixedFactors) > 0)
+  
+  if (ready){
     # Read dataset
     dataset <- .circularTestsMultipleSampleReadData(dataset, options)
 
     # Error checking
     #.circularTestsMultipleSampleCheckErrors(dataset, options)
-
-    oneWayAnovaResults <- .circularTestsMultipleSampleComputeResultsOneWayAnova(jaspResults, dataset, options)
-    .circularTestsMultipleSampleTableOneWayAnova(jaspResults, dataset, options, oneWayAnovaResults)
-
-    if (length(options$fixedFactors) == 2 && options$harrisonKanji){
+  }
+  
+  if(options$watsonWilliams || options$watsonWheeler){
+    if(ready)
+      oneWayAnovaResults <- .circularTestsMultipleSampleComputeResultsOneWayAnova(jaspResults, dataset, options)
+    .circularTestsMultipleSampleTableOneWayAnova(jaspResults, dataset, options, oneWayAnovaResults, ready)
+  }
+  if (options$harrisonKanji){
+    if(ready && length(options$fixedFactors) == 2)
       twoWayAnovaResults <- .circularTestsMultipleSampleComputeResultsTwoWayAnova(jaspResults, dataset, options)
-      .circularTestsMultipleSampleTableTwoWayAnova(jaspResults, dataset, options, twoWayAnovaResults)
-    }
+    .circularTestsMultipleSampleTableTwoWayAnova(jaspResults, dataset, options, twoWayAnovaResults, ready)
   }
 }
 
@@ -269,14 +289,12 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 }
 
 # Output functions ----
-.circularTestsMultipleSampleTableOneWayAnova <- function(jaspResults, dataset, options, oneWayAnovaResults) {
-  dependent <- unlist(options$dependent)
-  facs <- unlist(options$fixedFactors)
+.circularTestsMultipleSampleTableOneWayAnova <- function(jaspResults, dataset, options, oneWayAnovaResults, ready) {
 
   # Create table
   oneWayAnovaTable <- createJaspTable(title = "One-way ANOVA")
   jaspResults[["oneWayAnovaTable"]] <- oneWayAnovaTable
-  jaspResults[["oneWayAnovaTable"]]$dependOnOptions(c("dependent", "watsonWilliams", "period", "watsonWheeler", "fixedFactors"))
+  jaspResults[["oneWayAnovaTable"]]$dependOnOptions(c("dependent", "watsonWilliams", "period", "periodGroup", "watsonWheeler", "fixedFactors"))
 
   oneWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -294,66 +312,87 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     oneWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
   }
 
+  oneWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
+  if (options$watsonWheeler)
+    oneWayAnovaTable$addFootnote(message = "The degrees of freedom of the \u03C7\u00B2-distribution to which W is compared.", col_names = "df")
+
+  if(ready)
+    .circularTestsMultipleSampleFillOneWayAnovaTable(oneWayAnovaTable, oneWayAnovaResults, options)
+}
+.circularTestsMultipleSampleFillOneWayAnovaTable <- function(oneWayAnovaTable, oneWayAnovaResults, options) {
+  dependent <- unlist(options$dependent)
+  facs <- unlist(options$fixedFactors)
   for (fac in facs){
     if (options$watsonWilliams){
       row <- oneWayAnovaResults[["watsonWilliams"]][[fac]]
       oneWayAnovaTable$addRows(row, rowNames = paste(fac))
     }
-
+    
     if (options$watsonWheeler){
       row <- oneWayAnovaResults[["watsonWheeler"]][[fac]]
       oneWayAnovaTable$addRows(row, rowNames = (paste(fac)))
     }
   }
-
-  oneWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
-  if (options$watsonWheeler)
-    oneWayAnovaTable$addFootnote(message = "The degrees of freedom of the \u03C7\u00B2-distribution to which W is compared.", col_names = "df")
-
 }
-.circularTestsMultipleSampleTableTwoWayAnova <- function(jaspResults, dataset, options, twoWayAnovaResults) {
-  dependent <- unlist(options$dependent)
-  fac1 <- options$fixedFactors[1]
-  fac2 <- options$fixedFactors[2]
-  # Create table
-  twoWayAnovaTable <- createJaspTable(title = "Two-way ANOVA (Harrison-Kanji Test")
-  jaspResults[["twoWayAnovaTable"]] <- twoWayAnovaTable
-  jaspResults[["twoWayAnovaTable"]]$dependOnOptions(c("dependent", "harrisonKanji", "period", "fixedFactors"))
 
+.circularTestsMultipleSampleTableTwoWayAnova <- function(jaspResults, dataset, options, twoWayAnovaResults, ready) {
+  # Create table
+  twoWayAnovaTable <- createJaspTable(title = "Two-way ANOVA (Harrison-Kanji Test)")
+  jaspResults[["twoWayAnovaTable"]] <- twoWayAnovaTable
+  jaspResults[["twoWayAnovaTable"]]$dependOnOptions(c("dependent", "harrisonKanji", "period", "periodGroup", "fixedFactors"))
+  
   twoWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
   # Add columns to table
   twoWayAnovaTable$addColumnInfo(name = "fac",   title = "Cases",   type = "string")
-  kappa<-twoWayAnovaResults[["harrisonKanji"]][["estimatedKappa"]]
+  
+  # if the analysis is not ready, show as default the table of the small kappa case
+  if(!(ready && length(options$fixedFactors) == 2)){
+    kappa <- 0
+  } else {
+    kappa<-twoWayAnovaResults[["harrisonKanji"]][["estimatedKappa"]]
+  }
+  
   if(kappa > 2){    # the HK test differs depending on the estimated kappa
-    twoWayAnovaTable$addColumnInfo(name = "ss",   title = "Sum of Square",   type = "number", format = "dp:3")
-    twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
-    twoWayAnovaTable$addColumnInfo(name = "ms",   title = "Mean Square",   type = "number", format = "dp:3")
-    twoWayAnovaTable$addColumnInfo(name = "f",   title = "F",   type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:3;p:.001")
+    twoWayAnovaTable$addColumnInfo(name = "f",   title = "F",   type = "number", format = "dp:3")
+    twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
+    twoWayAnovaTable$addColumnInfo(name = "ss",   title = "Sum of Square",   type = "number", format = "dp:3")
+    twoWayAnovaTable$addColumnInfo(name = "ms",   title = "Mean Square",   type = "number", format = "dp:3")
     twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "We estimated kappa greater than 2. The respective routine was run.")
   }else{
-    twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
-    twoWayAnovaTable$addColumnInfo(name = "chi",   title = "\u03C7\u00B2",   type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:3;p:.001")
+    twoWayAnovaTable$addColumnInfo(name = "chi",   title = "\u03C7\u00B2",   type = "number", format = "dp:3")
+    twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
     twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "We estimated kappa less than 2. The respective routine was run.")
   }
+  twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
+  
+  if(ready && length(options$fixedFactors) == 2)
+    .circularTestsMultipleSampleFillTwoWayAnovaTable(twoWayAnovaTable, twoWayAnovaResults, options)
+
+}
+.circularTestsMultipleSampleFillTwoWayAnovaTable <- function(twoWayAnovaTable, twoWayAnovaResults, options){
+  dependent <- unlist(options$dependent)
+  fac1 <- options$fixedFactors[1]
+  fac2 <- options$fixedFactors[2]
+  
+  kappa<-twoWayAnovaResults[["harrisonKanji"]][["estimatedKappa"]]
+  
   row <- twoWayAnovaResults[["harrisonKanji"]][["fac1"]]
   twoWayAnovaTable$addRows(c(list(fac = fac1), row))
-
+  
   row <- twoWayAnovaResults[["harrisonKanji"]][["fac2"]]
   twoWayAnovaTable$addRows(c(list(fac = fac2), row))
-
+  
   row <- twoWayAnovaResults[["harrisonKanji"]][["inter"]]
   twoWayAnovaTable$addRows(c(list(fac = "Interaction"), row))
-
+  
   if (kappa > 2){
     row <- twoWayAnovaResults[["harrisonKanji"]][["residual"]]
     twoWayAnovaTable$addRows(c(list(fac = "Residual"), row))
   }
-  twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
 }
-
 # Helper functions for circular statistics ----
 .convertBack <- function(circularObject){
   # sometimes circular objects have a negative value instead of its modulo postive correspondence. This function ensures the correct backconversion

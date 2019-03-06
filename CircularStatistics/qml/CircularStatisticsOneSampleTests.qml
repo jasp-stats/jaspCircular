@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2013-2018 University of Amsterdam
+// Copyright (C) 2019 Aaron Bahde, University of Tuebingen
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -28,7 +28,8 @@ Form
 	
 	VariablesForm 
 	{
-		AssignedVariablesList { name: "variables";	title: qsTr("Variables") }
+        AvailableVariablesList { name: "allVariablesList" }
+        AssignedVariablesList { name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
 		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; allowedColumns: ["ordinal", "nominal"] }
 	}
 
@@ -38,28 +39,39 @@ Form
         {
             name: "periodGroup"
             title: qsTr("Period")
-            RadioButton { value: "pi";	text: qsTr("Pi")	}
-            RadioButton { value: "pi_2";	text: qsTr("2Pi")	}
+            RadioButton { value: "pi";	label: qsTr("Pi")	}
+            RadioButton { value: "pi_2";	label: qsTr("2Pi")	}
             RadioButton
             {
-                value: "custom";	text: qsTr("Custom:"); checked: true
+                value: "custom";	label: qsTr("Custom:"); checked: true
                 childrenOnSameRow: true
-                DoubleField { name: "period"; defaultValue: 360; fieldWidth: 50; max: 999999; min: 0.00001}
+                DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; max: 999999; min: 0.00001}
             }
         }
 
         Group
         {
             title: qsTr("Uniformity Tests")
-            CheckBox { name: "rao";			label: qsTr("Rao's Spacing")	}
+            CheckBox
+            {
+                name: "rao"; label: qsTr("Rao's Spacing"); checked: true
+                RadioButtonGroup
+                {
+                    name: "pValueRao"
+                    indent: true
+                    radioButtonsOnSameRow: true
+                    RadioButton { value: "0.01";	label: qsTr("p = 0.01")	}
+                    RadioButton { value: "0.05";	label: qsTr("p = 0.05")	}
+                    RadioButton { value: "0.1";	label: qsTr("p = 0.1")	}
+                }
+            }
             CheckBox { name: "rayleigh";			label: qsTr("Rayleigh")}
             CheckBox
             {
-                childrenOnSameRow: true
                 name: "modifiedRayleigh";			label: qsTr("V (modified Rayleigh)")
                 DoubleField
                 {
-                 name: "testValue"; label: qsTr("Test value")
+                 name: "testValue"; label: qsTr("Test value:"); fieldWidth: 70; max: 999999; min: 0.00001
                 }
             }
         }
@@ -67,7 +79,19 @@ Form
         Group
             {
                 title: qsTr("Assumption Checks")
-                CheckBox { name: "vonMisesCheck";	label: qsTr("Von Mises")}
+                CheckBox
+                {
+                    name: "vonMisesCheck";	label: qsTr("Von Mises (Watson's goodness-of-fit)")
+                    RadioButtonGroup
+                    {
+                        name: "pValueVonMises"
+                        indent: true
+                        radioButtonsOnSameRow: true
+                        RadioButton { value: "0.01";	label: qsTr("p = 0.01")	}
+                        RadioButton { value: "0.05";	label: qsTr("p = 0.05")	}
+                        RadioButton { value: "0.1";	label: qsTr("p = 0.1")	}
+                    }
+                }
             }
     }
 }
