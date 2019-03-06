@@ -49,4 +49,4 @@ Additional Output
 
 References
 -------
-- Fisher, N.I. (1993). *Statistical Analysis of Circular Data*. Cambridge University Press. (include chapter???)
+- Fisher, N.I. (1993). *Statistical Analysis of Circular Data*. Chapter 2. Cambridge University Press.
