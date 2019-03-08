@@ -106,7 +106,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   return(results)
 }
 .circularDescriptivesComputeResultsSub <- function(column, options){
-  
+
   nObs <- length(column)
   validData <- column[!is.na(column)]
   nValidObs <- length(validData)
@@ -256,45 +256,16 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
     }
   }
   
-  #if(ready)
-    #.fillPlots(containerPlots, circularDescriptivesResults, options, dataset, wantsSplit)
-  
-  
-  
-  
-  # variables <- unlist(options$variables)
-  # if (wantsSplit) {
-  #   split <- dataset[[.v(options$splitby)]]
-  #   splitLevels <- levels(split)
-  #   for (variable in variables){
-  #     splitPlotContainer <- createJaspContainer(title = variable)
-  #     for (level in splitLevels){
-  #       plotData <- circularDescriptivesResults[["descr"]][[variable]][[level]]$plotData
-  #       meanLength <- circularDescriptivesResults[["descr"]][[variable]][[level]]$meanLength
-  #       meanDirection <- circularDescriptivesResults[["descr"]][[variable]][[level]]$meanDirection
-  #       plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
-  #       jaspPlot <- createJaspPlot(plot=plot, title=level, width = 320, height = 320)
-  #       splitPlotContainer[[level]] <- jaspPlot
-  #     }
-  #     containerPlots[[variable]] <- splitPlotContainer
-  #   }
-  # }
-  # else {
-  #   for (variable in variables){
-  #     if(!is.null(containerPlots[[variable]]))    # skip the costly creation of the plot for that variable if it is not affected by a change
-  #       next
-  #     plotData <- circularDescriptivesResults[["descr"]][[variable]]$plotData
-  #     meanLength <- circularDescriptivesResults[["descr"]][[variable]]$meanLength
-  #     meanDirection <- circularDescriptivesResults[["descr"]][[variable]]$meanDirection
-  #     plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
-  #     jaspPlot <- createJaspPlot(plot = plot, title = variable, width = 320, height = 320)
-  #     jaspPlot$setOptionMustContainDependency("variables", variable)    # make sure that the plot is only dependent on the variable it plots
-  #     containerPlots[[variable]] <- jaspPlot
-  #   }
-  # }
+  if(ready)
+    # if the calculations failed, do not fill the plots because they depend on the calculations
+    if(inherits(circularDescriptivesResults, "try-error")){
+      errorMessage <- paste("The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error:", as.character(circularDescriptivesResults))
+      containerPlots$setError(errorMessage)
+    } else {
+      .circularDescriptivesFillPlots(containerPlots, circularDescriptivesResults, options, dataset, wantsSplit)
+    }
 }
-
-.fillPlots <- function(containerPlots, circularDescriptivesResults, options, dataset, wantsSplit){
+.circularDescriptivesFillPlots <- function(containerPlots, circularDescriptivesResults, options, dataset, wantsSplit){
   
   variables <- unlist(options$variables)
   if (wantsSplit) {
@@ -305,8 +276,14 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
         plotData <- circularDescriptivesResults[["descr"]][[variable]][[level]]$plotData
         meanLength <- circularDescriptivesResults[["descr"]][[variable]][[level]]$meanLength
         meanDirection <- circularDescriptivesResults[["descr"]][[variable]][[level]]$meanDirection
-        plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
-        containerPlots[[variable]][[level]]$object <- plot
+        plot <- try(.circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options))
+        # if the plotting fails, do not fill the plot but rather show the error
+        if(inherits(plot, "try-error")){
+          errorMessage <- paste("The plotting for this set-up failed with:", as.character(plot))
+          containerPlots[[variable]][[level]]$setError(errorMessage)
+        } else {
+          containerPlots[[variable]][[level]]$plotObject <- plot
+        }
       }
     }
   }
@@ -315,11 +292,16 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
       plotData <- circularDescriptivesResults[["descr"]][[variable]]$plotData
       meanLength <- circularDescriptivesResults[["descr"]][[variable]]$meanLength
       meanDirection <- circularDescriptivesResults[["descr"]][[variable]]$meanDirection
-      plot <- .circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options)
-      containerPlots[[variable]]$object <- plot
+      plot <- try(.circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options))
+      # if the plotting fails, do not fill the plot but rather show the error
+      if(inherits(plot, "try-error")){
+        errorMessage <- paste("The plotting for this set-up failed with:", as.character(plot))
+        containerPlots[[variable]]$setError(errorMessage)
+      } else {
+        containerPlots[[variable]]$plotObject <- plot
+      }
     }
   }
-  
 }
 .circularDescriptivesCreatePlotHelper <- function(plotData, meanDirection, meanLength, options){
   # Add a column to the data to for the radius of each point (it is 1 for the unit circle)
