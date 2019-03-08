@@ -43,7 +43,7 @@ Form
         {
             value: "custom";	label: qsTr("Custom:"); checked: true
             childrenOnSameRow: true
-            DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; max: 999999; min: 0.00001}
+            DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; min: 0}
         }
     }
 	
