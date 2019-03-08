@@ -37,12 +37,12 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   
   if(options$watsonWilliams || options$watsonWheeler){
     if(ready)
-      oneWayAnovaResults <- .circularTestsMultipleSampleComputeResultsOneWayAnova(jaspResults, dataset, options)
+      oneWayAnovaResults <- try(.circularTestsMultipleSampleComputeResultsOneWayAnova(jaspResults, dataset, options))
     .circularTestsMultipleSampleTableOneWayAnova(jaspResults, dataset, options, oneWayAnovaResults, ready)
   }
   if (options$harrisonKanji){
     if(ready && length(options$fixedFactors) == 2)
-      twoWayAnovaResults <- .circularTestsMultipleSampleComputeResultsTwoWayAnova(jaspResults, dataset, options)
+      twoWayAnovaResults <- try(.circularTestsMultipleSampleComputeResultsTwoWayAnova(jaspResults, dataset, options))
     .circularTestsMultipleSampleTableTwoWayAnova(jaspResults, dataset, options, twoWayAnovaResults, ready)
   }
 }
@@ -128,6 +128,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 
 # two-way ANOVA
 .circularTestsMultipleSampleComputeResultsTwoWayAnova <- function(jaspResults, dataset, options) {
+  
   dependent <- unlist(options$dependent)
   #TODO only the first two factors are used for interactions. Make these constraints in the GUI.
   fac1 <- options$fixedFactors[1]
@@ -142,6 +143,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   results <- list()
 
   results[["harrisonKanji"]] <- .circularTestsMultipleSampleHarrisonKanji(dependentColumnNormalized, fac1Column, fac2Column)
+  
   return(results)
 }
 .circularTestsMultipleSampleHarrisonKanji <- function(dependent, fac1, fac2, inter = TRUE){
@@ -150,7 +152,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Dependent
   # Fac1: A column of factor1 which contains the levels for dependent
   # Fac2: A column of factor2 which contains the levels for dependent
-
+  
   p <- nlevels(fac1)
   q <- nlevels(fac2)
   n <- length(dependent)
@@ -316,8 +318,16 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   if (options$watsonWheeler)
     oneWayAnovaTable$addFootnote(message = "The degrees of freedom of the \u03C7\u00B2-distribution to which W is compared.", col_names = "df")
 
-  if(ready)
+  if(ready){
+    # if the calculations failed, do not fill the table but rather show the error
+    if(inherits(oneWayAnovaResults, "try-error")){
+      errorMessage <- as.character(oneWayAnovaResults)
+      oneWayAnovaTable$setError(errorMessage)
+      return()
+    } else {
     .circularTestsMultipleSampleFillOneWayAnovaTable(oneWayAnovaTable, oneWayAnovaResults, options)
+    }
+  }
 }
 .circularTestsMultipleSampleFillOneWayAnovaTable <- function(oneWayAnovaTable, oneWayAnovaResults, options) {
   dependent <- unlist(options$dependent)
@@ -368,9 +378,17 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   }
   twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
   
-  if(ready && length(options$fixedFactors) == 2)
-    .circularTestsMultipleSampleFillTwoWayAnovaTable(twoWayAnovaTable, twoWayAnovaResults, options)
-
+  if(ready && length(options$fixedFactors) == 2){
+    # if the calculations failed, do not fill the table but rather show the error
+    if(inherits(twoWayAnovaResults,"try-error")){
+      errorMessage <- as.character(twoWayAnovaResults)
+      twoWayAnovaTable$setError(errorMessage)
+      return()
+    } else {
+      .circularTestsMultipleSampleFillTwoWayAnovaTable(twoWayAnovaTable, twoWayAnovaResults, options)
+    }
+  }
+  
 }
 .circularTestsMultipleSampleFillTwoWayAnovaTable <- function(twoWayAnovaTable, twoWayAnovaResults, options){
   dependent <- unlist(options$dependent)

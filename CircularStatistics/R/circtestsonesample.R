@@ -33,14 +33,17 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   # Error checking
   #errors <- .circularTestsOneSampleCheckErrors(dataset, options)
 
-  circularTestsOneSampleResults <- .circularTestsOneSampleComputeResults(jaspResults, dataset, options)
-  circularTestsOneSampleVonMisesResults <- .circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options)
-
   # Output tables and plots
-  if(options$rao || options$rayleigh || options$modifiedRayleigh)
+  if(options$rao || options$rayleigh || options$modifiedRayleigh){
+    if(ready)
+      circularTestsOneSampleResults <- try(.circularTestsOneSampleComputeResults(jaspResults, dataset, options))
     .circularTestsOneSampleCreateTable(jaspResults, dataset, options, circularTestsOneSampleResults, ready)
-  if(options$vonMisesCheck)
+  }
+  if(options$vonMisesCheck){
+    if(ready)
+      circularTestsOneSampleVonMisesResults <- try(.circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options))
     .circularTestsOneSampleCreateTableVonMises(jaspResults, dataset, options, circularTestsOneSampleVonMisesResults, ready)
+  }
 }
 
 # Preprocessing functions ----
@@ -59,6 +62,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 }
 # Results functions ----
 .circularTestsOneSampleComputeResults <- function(jaspResults, dataset, options) {
+  
   splitName <- options$splitby
   wantsSplit <- splitName != ""
   variables <- unlist(options$variables)
@@ -174,7 +178,6 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   p <- testResult$p.value
   statistic <- testResult$statistic
   results <- list(p = p, statistic = statistic)
-  print(p)
 return(results)
 }
 .circularTestsOneSampleComputeResultsModifiedRayleigh <- function(jaspResults, data, options) {
@@ -297,8 +300,16 @@ return(results)
   
   oneSampleTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
   
-  if(ready)
-    .circularTestsOneSampleFillTable(oneSampleTable, circularTestsOneSampleResults, options, dataset)
+  if(ready){
+    # if the calculations failed, do not fill the table but rather show the error
+    if(inherits(circularTestsOneSampleResults, "try-error")){
+      errorMessage <- as.character(circularTestsOneSampleResults)
+      oneSampleTable$setError(errorMessage)
+      return()
+    } else {
+      .circularTestsOneSampleFillTable(oneSampleTable, circularTestsOneSampleResults, options, dataset)
+    }
+  }
 }
 .circularTestsOneSampleFillTable <- function(oneSampleTable, circularTestsOneSampleResults, options, dataset) {
   splitName <- options$splitby
@@ -375,10 +386,18 @@ return(results)
   vonMisesCheckTable$addColumnInfo(name = "critical",   title = "Critical",   type = "number", format = "dp:3")
   vonMisesCheckTable$addColumnInfo(name = "kappa",   title = "Est. Kappa",   type = "number", format = "dp:2")
   
-  if(ready)
+  if(ready){
+    # if the calculations failed, do not fill the table but rather show the error
+    if(inherits(circularTestsOneSampleVonMisesTestResults, "try-error")){
+      errorMessage <- as.character(circularTestsOneSampleVonMisesTestResults)
+      vonMisesCheckTable$setError(errorMessage)
+      return()
+    }
     .circularTestsOneSampleFillTableVonMises(vonMisesCheckTable, circularTestsOneSampleVonMisesTestResults, options, dataset)
+  }
 }
 .circularTestsOneSampleFillTableVonMises <- function(vonMisesCheckTable, circularTestsOneSampleVonMisesTestResults, options, dataset) {
+  
   splitName <- options$splitby
   wantsSplit <- splitName != ""
   variables <- unlist(options$variables)
