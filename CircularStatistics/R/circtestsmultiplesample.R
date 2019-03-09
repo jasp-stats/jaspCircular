@@ -26,7 +26,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   jaspResults$title <- "Test Results"
 
   ready <- (options$dependent != "") && (length(options$fixedFactors) > 0)
-  
+  readyHK <- (options$dependent != "") && (length(options$fixedFactors) >= 2)    # the HK test is only runable if there are at least two factors
   if (ready){
     # Read dataset
     dataset <- .circularTestsMultipleSampleReadData(dataset, options)
@@ -41,9 +41,9 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     .circularTestsMultipleSampleTableOneWayAnova(jaspResults, dataset, options, oneWayAnovaResults, ready)
   }
   if (options$harrisonKanji){
-    if(ready && length(options$fixedFactors) == 2)
+    if(readyHK)
       twoWayAnovaResults <- try(.circularTestsMultipleSampleComputeResultsTwoWayAnova(jaspResults, dataset, options))
-    .circularTestsMultipleSampleTableTwoWayAnova(jaspResults, dataset, options, twoWayAnovaResults, ready)
+    .circularTestsMultipleSampleTableTwoWayAnova(jaspResults, dataset, options, twoWayAnovaResults, readyHK)
   }
 }
 
@@ -130,7 +130,6 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 .circularTestsMultipleSampleComputeResultsTwoWayAnova <- function(jaspResults, dataset, options) {
   
   dependent <- unlist(options$dependent)
-  #TODO only the first two factors are used for interactions. Make these constraints in the GUI.
   fac1 <- options$fixedFactors[1]
   fac2 <- options$fixedFactors[2]
 
@@ -345,7 +344,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   }
 }
 
-.circularTestsMultipleSampleTableTwoWayAnova <- function(jaspResults, dataset, options, twoWayAnovaResults, ready) {
+.circularTestsMultipleSampleTableTwoWayAnova <- function(jaspResults, dataset, options, twoWayAnovaResults, readyHK) {
   # Create table
   twoWayAnovaTable <- createJaspTable(title = "Two-way ANOVA (Harrison-Kanji Test)")
   jaspResults[["twoWayAnovaTable"]] <- twoWayAnovaTable
@@ -356,11 +355,11 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Add columns to table
   twoWayAnovaTable$addColumnInfo(name = "fac",   title = "Cases",   type = "string")
   
-  # if the analysis is not ready, show as default the table of the small kappa case
-  if(!(ready && length(options$fixedFactors) == 2)){
-    kappa <- 0
-  } else {
+  # if the analysis is not ready, show as default the table of the small kappa case. So we have to set kappa less than 2.
+  if(readyHK){
     kappa<-twoWayAnovaResults[["harrisonKanji"]][["estimatedKappa"]]
+  } else {
+    kappa <- 0
   }
   
   if(kappa > 2){    # the HK test differs depending on the estimated kappa
@@ -378,7 +377,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   }
   twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
   
-  if(ready && length(options$fixedFactors) == 2){
+  if(readyHK){
     # if the calculations failed, do not fill the table but rather show the error
     if(inherits(twoWayAnovaResults,"try-error")){
       errorMessage <- as.character(twoWayAnovaResults)
