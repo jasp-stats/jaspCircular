@@ -32,7 +32,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     dataset <- .circularTestsMultipleSampleReadData(dataset, options)
 
     # Error checking
-    #.circularTestsMultipleSampleCheckErrors(dataset, options)
+    .circularTestsMultipleSampleCheckErrors(dataset, options)
   }
   
   if(options$watsonWilliams || options$watsonWheeler){
@@ -40,6 +40,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
       oneWayAnovaResults <- try(.circularTestsMultipleSampleComputeResultsOneWayAnova(jaspResults, dataset, options))
     .circularTestsMultipleSampleTableOneWayAnova(jaspResults, dataset, options, oneWayAnovaResults, ready)
   }
+  
   if (options$harrisonKanji){
     if(readyHK)
       twoWayAnovaResults <- try(.circularTestsMultipleSampleComputeResultsTwoWayAnova(jaspResults, dataset, options))
@@ -55,7 +56,36 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   return(dataset)
 }
 .circularTestsMultipleSampleCheckErrors <- function(dataset, options){
+    
+  # check that there is at least one level for each fixed factor
+  .hasErrors(
+    dataset              = dataset,
+    perform              = "run",
+    type                 = "factorLevels",
+    factorLevels.target  = options$fixedFactors,
+    factorLevels.amount  = "< 2",
+    exitAnalysisIfErrors = TRUE)
 
+  # for each assigned factor check that there is no sample with infinity values, zero observations, or zero variance
+  for (fac in options$fixedFactors){
+      .hasErrors(dataset,
+                 type = c('observations', 'infinity', 'variance'),
+                 all.target = options$dependent,
+                 all.grouping = fac,
+                 observations.amount = c('< 1'),
+                 exitAnalysisIfErrors = TRUE)
+      }
+
+  if(options$harrisonKanji && (length(options$fixedFactors) >= 2)){
+    # additionally for the HK test, each cell must contain at least two measurements at is not allowed to have zero variance
+    HkFactors <- options$fixedFactors[c(1,2)]
+    .hasErrors(dataset,
+               type = c('observations', 'variance'),
+               all.target = options$dependent,
+               all.grouping = HkFactors,
+               observations.amount = c('< 2'),
+               exitAnalysisIfErrors = TRUE)
+    }
 }
 
 # Results functions ----
@@ -75,7 +105,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 }
 .circularTestsMultipleSampleWatsonWilliams <- function(fac, dataset, options){
   # runs a watson williams test for a specific factor
-
+  
   dependent <- unlist(options$dependent)
 
   # get valid data and normalize period
@@ -148,10 +178,10 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 .circularTestsMultipleSampleHarrisonKanji <- function(dependent, fac1, fac2, inter = TRUE){
   # the Harrison-Kanji test is not available in the circular package. Thus, this test was migrated from the Matlab library CircStat by Philipp Berens 2009. For easy comparison, the following code is implemented as close as possible to the original (including variable names).
   # Input:
-  # Dependent
+  # Dependent: A column of the dependent measurements
   # Fac1: A column of factor1 which contains the levels for dependent
   # Fac2: A column of factor2 which contains the levels for dependent
-  
+
   p <- nlevels(fac1)
   q <- nlevels(fac2)
   n <- length(dependent)
@@ -170,6 +200,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   qm <- matrix(0, q, 1)
   qr <- qm
   qn <- qm
+  
   for(pp in c(1:p)){
     for (qq in c(1:q)){
       level1 <- levels(fac1)[pp]
@@ -194,7 +225,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     pr[pp] <-   pn[pp] * rFac1
     pm[pp] <- .convertBack(circular::mean.circular(fac1Data))
   }
-
+  
   # r and mean angle for total data
   tr <- n * circular::rho.circular(dependent)
 
@@ -231,6 +262,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
       # interaction test statistic
       FI <- msi / msr
       pI <- 1 - pf(FI, dfi, dfr)
+      
     } else {
       # residual effect
       effr <- n - sum(qr**2 / qn) - sum(pr**2 / pn) + tr**2 / n
@@ -269,6 +301,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     dfi <- (p - 1) * (q - 1)
     pI <- 1 - pchisq(chiI, dfi)
   }
+  
   # prepare output depending on case
   if (kk > 2){
     fac1Results <- list(p = p1, df =df1, ms = ms1, f = F1, ss = eff1)
@@ -355,9 +388,17 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Add columns to table
   twoWayAnovaTable$addColumnInfo(name = "fac",   title = "Cases",   type = "string")
   
+  
   # if the analysis is not ready, show as default the table of the small kappa case. So we have to set kappa less than 2.
   if(readyHK){
-    kappa<-twoWayAnovaResults[["harrisonKanji"]][["estimatedKappa"]]
+    # we need to know kappa from the results. so rather return the error if one occured during the calculations
+    if(inherits(twoWayAnovaResults,"try-error")){
+      errorMessage <- as.character(twoWayAnovaResults)
+      twoWayAnovaTable$setError(errorMessage)
+      return()
+    } else {
+      kappa<-twoWayAnovaResults[["harrisonKanji"]][["estimatedKappa"]]
+    }
   } else {
     kappa <- 0
   }
@@ -368,12 +409,12 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
     twoWayAnovaTable$addColumnInfo(name = "ss",   title = "Sum of Square",   type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "ms",   title = "Mean Square",   type = "number", format = "dp:3")
-    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "We estimated kappa greater than 2. The respective routine was run.")
+    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = paste("We estimated kappa = ", round(kappa, digits = 2),  " (greater than 2). The respective routine was run."))
   }else{
     twoWayAnovaTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:3;p:.001")
     twoWayAnovaTable$addColumnInfo(name = "chi",   title = "\u03C7\u00B2",   type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
-    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "We estimated kappa less than 2. The respective routine was run.")
+    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = paste("We estimated kappa = ", round(kappa, digits = 2),  " (less than 2). The respective routine was run."))
   }
   twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
   
