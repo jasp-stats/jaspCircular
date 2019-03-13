@@ -28,11 +28,15 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   ready <- (length(options$variables) > 0)
   
   # Read dataset
-  dataset <- .circularTestsOneSampleReadData(dataset, options)
+  if(ready){
+    
+    dataset <- .circularTestsOneSampleReadData(dataset, options)
+    save(dataset, file="/home/aaron/Desktop/Project/debug.rda")
+    # Error checking
+    errors <- .circularTestsOneSampleCheckErrors(dataset, options)
+  }
 
-  # Error checking
-  #errors <- .circularTestsOneSampleCheckErrors(dataset, options)
-
+  
   # Output tables and plots
   if(options$rao || options$rayleigh || options$modifiedRayleigh){
     if(ready)
@@ -59,6 +63,68 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   return(dataset)
 }
 .circularTestsOneSampleCheckErrors <- function(dataset, options){
+  splitName <- options$splitby
+  wantsSplit <- splitName != ""
+  if(wantsSplit){
+    
+    # check that there is at least one level for the split factor
+    .hasErrors(
+      dataset              = dataset,
+      perform              = "run",
+      type                 = "factorLevels",
+      factorLevels.target  = options$splitby,
+      factorLevels.amount  = "< 1",
+      exitAnalysisIfErrors = TRUE)
+    
+    # check that there are no infinity values or zero observations
+    .hasErrors(dataset, 
+             type = c('observations', 'infinity'),
+             all.target = options$variables, 
+             all.grouping = options$splitby,
+             observations.amount = c('< 1'), 
+             exitAnalysisIfErrors = TRUE)
+    
+    # the rao test needs at least 4 data points
+    if(options$rao)
+      .hasErrors(dataset, 
+                 type = c('observations'),
+                 all.target = options$variables, 
+                 all.grouping = options$splitby,
+                 observations.amount = c('< 4'), 
+                 exitAnalysisIfErrors = TRUE)
+    
+    # the von Mises check fails if there is zero variance in the data
+    if(options$vonMises)
+      .hasErrors(dataset, 
+                 type = c('variance'),
+                 all.target = options$variables, 
+                 all.grouping = options$splitby, 
+                 exitAnalysisIfErrors = TRUE)
+  } else {
+    
+    # check that there are no infinity values or zero observations
+    .hasErrors(dataset, 
+               type = c('observations', 'infinity'),
+               all.target = options$variables, 
+               observations.amount = c('< 1'), 
+               exitAnalysisIfErrors = TRUE)
+
+    # the rao test needs at least 4 data points
+    if(options$rao)
+      .hasErrors(dataset, 
+                 type = c('observations'),
+                 all.target = options$variables,
+                 observations.amount = c('< 4'), 
+                 exitAnalysisIfErrors = TRUE)
+    
+    # the von Mises check fails if there is zero variance in the data
+    if(options$vonMises)
+      .hasErrors(dataset, 
+                 type = c('variance'),
+                 all.target = options$variables, 
+                 exitAnalysisIfErrors = TRUE)
+  }
+  
 }
 # Results functions ----
 .circularTestsOneSampleComputeResults <- function(jaspResults, dataset, options) {
@@ -84,7 +150,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
           results[[variable]][[level]][["rao"]] <- list(
             variable = variable,
             level = level,
-            testName = "Rao's Spacing",
+            testName = "Rao's spacing",
             p = testResults$p,
             statistic = testResults$statistic,
             criticalValue = testResults$criticalValue,
@@ -157,8 +223,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   return(results)
 }
 .circularTestsOneSampleComputeResultsRao <- function(jaspResults, data, options) {
-  # the test will always run with a p value of 0.01.
-  # TODO (abahde): make it possible to specify the p-value of the test as 0.001, 0.01, 0.05, or 0.1 in the GUI
+  
   p <- as.numeric(options$pValueRao)
   testResult <- circular::rao.spacing.test(data,alpha=p)
   U <- testResult$statistic
@@ -364,7 +429,7 @@ return(results)
     }
   }
   if (options$rao)
-    oneSampleTable$addFootnote(message = paste("The test is run with p = ", options$pValueRao, "so please compare the statistics to the critical value."), col_names = "testName", row_names = rowNamesForRaoFootnote)
+    oneSampleTable$addFootnote(message = paste("The Rao spacing test is run with p = ", options$pValueRao, "so please compare the statistics to the critical value."), col_names = "testName", row_names = rowNamesForRaoFootnote)
 }
 
 .circularTestsOneSampleCreateTableVonMises <-function (jaspResults, dataset, options, circularTestsOneSampleVonMisesTestResults, ready){
