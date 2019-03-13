@@ -31,14 +31,13 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   wantsSplit <- options$splitby != ""
   
   # Read dataset
-  if (ready)
+  if (ready){
     dataset <- .circularDescriptivesReadData(dataset, options, wantsSplit)
-
-  # Error checking
-  #errors <- .circularDescriptivesCheckErrors(dataset, options)
-  #if (length(errors) != 0)
-  #  .quitAnalysis(errors)
-
+    
+    # Error checking
+    errors <- .circularDescriptivesCheckErrors(dataset, options)
+  }
+    
   # If ready, calculate the results
   if (ready)
     circularDescriptivesResults <- try(.circularDescriptivesComputeResults(jaspResults, dataset, options))
@@ -65,7 +64,35 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 }
 
 .circularDescriptivesCheckErrors <- function(dataset, options){
-
+  splitName <- options$splitby
+  wantsSplit <- splitName != ""
+  if(wantsSplit){
+    
+    # check that there is at least one level for the split factor
+    .hasErrors(
+      dataset              = dataset,
+      perform              = "run",
+      type                 = "factorLevels",
+      factorLevels.target  = options$splitby,
+      factorLevels.amount  = "< 1",
+      exitAnalysisIfErrors = TRUE)
+    
+    # check that there are no infinity values or zero observations
+    .hasErrors(dataset, 
+               type = c('observations', 'infinity'),
+               all.target = options$variables, 
+               all.grouping = options$splitby,
+               observations.amount = c('< 1'), 
+               exitAnalysisIfErrors = TRUE)
+  } else {
+    
+    # check that there are no infinity values or zero observations
+    .hasErrors(dataset, 
+               type = c('observations', 'infinity'),
+               all.target = options$variables, 
+               observations.amount = c('< 1'), 
+               exitAnalysisIfErrors = TRUE)
+  }
 }
 # Results functions ----
 .circularDescriptivesComputeResults <- function(jaspResults, dataset, options) {
@@ -233,8 +260,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 
 .circularDescriptivesCreatePlot <- function(jaspResults, dataset, options, circularDescriptivesResults, wantsSplit, ready){
   # get a container for plots
-  containerPlots <- createJaspContainer(title = "Circular Descriptives Plots")
-  containerPlots$dependOnOptions(c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
+  containerPlots <- createJaspContainer(title = "Circular Descriptives Plots", dependencies = c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
   jaspResults[["Plots"]] <- containerPlots
   
   variables <- unlist(options$variables)
@@ -242,19 +268,23 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
     split <- dataset[[.v(options$splitby)]]
     splitLevels <- levels(split)
     for (variable in variables){
-      containerLevelPlots <- createJaspContainer(title = variable)
+      containerLevelPlots <- createJaspContainer(title = variable, dependencies = c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
       for (level in splitLevels){
-        jaspPlot <- createJaspPlot(title=level, width = 320, height = 320)
+        jaspPlot <- createJaspPlot(title=level, width = 320, height = 320, dependencies = c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
         containerLevelPlots[[level]] <- jaspPlot
       }
     containerPlots[[variable]] <- containerLevelPlots
     }
   } else {
     for (variable in variables){
-      jaspPlot <- createJaspPlot(title=variable, width = 320, height = 320)
+      jaspPlot <- createJaspPlot(title=variable, width = 320, height = 320, dependencies = c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
       containerPlots[[variable]] <- jaspPlot
     }
   }
+  
+  # if we encountered a problem in the whole container, do not fill the plots
+  if(containerPlots$getError())
+    return()
   
   if(ready)
     # if the calculations failed, do not fill the plots because they depend on the calculations
