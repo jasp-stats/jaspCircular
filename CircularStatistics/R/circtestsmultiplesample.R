@@ -96,8 +96,9 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   results <- list()
 
   for (fac in facs){
-    if (options$watsonWilliams)
+    if (options$watsonWilliams){
       results[["watsonWilliams"]][[fac]] <- .circularTestsMultipleSampleWatsonWilliams(fac, dataset, options)
+    }
     if (options$watsonWheeler)
       results[["watsonWheeler"]][[fac]] <- .circularTestsMultipleSampleWatsonWheeler(fac, dataset, options)
   }
@@ -113,6 +114,11 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$period)
   factorColumn <- dataset[[.v(fac)]][validIndices]
 
+  # check if the test is applicable, i.e. the assumption of equal kappas across the groups is justified. Store the result to decide on a warning footnote when creating the table.
+  equalKappaTestResult <- circular::equal.kappa.test(dependentColumnNormalized, factorColumn)
+  equalKappaTestPvalue <- equalKappaTestResult$p.value
+  kappas <- paste(format(equalKappaTestResult$kappa, digits = 3), collapse = ", ")
+  
   testResults <- circular::watson.williams.test(dependentColumnNormalized, factorColumn)
 
   p <- as.numeric(testResults$p.value)
@@ -126,7 +132,9 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     p = p,
     f = f,
     df1 = df1,
-    df2 = df2
+    df2 = df2,
+    equalKappaTestPvalue = equalKappaTestPvalue,
+    kappas = kappas
   )
   return(results)
 }
@@ -368,6 +376,10 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     if (options$watsonWilliams){
       row <- oneWayAnovaResults[["watsonWilliams"]][[fac]]
       oneWayAnovaTable$addRows(row, rowNames = paste(fac))
+      
+      # add a warning if the equal kappa assumption is violated
+      if(row$equalKappaTestPvalue < 0.05)
+        oneWayAnovaTable$addFootnote(symbol = "<em>Warning.</em>", message = paste0("Concentration parameters (", row$kappas, ") not equal between the groups of factor ", fac, ". The Watson-Williams test might not be applicable."))
     }
     
     if (options$watsonWheeler){
