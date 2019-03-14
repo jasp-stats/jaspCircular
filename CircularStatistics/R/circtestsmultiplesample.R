@@ -148,6 +148,18 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$period)
   factorColumn <- dataset[[.v(fac)]][validIndices]
 
+  # check if each group has at least 10 measurements. Store the result to add a warning as a footnote later (if neccessary).
+  hasTenMeasurementsPerGroup <- TRUE    # default is TRUE
+  split <- dataset[[.v(fac)]]
+  splitLevels <- levels(split)
+  for (level in splitLevels){
+    groupData <- dataset[[.v(dependent)]][split == level]
+    validGroupData <- groupData[!is.na(groupData)]
+    groupSize <- length(validGroupData)
+    if(groupSize < 10)
+      hasTenMeasurementsPerGroup <- FALSE    # if one group has less than 10, set flag to false
+  }
+  
   testResults <- circular::watson.wheeler.test(dependentColumnNormalized, factorColumn)
 
   p <- as.numeric(testResults$p.value)
@@ -159,7 +171,8 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     fac = fac,
     p = p,
     w = w,
-    df = df
+    df = df,
+    hasTenMeasurementsPerGroup = hasTenMeasurementsPerGroup
   )
   return(results)
 }
@@ -385,6 +398,8 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     if (options$watsonWheeler){
       row <- oneWayAnovaResults[["watsonWheeler"]][[fac]]
       oneWayAnovaTable$addRows(row, rowNames = (paste(fac)))
+      if(!row$hasTenMeasurementsPerGroup)
+        oneWayAnovaTable$addFootnote(symbol = "<em>Warning.</em>", message = paste("Some groups of factor ", fac, " contain less than 10 measurements. The Watson-Wheeler test might not be applicable."))
     }
   }
 }
