@@ -10,9 +10,13 @@
 		"license"        : "GPL (>= 2)",
 		"dynamic"        : true
 	},
-	
-	"requiredPackages":	[{ "package": "circular" }],
-
+	"requiredPackages":	
+	[
+		{ 
+			"package": "circular", 
+			"version": "0.4-93" 
+		}
+	],
 	"ribbonEntries":
 	[
 		{
@@ -34,13 +38,13 @@
 			"analyses":
 			[
 				{
-					"title":	"One-Sample Tests",
+					"title":	"Circular One-Sample Tests",
 					"qml": "CircularStatisticsOneSampleTests.qml",
 					"function":	"CircularStatisticsOneSampleTests",
 					"usesJaspResults": true
 				},
 				{
-					"title":	"Multiple-Sample Tests",
+					"title":	"Circular Multiple-Sample Tests",
 					"qml": "CircularStatisticsMultipleSampleTests.qml",
 					"function":	"CircularStatisticsMultipleSampleTests",
 					"usesJaspResults": true
