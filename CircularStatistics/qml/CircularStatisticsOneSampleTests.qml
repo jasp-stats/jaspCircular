@@ -39,8 +39,8 @@ Form
         {
             name: "periodGroup"
             title: qsTr("Period")
-            RadioButton { value: "pi";	label: qsTr("Pi")	}
-            RadioButton { value: "pi_2";	label: qsTr("2Pi")	}
+            RadioButton { value: "pi";	label: qsTr("π")	}
+            RadioButton { value: "pi_2";	label: qsTr("2π")	}
             RadioButton
             {
                 value: "custom";	label: qsTr("Custom:"); checked: true
@@ -57,12 +57,12 @@ Form
                 name: "rao"; label: qsTr("Rao's Spacing"); checked: true
                 RadioButtonGroup
                 {
-                    name: "pValueRao"
+                    name: "alphaRao"
                     indent: true
                     radioButtonsOnSameRow: true
-                    RadioButton { value: "0.01";	label: qsTr("p = 0.01")	}
-                    RadioButton { value: "0.05";	label: qsTr("p = 0.05")	}
-                    RadioButton { value: "0.1";	label: qsTr("p = 0.1")	}
+                    RadioButton { value: "0.01";	label: qsTr("α = 0.01")	}
+                    RadioButton { value: "0.05";	label: qsTr("α = 0.05")	}
+                    RadioButton { value: "0.1";	label: qsTr("α = 0.1")	}
                 }
             }
             CheckBox { name: "rayleigh";			label: qsTr("Rayleigh")}
@@ -77,21 +77,21 @@ Form
         }
 
         Group
+        {
+            title: qsTr("Assumption Checks")
+            CheckBox
             {
-                title: qsTr("Assumption Checks")
-                CheckBox
+                name: "vonMisesCheck";	label: qsTr("Von Mises (Watson's goodness-of-fit)")
+                RadioButtonGroup
                 {
-                    name: "vonMisesCheck";	label: qsTr("Von Mises (Watson's goodness-of-fit)")
-                    RadioButtonGroup
-                    {
-                        name: "pValueVonMises"
-                        indent: true
-                        radioButtonsOnSameRow: true
-                        RadioButton { value: "0.01";	label: qsTr("p = 0.01")	}
-                        RadioButton { value: "0.05";	label: qsTr("p = 0.05")	}
-                        RadioButton { value: "0.1";	label: qsTr("p = 0.1")	}
-                    }
+                    name: "alphaVonMises"
+                    indent: true
+                    radioButtonsOnSameRow: true
+                    RadioButton { value: "0.01";	label: qsTr("α = 0.01")	}
+                    RadioButton { value: "0.05";	label: qsTr("α = 0.05")	}
+                    RadioButton { value: "0.1";	label: qsTr("α = 0.1")	}
                 }
             }
+        }
     }
 }

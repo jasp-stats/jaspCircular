@@ -85,7 +85,36 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
                all.grouping = HkFactors,
                observations.amount = c('< 2'),
                exitAnalysisIfErrors = TRUE)
+  }
+  
+  # check for reasonable period and that the data does not exceed a tolerable concentration.
+  # (It might happen that the user forgets to specify the correct period 
+  # which leads to data that can be very concentrated when normalized to the unit circle, i.e. almost zero circular variance).
+  # this can cause time outs in the circular package
+  .multipleSampleTestsCheckForReasonablePeriodAndConcentration <- function(){
+    
+    tolerance <- 10**-3
+    
+    fixedFactors <- unlist(options$fixedFactors)
+    dependent <- unlist(options$dependent)
+    for(fac in fixedFactors){
+      split <- dataset[[.v(fac)]]
+      splitLevels <- levels(split)
+      for(level in splitLevels){
+        column <- dataset[[.v(dependent)]][split == level]
+        validData <- column[!is.na(column)]
+        validDataNormalized <- .normalizeData(validData, options$period)
+        validDataCirc <- circular::circular(validDataNormalized)
+        meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
+        if (abs(meanResultantLength-1) < tolerance)    # the maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
+          return(paste("The data of the dependent variable", dependent, "grouped on factor", fac, "exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"))
+      }
     }
+  }
+  .hasErrors(      dataset              = dataset,
+                   perform              = "run",
+                   custom               = .multipleSampleTestsCheckForReasonablePeriodAndConcentration,
+                   exitAnalysisIfErrors = TRUE)
 }
 
 # Results functions ----
@@ -367,7 +396,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     oneWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
   }
 
-  oneWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
+  oneWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2\u03C0.")
   if (options$watsonWheeler)
     oneWayAnovaTable$addFootnote(message = "The degrees of freedom of the \u03C7\u00B2-distribution to which W is compared.", col_names = "df")
 
@@ -436,14 +465,14 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
     twoWayAnovaTable$addColumnInfo(name = "ss",   title = "Sum of Square",   type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "ms",   title = "Mean Square",   type = "number", format = "dp:3")
-    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = paste("We estimated kappa = ", round(kappa, digits = 2),  " (greater than 2). The respective routine was run."))
+    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = paste("We estimated \u03BA = ", round(kappa, digits = 2),  " (> 2). The respective routine was run."))
   }else{
     twoWayAnovaTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:3;p:.001")
     twoWayAnovaTable$addColumnInfo(name = "chi",   title = "\u03C7\u00B2",   type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
-    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = paste("We estimated kappa = ", round(kappa, digits = 2),  " (less than 2). The respective routine was run."))
+    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = paste("We estimated \u03BA = ", round(kappa, digits = 2),  " (< 2). The respective routine was run."))
   }
-  twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2pi.")
+  twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2\u03C0.")
   
   if(readyHK){
     # if the calculations failed, do not fill the table but rather show the error

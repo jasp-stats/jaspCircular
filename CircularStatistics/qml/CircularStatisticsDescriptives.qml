@@ -37,8 +37,8 @@ Form
     {
         name: "periodGroup"
         title: qsTr("Period")
-        RadioButton { value: "pi";	label: qsTr("Pi")	}
-        RadioButton { value: "pi_2";	label: qsTr("2Pi")	}
+        RadioButton { value: "pi";	label: qsTr("π")	}
+        RadioButton { value: "pi_2";	label: qsTr("2π")	}
         RadioButton
         {
             value: "custom";	label: qsTr("Custom:"); checked: true
@@ -47,7 +47,7 @@ Form
         }
     }
 	
-	ExpanderButton 
+    Section
 	{
 		title: qsTr("Plots")
         Group
@@ -60,27 +60,23 @@ Form
     }
 
 	
-	ExpanderButton 
+    Section
 	{
 		title: qsTr("Statistics")
-		
-		GridLayout 
-		{	
-			GroupBox 
-			{
-				title: qsTr("Central Tendency")
-                CheckBox { name: "meanDirection";			text: qsTr("Mean direction");		checked: true	}
-                CheckBox { name: "meanLength";			text: qsTr("Mean resultant length");}
-                CheckBox { name: "median";			text: qsTr("Median");				}
-            }
-			
-			GroupBox 
-			{
-				title: qsTr("Dispersion")
-				CheckBox { name: "standardDeviation";	text: qsTr("Std.deviation"); checked: true	}
-                CheckBox { name: "variance";			text: qsTr("Variance")						}
-				CheckBox { name: "range";				text: qsTr("Range")							}
-            }
-		}		
+        Group
+        {
+            title: qsTr("Central Tendency")
+            CheckBox { name: "meanDirection";			text: qsTr("Mean direction");		checked: true	}
+            CheckBox { name: "meanLength";			text: qsTr("Mean resultant length");}
+            CheckBox { name: "median";			text: qsTr("Median");				}
+        }
+
+        Group
+        {
+            title: qsTr("Dispersion")
+            CheckBox { name: "standardDeviation";	text: qsTr("Std. deviation"); checked: true	}
+            CheckBox { name: "variance";			text: qsTr("Variance")						}
+            CheckBox { name: "range";				text: qsTr("Range")							}
+        }
 	}
 }

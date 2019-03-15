@@ -8,7 +8,7 @@ Assumptions
 - Dependent circular variable with specified period
 - Watson-Williams test: the data in each group comes from a von Mises distribution. All of these have the same concentration parameter which are sufficiently large (>1)
 - Watson-Wheeler test: all groups contain at least 10 data points
-- Harrison-Kanji test: the data of each cell comes from a von Mises distribution with concentration parameter between 0 and 2
+- Harrison-Kanji test: the data in each group comes from a von Mises distribution. All of these have the same concentration parameter between 0 and 2
 
 Default Options
 -------
@@ -29,7 +29,7 @@ Additional Options
 - Watson-Williams: Parametric one-way ANOVA for circular data
 
 ### Two-way ANOVA:
-- Harrison-Kanji: two-way ANOVA for circular data
+- Harrison-Kanji: two-way ANOVA for circular data (it always runs on the first two factors in the `Fixed Factors` list)
 
 Additional Output
 ------------------
@@ -40,7 +40,7 @@ Additional Output
   - df1 and df2: the degrees of freedom of the F distribution to which F is compared
 
 ### Two-way ANOVA:
-  - Harrison-Kanji: It has one of the following outputs, depending on the estimate of the concentration parameter &#954; of the whole data set
+  - Harrison-Kanji: It has one of the following outputs, depending on the estimate of the concentration parameter &#954; of the pooled data:
     
     - if &#954; < 2
       - p: p-value of the test

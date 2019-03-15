@@ -215,7 +215,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
     circularDescriptivesTable$addColumnInfo(name = "range", title = "Range", type = "number", format = "dp:3")
   
   # create the footnotes
-  circularDescriptivesTable$addFootnote(symbol = "<em>Note.</em>", message = "If not stated otherwise, all values are calculated on a normalized period of 2pi.")
+  circularDescriptivesTable$addFootnote(symbol = "<em>Note.</em>", message = "If not stated otherwise, all values are calculated on a normalized period of 2\u03C0.")
   if (options$periodGroup != "pi_2")
     circularDescriptivesTable$addFootnote(message = "Value is shown with respect to the original period.", col_names = list("meanDirection", "median", "range"))
   
@@ -281,10 +281,6 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
       containerPlots[[variable]] <- jaspPlot
     }
   }
-  
-  # if we encountered a problem in the whole container, do not fill the plots
-  if(containerPlots$getError())
-    return()
   
   if(ready)
     # if the calculations failed, do not fill the plots because they depend on the calculations

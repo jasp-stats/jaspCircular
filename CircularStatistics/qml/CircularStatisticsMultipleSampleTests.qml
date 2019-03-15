@@ -30,7 +30,7 @@ Form
     {
         AvailableVariablesList { name: "allVariablesList" }
         AssignedVariablesList { name: "dependent";		title: qsTr("Dependent Variable");	allowedColumns: ["scale"]; singleVariable: true }
-        AssignedVariablesList { name: "fixedFactors";	title: qsTr("Fixed Factors");		allowedColumns: ["ordinal", "nominal"]		}
+        AssignedVariablesList { name: "fixedFactors";	title: qsTr("Fixed Factors");		allowedColumns: ["ordinal", "nominal"]; id: fixedFactorsList		}
 	}
 
     ColumnLayout
@@ -39,8 +39,8 @@ Form
         {
             name: "periodGroup"
             title: qsTr("Period")
-            RadioButton { value: "pi";	label: qsTr("Pi")	}
-            RadioButton { value: "pi_2";	label: qsTr("2Pi")	}
+            RadioButton { value: "pi";	label: qsTr("π")	}
+            RadioButton { value: "pi_2";	label: qsTr("2π")	}
             RadioButton
             {
                 value: "custom";	label: qsTr("Custom:"); checked: true
@@ -57,9 +57,9 @@ Form
         }
 
         Group
-            {
-                title: qsTr("Two-way ANOVA")
-                CheckBox { name: "harrisonKanji";	label: qsTr("Harrison-Kanji")}
-            }
+        {
+            title: qsTr("Two-way ANOVA")
+            CheckBox { name: "harrisonKanji";	label: qsTr("Harrison-Kanji")}
+        }
     }
 }

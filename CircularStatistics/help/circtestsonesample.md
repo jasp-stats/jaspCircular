@@ -9,22 +9,21 @@ Assumptions
 - Rao's spacing test: At least four data points in each sample
 - Rayleigh test: The alternativ hypothesis assumes an unimodal distribution with unspecified location and unspecified circular variance 
 - V test: The alternativ hypothesis assumes an unimodal distribution with the location as the specified test value, but unspecified circular variance
-
 - Von Mises assumption check: None
 
 Default Options
 -------
 ### Uniformity Tests:
-- Rao's spacing with p = 0.01: Runs a Rao spacing test with a signifance level of 1%.
+- Rao's spacing with &#945; = 0.01: Runs a Rao spacing test with a signifance level of 1%.
 
 Default Output
 -------
 
 ### Uniformity Tests:
 - Rao's spacing:
-  - p: significance level that was specified in the input
+  - &#945;: significance level that was specified in the input
   - Statistic: Rao test statistics
-  - Critical: critical value of the test statistic according to the specified significance p
+  - Critical: critical value of the test statistic according to the specified significance level &#945;
 
 Additional Options
 -------
@@ -35,7 +34,7 @@ Additional Options
   - Test value: The test direction of the V test.
 
 ### Assumption Checks:
-- Von Mises: Runs a Watson's goodness-of-fit test on the data with a von Mises distribution as evaluation
+- Von Mises: Runs a Watson's goodness-of-fit test on the data with a von Mises distribution as evaluation and a significance of the specified p-value
 
 
 Additional Output
@@ -44,15 +43,15 @@ Additional Output
 ### Uniformity Tests:
 - Rayleigh:
   - p: p-value of the test
-  - Statistic: Rayleigh test statistics
+  - Statistic: Rayleigh test statistics (Rayleigh's R)
 - V: 
   - p: p-value of the test
-  - Statistic: V test statistics
+  - Statistic: V test statistics (Rayleigh's R weighted with cos(&#952;-&#956;<sub>0</sub>), where &#952; is the mean direction of the sample and &#956;<sub>0</sub> is the test direction. It therefore can be negative.)
 
 ### Von Mises Assumption Check:
-- p: significance level that was specified in the input
+- &#945;: significance level that was specified in the input
 - U<sup>2</sup>: the Watson test statistic
-- Critical: critical value of the test statistic according to the specified significance p
+- Critical: critical value of the test statistic according to the specified significance level &#945;
 - Est. Kappa: the maximum likelihood estimate of the concentration parameter of the von Mises distribution given by the data points
 
 References
