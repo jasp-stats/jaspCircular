@@ -1,0 +1,48 @@
+{
+	"moduleDescription"  :
+	{
+		"title"          : "Circular Statistics",
+		"description"    : "This module offers basic methods for directional data.",
+		"version"        : "1.0.0",
+		"author"         : "Aaron Bahde (Berens Lab, University of Tuebingen)",
+		"maintainer"     : "JASP Team <info@jasp-stats.org>",
+		"website"        : "jasp-stats.org",
+		"license"        : "GPL (>= 2)",
+		"icon"			 : "analysis-circstats-descriptives.svg"
+	},
+
+	"requiredPackages":	["circular"],
+		//[
+		//	{ 
+		//		"package": "circular", 
+		//		"version": "0.4-93" 
+		//	}
+		//],
+
+	"menu":
+		[
+			{
+				"title":	"Circular Descriptives",
+				"icon":		"analysis-circstats-descriptives.svg"
+			},
+			{
+				"title":	"Circular Descriptives",
+				"qml":		"CircularStatisticsDescriptives.qml",
+				"function":	"CircularStatisticsDescriptives"
+			},
+			{
+				"title": "Hypothesis Tests",
+				"icon": "analysis-circstats-hypothesis-testing.svg"
+			},
+			{
+				"title":	"Circular One-Sample Tests",
+				"qml":		"CircularStatisticsOneSampleTests.qml",
+				"function":	"CircularStatisticsOneSampleTests"
+			},
+			{
+				"title":	"Circular Multiple-Sample Tests",
+				"qml":		"CircularStatisticsMultipleSampleTests.qml",
+				"function":	"CircularStatisticsMultipleSampleTests"
+			}
+		]
+}
