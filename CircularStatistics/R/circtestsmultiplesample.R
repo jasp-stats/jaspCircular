@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019 Aaron Bahde, University of Tuebingen
+# Copyright (C) 2019 Aaron Bahde and Philipp Berens, University of Tuebingen
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,17 +16,17 @@
 #
 
 CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options, ...) {
-  # Get the correct period. This step is neccessary since pi is hard to specify in the GUI
+  # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
   if (options$periodGroup == "pi")
     options$period <- pi
   if (options$periodGroup == "pi_2")
     options$period <- 2 * pi
 
   # Set title
-  jaspResults$title <- "Test Results"
+  #jaspResults$title <- "Test Results"
 
   ready <- (options$dependent != "") && (length(options$fixedFactors) > 0)
-  readyHK <- (options$dependent != "") && (length(options$fixedFactors) >= 2)    # the HK test is only runable if there are at least two factors
+  readyHK <- (options$dependent != "") && (length(options$fixedFactors) >= 2)    # The HK test is only runable if there are at least two factors.
   if (ready){
     # Read dataset
     dataset <- .circularTestsMultipleSampleReadData(dataset, options)
@@ -66,7 +66,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     factorLevels.amount  = "< 2",
     exitAnalysisIfErrors = TRUE)
 
-  # for each assigned factor check that there is no sample with infinity values, zero observations, or zero variance
+  # For each assigned factor check that there is no sample with infinity values, zero observations, or zero variance.
   for (fac in options$fixedFactors){
       .hasErrors(dataset,
                  type = c('observations', 'infinity', 'variance'),
@@ -77,7 +77,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
       }
 
   if(options$harrisonKanji && (length(options$fixedFactors) >= 2)){
-    # additionally for the HK test, each cell must contain at least two measurements at is not allowed to have zero variance
+    # Additionally for the HK test, each cell must contain at least two measurements and is not allowed to have zero variance.
     HkFactors <- options$fixedFactors[c(1,2)]
     .hasErrors(dataset,
                type = c('observations', 'variance'),
@@ -90,7 +90,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # check for reasonable period and that the data does not exceed a tolerable concentration.
   # (It might happen that the user forgets to specify the correct period 
   # which leads to data that can be very concentrated when normalized to the unit circle, i.e. almost zero circular variance).
-  # this can cause time outs in the circular package
+  # This can cause time outs in the circular package.
   .multipleSampleTestsCheckForReasonablePeriodAndConcentration <- function(){
     
     tolerance <- 10**-3
@@ -106,7 +106,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
         validDataNormalized <- .normalizeData(validData, options$period)
         validDataCirc <- circular::circular(validDataNormalized)
         meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
-        if (abs(meanResultantLength-1) < tolerance)    # the maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
+        if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
           return(paste("The data of the dependent variable", dependent, "grouped on factor", fac, "exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"))
       }
     }
@@ -143,7 +143,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$period)
   factorColumn <- dataset[[.v(fac)]][validIndices]
 
-  # check if the test is applicable, i.e. the assumption of equal kappas across the groups is justified. Store the result to decide on a warning footnote when creating the table.
+  # Check if the test is applicable, i.e. the assumption of equal kappas across the groups is justified. Store the result to decide on a warning footnote when creating the table.
   equalKappaTestResult <- circular::equal.kappa.test(dependentColumnNormalized, factorColumn)
   equalKappaTestPvalue <- equalKappaTestResult$p.value
   kappas <- paste(format(equalKappaTestResult$kappa, digits = 3), collapse = ", ")
@@ -177,7 +177,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$period)
   factorColumn <- dataset[[.v(fac)]][validIndices]
 
-  # check if each group has at least 10 measurements. Store the result to add a warning as a footnote later (if neccessary).
+  # Check if each group has at least 10 measurements. Store the result to add a warning as a footnote later (if neccessary).
   hasTenMeasurementsPerGroup <- TRUE    # default is TRUE
   split <- dataset[[.v(fac)]]
   splitLevels <- levels(split)
@@ -226,11 +226,13 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   return(results)
 }
 .circularTestsMultipleSampleHarrisonKanji <- function(dependent, fac1, fac2, inter = TRUE){
-  # the Harrison-Kanji test is not available in the circular package. Thus, this test was migrated from the Matlab library CircStat by Philipp Berens 2009. For easy comparison, the following code is implemented as close as possible to the original (including variable names).
+  # The Harrison-Kanji test is not available in the circular package. Thus, this test was migrated from the Matlab library CircStat by Philipp Berens 2009. For easy comparison, the following code is implemented as close as possible to the original (including variable names).
   # Input:
   # Dependent: A column of the dependent measurements
   # Fac1: A column of factor1 which contains the levels for dependent
   # Fac2: A column of factor2 which contains the levels for dependent
+  # Output:
+  # A list containing the p-value and the test statistics for each case.
 
   p <- nlevels(fac1)
   q <- nlevels(fac2)
@@ -378,7 +380,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Create table
   oneWayAnovaTable <- createJaspTable(title = "One-way ANOVA")
   jaspResults[["oneWayAnovaTable"]] <- oneWayAnovaTable
-  jaspResults[["oneWayAnovaTable"]]$dependOnOptions(c("dependent", "watsonWilliams", "period", "periodGroup", "watsonWheeler", "fixedFactors"))
+  jaspResults[["oneWayAnovaTable"]]$dependOn(options = c("dependent", "watsonWilliams", "period", "periodGroup", "watsonWheeler", "fixedFactors"))
 
   oneWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -398,10 +400,14 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 
   oneWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2\u03C0.")
   if (options$watsonWheeler)
-    oneWayAnovaTable$addFootnote(message = "The degrees of freedom of the \u03C7\u00B2-distribution to which W is compared.", col_names = "df")
+    oneWayAnovaTable$addFootnote(message = "The degrees of freedom of the \u03C7\u00B2-distribution to which W is compared.", colNames = "df")
 
+  # add citations
+  oneWayAnovaTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
+  oneWayAnovaTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
+  
   if(ready){
-    # if the calculations failed, do not fill the table but rather show the error
+    # If the calculations failed, do not fill the table but rather show the error.
     if(inherits(oneWayAnovaResults, "try-error")){
       errorMessage <- as.character(oneWayAnovaResults)
       oneWayAnovaTable$setError(errorMessage)
@@ -437,7 +443,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Create table
   twoWayAnovaTable <- createJaspTable(title = "Two-way ANOVA (Harrison-Kanji Test)")
   jaspResults[["twoWayAnovaTable"]] <- twoWayAnovaTable
-  jaspResults[["twoWayAnovaTable"]]$dependOnOptions(c("dependent", "harrisonKanji", "period", "periodGroup", "fixedFactors"))
+  jaspResults[["twoWayAnovaTable"]]$dependOn(options = c("dependent", "harrisonKanji", "period", "periodGroup", "fixedFactors"))
   
   twoWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -445,9 +451,9 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   twoWayAnovaTable$addColumnInfo(name = "fac",   title = "Cases",   type = "string")
   
   
-  # if the analysis is not ready, show as default the table of the small kappa case. So we have to set kappa less than 2.
+  # If the analysis is not ready, show as default the table of the small kappa case. So we have to set kappa less than 2.
   if(readyHK){
-    # we need to know kappa from the results. so rather return the error if one occured during the calculations
+    # We need to know kappa from the results. so rather return the error if one occured during the calculations.
     if(inherits(twoWayAnovaResults,"try-error")){
       errorMessage <- as.character(twoWayAnovaResults)
       twoWayAnovaTable$setError(errorMessage)
@@ -474,8 +480,13 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   }
   twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2\u03C0.")
   
+  # add citations
+  twoWayAnovaTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
+  twoWayAnovaTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
+  twoWayAnovaTable$addCitation("D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data.")
+  
   if(readyHK){
-    # if the calculations failed, do not fill the table but rather show the error
+    # If the calculations failed, do not fill the table but rather show the error.
     if(inherits(twoWayAnovaResults,"try-error")){
       errorMessage <- as.character(twoWayAnovaResults)
       twoWayAnovaTable$setError(errorMessage)
@@ -509,7 +520,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 }
 # Helper functions for circular statistics ----
 .convertBack <- function(circularObject){
-  # sometimes circular objects have a negative value instead of its modulo postive correspondence. This function ensures the correct backconversion
+  # Sometimes, circular objects have a negative value instead of its modulo positive correspondence. This function ensures the correct backconversion.
   return ((as.numeric(circularObject) + 2 * pi) %% ( 2 * pi))
 }
 .normalizeData <- function(data, period){

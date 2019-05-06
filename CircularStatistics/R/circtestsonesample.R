@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2019 Aaron Bahde, University of Tuebingen
+# Copyright (C) 2019 Aaron Bahde and Philipp Berens, University of Tuebingen
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,14 +16,14 @@
 #
 
 CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...) {
-  # Get the correct period. This step is neccessary since pi is hard to specify in the GUI
+  # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
   if (options$periodGroup == "pi")
     options$period <- pi
   if (options$periodGroup == "pi_2")
     options$period <- 2 * pi
 
   # Set title
-  jaspResults$title <- "Test Results"
+  #jaspResults$title <- "Test Results"
 
   ready <- (length(options$variables) > 0)
   
@@ -84,7 +84,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
              observations.amount = c('< 1'), 
              exitAnalysisIfErrors = TRUE)
     
-    # the rao test needs at least 4 data points
+    # The rao test needs at least 4 data points.
     if(options$rao)
       .hasErrors(dataset, 
                  type = c('observations'),
@@ -93,7 +93,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
                  observations.amount = c('< 4'), 
                  exitAnalysisIfErrors = TRUE)
     
-    # the von Mises check fails if there is zero variance in the data
+    # The von Mises check fails if there is zero variance in the data.
     if(options$vonMises)
       .hasErrors(dataset, 
                  type = c('variance'),
@@ -110,7 +110,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
                observations.amount = c('< 1'), 
                exitAnalysisIfErrors = TRUE)
 
-    # the rao test needs at least 4 data points
+    # The rao test needs at least 4 data points.
     if(options$rao)
       .hasErrors(dataset, 
                  type = c('observations'),
@@ -118,7 +118,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
                  observations.amount = c('< 4'), 
                  exitAnalysisIfErrors = TRUE)
     
-    # the von Mises check fails if there is zero variance in the data
+    # The von Mises check fails if there is zero variance in the data.
     if(options$vonMises)
       .hasErrors(dataset, 
                  type = c('variance'),
@@ -126,10 +126,10 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
                  exitAnalysisIfErrors = TRUE)
   }
   
-  # check for reasonable period and that the data does not exceed a tolerable concentration.
+  # check for reasonable period and that the data does not exceed a tolerable concentration
   # (It might happen that the user forgets to specify the correct period 
   # which leads to data that can be very concentrated when normalized to the unit circle, i.e. almost zero circular variance).
-  # this can cause time outs in the circular package
+  # This can cause time outs in the circular package.
   .oneSampleTestsCheckForReasonablePeriodAndConcentration <- function(){
 
     tolerance <- 10**-3
@@ -148,7 +148,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
           validDataNormalized <- .normalizeData(validData, options$period)
           validDataCirc <- circular::circular(validDataNormalized)
           meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
-          if (abs(meanResultantLength-1) < tolerance)    # the maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
+          if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
             return(paste("The data of the variable", variable, "on level", level,"exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"))
         }
       }
@@ -159,7 +159,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
         validDataNormalized <- .normalizeData(validData, options$period)
         validDataCirc <- circular::circular(validDataNormalized)
         meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
-        if (abs(meanResultantLength-1) < tolerance)    # the maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
+        if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
           return(paste("The data of the variable", variable, "exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"))
       }
     }
@@ -271,8 +271,8 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   testResult <- circular::rao.spacing.test(data,alpha=alpha)
   U <- testResult$statistic
   n <- testResult$n
-  # the following is a routine that gets the critical value for the specified alpha value, depending in the dataset size.
-  # it is neccesary, since the circular package just prints the test results without returning the critical values.
+  # The following is a routine that gets the critical value for the specified alpha value, depending in the dataset size.
+  # It is neccesary, since the circular package just prints the test results without returning the critical values.
   data(rao.table, package = "circular", envir = sys.frame(which = sys.nframe()))    # table for critical values (Levitin, Rusell 1995)
   criticalTableColumn <- (1:4)[alpha == c(0.001, 0.01, 0.05, 0.1)]
   # get the table row where the data count is as closest to the one in the table
@@ -289,8 +289,8 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 return(results)
 }
 .circularTestsOneSampleComputeResultsModifiedRayleigh <- function(jaspResults, data, options) {
-  # we do not trust the implementation of the V test in the circular package. Therefore, we implement it on our own following Fisher 1993, p.69.
-  # the test statistic is here based on the mean resultant length and not on "rayleighs R". Therefore the resulting statistic differs by a factor of n from other libraries, like CircStat for MATLAB
+  # We do not trust the implementation of the V test in the circular package. Therefore, we implement it on our own following Fisher 1993, p.69.
+  # The test statistic is here based on the mean resultant length and not on "rayleighs R". Therefore the resulting statistic differs by a factor of n from other libraries, like CircStat for MATLAB
 
   # calculate the statistic r0Bar
   n <- length(data)
@@ -365,7 +365,7 @@ return(results)
 
   statistic <- testResult$statistic
 
-  # this table comparison is copied from circular::print.watson.test() to get the values instead of just printing them to the console.
+  # This table comparison is copied from circular::print.watson.test() to get the values instead of just printing them to the console.
   u2.crits <- cbind(c(0, 0.5, 1, 1.5, 2, 4, 100),
                     c(0.052, 0.056, 0.066, 0.077, 0.084, 0.093, 0.096),
                     c(0.061,0.066, 0.079, 0.092, 0.101, 0.113, 0.117),
@@ -390,7 +390,7 @@ return(results)
   # Create table
   oneSampleTable <- createJaspTable(title = "Uniformity Tests")
   jaspResults[["oneSampleTable"]] <- oneSampleTable
-  jaspResults[["oneSampleTable"]]$dependOnOptions(c("variables", "splitby", "rao", "alphaRao", "rayleigh", "modifiedRayleigh", "period", "periodGroup"))
+  jaspResults[["oneSampleTable"]]$dependOn(options = c("variables", "splitby", "rao", "alphaRao", "rayleigh", "modifiedRayleigh", "period", "periodGroup"))
 
   oneSampleTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -411,8 +411,13 @@ return(results)
   
   oneSampleTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2\u03C0.")
   
+  # add citations
+  oneSampleTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
+  oneSampleTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
+  oneSampleTable$addCitation("Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test.")
+  
   if(ready){
-    # if the calculations failed, do not fill the table but rather show the error
+    # If the calculations failed, do not fill the table but rather show the error.
     if(inherits(circularTestsOneSampleResults, "try-error")){
       errorMessage <- as.character(circularTestsOneSampleResults)
       oneSampleTable$setError(errorMessage)
@@ -475,7 +480,7 @@ return(results)
     }
   }
   if (options$rao)
-    oneSampleTable$addFootnote(message = paste("The Rao spacing test is run with \u03B1 = ", options$alphaRao, "so please compare the statistics to the critical value."), col_names = "testName", row_names = rowNamesForRaoFootnote)
+    oneSampleTable$addFootnote(message = paste("The Rao spacing test was run with \u03B1 = ", options$alphaRao, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
 }
 
 .circularTestsOneSampleCreateTableVonMises <-function (jaspResults, dataset, options, circularTestsOneSampleVonMisesTestResults, ready){
@@ -484,7 +489,7 @@ return(results)
   # Create table
   vonMisesCheckTable <- createJaspTable(title = "Von Mises Assumption Check")
   jaspResults[["vonMisesCheckTable"]] <- vonMisesCheckTable
-  jaspResults[["vonMisesCheckTable"]]$dependOnOptions(c("variables", "splitby", "vonMisesCheck", "alphaVonMises", "period", "periodGroup"))
+  jaspResults[["vonMisesCheckTable"]]$dependOn(options = c("variables", "splitby", "vonMisesCheck", "alphaVonMises", "period", "periodGroup"))
 
   vonMisesCheckTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -497,8 +502,13 @@ return(results)
   vonMisesCheckTable$addColumnInfo(name = "statistic",   title = "U\u00B2",   type = "number", format = "dp:3")
   vonMisesCheckTable$addColumnInfo(name = "kappa",   title = "Est. \u03BA",   type = "number", format = "dp:2")
   
+  # add citations
+  vonMisesCheckTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
+  vonMisesCheckTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
+  vonMisesCheckTable$addCitation("R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution.")
+  
   if(ready){
-    # if the calculations failed, do not fill the table but rather show the error
+    # If the calculations failed, do not fill the table but rather show the error.
     if(inherits(circularTestsOneSampleVonMisesTestResults, "try-error")){
       errorMessage <- as.character(circularTestsOneSampleVonMisesTestResults)
       vonMisesCheckTable$setError(errorMessage)
@@ -529,7 +539,7 @@ return(results)
         
       }
     }
-    vonMisesCheckTable$addFootnote(message = "Do not trust a significant result where \u03BA is small (< 1). The data could rather be uniform.", col_names = "kappa", row_names = rowsForKappaFootnote)
+    vonMisesCheckTable$addFootnote(message = "Do not trust a significant result where \u03BA is small (< 1). The data could rather be uniform.", colNames = "kappa", rowNames = rowsForKappaFootnote)
   }
   else {
     rowsForKappaFootnote <- c()
@@ -540,7 +550,7 @@ return(results)
       if (row$kappa < 1)
         rowsForKappaFootnote <- c(rowsForKappaFootnote, paste(variable))
     }
-    vonMisesCheckTable$addFootnote(message = "Do not trust a significant result where \03BA is small (< 1). The data could rather be uniform.", col_names = "kappa", row_names = rowsForKappaFootnote)
+    vonMisesCheckTable$addFootnote(message = "Do not trust a significant result where \03BA is small (< 1). The data could rather be uniform.", colNames = "kappa", rowNames = rowsForKappaFootnote)
     vonMisesCheckTable$addFootnote(symbol = "<em>Note.</em>", message = paste("The test is run with \u03B1 = ",  options$alphaVonMises, "so please compare the statistics to the critical value."))
   }
 }
@@ -548,7 +558,4 @@ return(results)
 # Helper functions for circular statistics ----
 .normalizeData <- function(data, period){
   return(((data %% period) / period) * 2 * pi)
-}
-.checkForReasonablePeriodAndConcentration <- function(column, options){
-  
 }
