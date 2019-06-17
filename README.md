@@ -1,6 +1,6 @@
 # Circular Statistics for JASP
 
-This is a circular statistics module for JASP. It can be installed additionally to the JASP core module. It provides basic methods in the JASP GUI, such that analyses can be run without the need for programming. The underlying R code is based on the package [circular](https://CRAN.R-project.org/package=circular) by U. Lund et al..
+This is a circular statistics module for JASP. It can be installed additionally to the [JASP core module](https://jasp-stats.org/). It provides basic methods in the JASP GUI such that analyses can be run without the need for programming. The underlying R code is based on the package [circular](https://CRAN.R-project.org/package=circular) by U. Lund et al..
 
 ### Prerequisites
 
@@ -10,7 +10,7 @@ An installed JASP version >= 0.10.
 
 * Download the ``CircularStatistics.jaspMod`` directory to your local file system.
 * Open JASP.
-* Click the + button in the main ribbon and select ``install module``.
+* Click the ``+`` button in the main ribbon and select ``install module``.
 * Select the downloaded ``CircularStatistics.jaspMod``.
 
 That's it! The module and all it's R dependencies will be installed automatically.
@@ -33,8 +33,8 @@ If you would like to contribute to the module, you can use JASP as a development
 * Open JASP and go to preferences.
 * Go to Advanced.
 * Set the development path to the CircularStatistics repo.
-* Then click the + button in the main ribbon.
-* Click 'Install Development Module'.
+* Then click the ``+`` button in the main ribbon.
+* Click ``Install Development Module``.
 
 There you go! Any changes made to the GUI or the R code will be reflected in JASP immediately. For further details we refer to the [JASP development documentation](https://github.com/jasp-stats/jasp-desktop/tree/development/Docs/development).
 
