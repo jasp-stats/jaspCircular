@@ -30,7 +30,7 @@ Form
     {
         AvailableVariablesList { name: "allVariablesList" }
         AssignedVariablesList { name: "dependent";		title: qsTr("Dependent Variable");	allowedColumns: ["scale"]; singleVariable: true }
-        AssignedVariablesList { name: "fixedFactors";	title: qsTr("Fixed Factors");		allowedColumns: ["ordinal", "nominal"]; id: fixedFactorsList		}
+        AssignedVariablesList { name: "fixedFactors";	title: qsTr("Fixed Factors");		suggestedColumns: ["ordinal", "nominal"]; id: fixedFactorsList		}
 	}
 
     ColumnLayout

@@ -30,7 +30,7 @@ Form
 	{
         AvailableVariablesList { name: "allVariablesList" }
         AssignedVariablesList { name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
-		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; allowedColumns: ["ordinal", "nominal"] }
+        AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
 	}
 
     RadioButtonGroup

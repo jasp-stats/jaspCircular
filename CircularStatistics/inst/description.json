@@ -3,16 +3,16 @@
 	{
 		"title"          : "Circular Statistics",
 		"description"    : "This module offers basic methods for directional data.",
-		"version"        : "1.0.0",
-		"author"         : "Aaron Bahde (Berens Lab, University of Tuebingen)",
+		"version"        : "0.1.0",
+		"author"         : "Aaron Bahde, Philipp Berens (Berens Lab, University of Tuebingen)",
 		"maintainer"     : "JASP Team <info@jasp-stats.org>",
 		"website"        : "jasp-stats.org",
 		"license"        : "GPL (>= 2)",
 		"icon"			 : "analysis-circstats-descriptives.svg"
 	},
 
-	"requiredPackages":	["circular"],
-		//[
+	"requiredPackages":	["circular", "ggplot2"],
+	//"requiredPackages"	[
 		//	{ 
 		//		"package": "circular", 
 		//		"version": "0.4-93" 

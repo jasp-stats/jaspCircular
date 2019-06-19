@@ -30,7 +30,7 @@ Form
 	{
         AvailableVariablesList { name: "allVariablesList" }
         AssignedVariablesList { name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
-		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; allowedColumns: ["ordinal", "nominal"] }
+        AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
 	}
 
     ColumnLayout
@@ -62,7 +62,7 @@ Form
                     radioButtonsOnSameRow: true
                     RadioButton { value: "0.01";	label: qsTr("α = 0.01")	}
                     RadioButton { value: "0.05";	label: qsTr("α = 0.05")	}
-                    RadioButton { value: "0.1";	label: qsTr("α = 0.1")	}
+                    RadioButton { value: "0.1";     label: qsTr("α = 0.1")	}
                 }
             }
             CheckBox { name: "rayleigh";			label: qsTr("Rayleigh")}
@@ -71,7 +71,7 @@ Form
                 name: "modifiedRayleigh";			label: qsTr("V (modified Rayleigh)")
                 DoubleField
                 {
-                 name: "testValue"; label: qsTr("Test value:"); fieldWidth: 70; max: 999999; min: 0.00001
+                 name: "testValue"; label: qsTr("Test value:"); fieldWidth: 70; max: 999999; min: 0.00001; defaultValue: 180.00
                 }
             }
         }
