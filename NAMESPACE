@@ -2,3 +2,4 @@ export(CircularStatisticsDescriptives)
 export(CircularStatisticsOneSampleTests)
 export(CircularStatisticsMultipleSampleTests)
   import('circular');
+  import('ggplot2');

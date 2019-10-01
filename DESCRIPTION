@@ -1,0 +1,11 @@
+Package: CircularStatistics
+Type: Package
+Title: CircularStatistics Module for JASP
+Version: 1.0
+Date: 2019-10-01
+Author: Aaron Bahde, Philipp Berens (University of Tuebingen)
+Website: eye-tuebingen.de/berenslab
+Maintainer: Philipp Berens <philipp.berens@uni-tuebingen.de>
+Description: This module offers basic methods for directional data
+License: GPL (>= 2)
+Imports: circular, ggplot2

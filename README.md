@@ -4,14 +4,16 @@ This is a circular statistics module for JASP. It can be installed additionally 
 
 ### Prerequisites
 
-An installed JASP version >= 0.10.
+An installed JASP version >= 0.11 (it needs to support dynamic modules).
 
 ### Installing
+The following works for JASP version 0.11. The process may vary for higher versions of JASP because dynamic modules are still beta in JASP version 0.11.
 
-* Download the ``CircularStatistics.jaspMod`` directory to your local file system.
+* Download the source ``CircularStatistics.tar.gz`` from the latest release to your local file system.
 * Open JASP.
+* Go to ``Preferences`` -> ``Advanced`` -> Enable ``Developer mode (beta)``
 * Click the ``+`` button in the main ribbon and select ``install module``.
-* Select the downloaded ``CircularStatistics.jaspMod``.
+* Select the downloaded ``CircularStatistics.tar.gz``.
 
 That's it! The module and all it's R dependencies will be installed automatically.
 
