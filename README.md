@@ -42,7 +42,7 @@ There you go! Any changes made to the GUI or the R code will be reflected in JAS
 
 ## Authors
 
-* **Aaron Bahde**
+* **Aaron Bahde** and **Philipp Berens**
 
 ## License
 
