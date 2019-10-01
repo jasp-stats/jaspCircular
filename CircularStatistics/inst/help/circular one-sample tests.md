@@ -7,8 +7,8 @@ Assumptions
 -----------
 - Circular variable with specified period
 - Rao's spacing test: At least four data points in each sample
-- Rayleigh test: The alternativ hypothesis assumes an unimodal distribution with unspecified location and unspecified circular variance.
-- V test: The alternativ hypothesis assumes an unimodal distribution with the location as the specified test value, but unspecified circular variance.
+- Rayleigh test: The alternative hypothesis assumes an unimodal distribution with unspecified location and unspecified circular variance
+- V test: The alternativ hypothesis assumes an unimodal distribution with the location as the specified test value, but unspecified circular variance
 - Von Mises assumption check: None
 
 Default Options
@@ -23,7 +23,7 @@ Default Output
 - Rao's spacing:
   - &#945;: Significance level that was specified in the input
   - Statistic: Rao test statistics
-  - Critical: critical value of the test statistic according to the specified significance level &#945;
+  - Critical: Critical value of the test statistic according to the specified significance level &#945;
 
 Additional Options
 -------
@@ -42,10 +42,10 @@ Additional Output
 
 ### Uniformity Tests:
 - Rayleigh:
-  - p: p-value of the test
+  - p: P-value of the test
   - Statistic: Rayleigh test statistics (Rayleigh's R)
 - V: 
-  - p: p-value of the test
+  - p: P-value of the test
   - Statistic: V test statistics (Rayleigh's R weighted with cos(&#952; - &#956;<sub>0</sub>), where &#952; is the mean direction of the sample and &#956;<sub>0</sub> is the test direction. It therefore can be negative.)
 
 ### Von Mises Assumption Check:

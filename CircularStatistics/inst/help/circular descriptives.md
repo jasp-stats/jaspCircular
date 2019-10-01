@@ -1,7 +1,7 @@
 Circular Descriptives
 ============
 
-Circular descriptives allows you to obtian basic descriptives statistics for circular data like the mean direction or the circular variance. It further gives you several plotting options for circular data.
+The circular descriptives analysis allows you to obtain basic descriptives statistics for circular data like the mean direction or the circular variance. It also provides you with several plotting options for circular data.
 
 Default Options
 -------

@@ -7,7 +7,7 @@ Assumptions
 -----------
 - Dependent circular variable with specified period
 - Watson-Williams test: The data in each group comes from a von Mises distribution. All of these have the same concentration parameter which are sufficiently large (>1).
-- Watson-Wheeler test: All groups contain at least 10 data points
+- Watson-Wheeler test: All groups contain at least 10 data points.
 - Harrison-Kanji test: The data in each group comes from a von Mises distribution. All of these have the same concentration parameter between 0 and 2.
 
 Default Options
@@ -19,7 +19,7 @@ Default Output
 -------
 ### One-way ANOVA:
 - Watson-Wheeler:
-  - p: p-value of the test
+  - p: P-value of the test
   - W: The Watson-Wheeler test statistics
   - df: The degrees of freedom of the &#967;<sup>2</sup>-distribution to which W is compared
 
@@ -35,7 +35,7 @@ Additional Output
 ------------------
 ### One-way ANOVA:
 - Watson-Williams: Parametric one-way ANOVA for circular data
-  - p: p-value of the test
+  - p: P-value of the test
   - F: The F statistics of the test
   - df1 and df2: The degrees of freedom of the F distribution to which F is compared
 
@@ -43,12 +43,12 @@ Additional Output
   - Harrison-Kanji: It has one of the following outputs, depending on the estimate of the concentration parameter &#954; of the pooled data:
     
     - if &#954; < 2
-      - p: p-value of the test
+      - p: P-value of the test
       - &#967;<sup>2</sup>: The associated &#967;<sup>2</sup> component that is used as a test of difference
       - df: The degrees of freedom of the associated &#967;<sup>2</sup> distribution
 
     - if &#954; > 2
-      - p: p-value of the test
+      - p: P-value of the test
       - F: The F ratio of the associated component
       - df: The degrees of freedom of the associated component
       - Sum of Square: The sum of the squares of the associated component
