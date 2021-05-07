@@ -183,7 +183,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 # Output functions ----
 .circularDescriptivesCreateTable <- function(jaspResults, circularDescriptivesResults, dataset, options, ready, wantsSplit) {
   
-  circularDescriptivesTable <- createJaspTable(title = "Circular Descriptives")
+  circularDescriptivesTable <- createJaspTable(title = gettext("Circular Descriptives"))
   circularDescriptivesTable$dependOn(options = c("variables", "splitby", "period", "periodGroup", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
   
   circularDescriptivesTable$showSpecifiedColumnsOnly <- TRUE
@@ -199,29 +199,29 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   }
   
   # Add columns to table
-  circularDescriptivesTable$addColumnInfo(name = "nValidObs",     title = "Valid",     type = "integer")
-  circularDescriptivesTable$addColumnInfo(name = "nInvalidObs",      title = "Missing",      type = "integer")
+  circularDescriptivesTable$addColumnInfo(name = "nValidObs",       title = gettext("Valid"),                 type = "integer")
+  circularDescriptivesTable$addColumnInfo(name = "nInvalidObs",     title = gettext("Missing"),               type = "integer")
   if (options$meanDirection)
-    circularDescriptivesTable$addColumnInfo(name = "meanDirection", title = "Mean Direction", type = "number", format = "dp:3")
+    circularDescriptivesTable$addColumnInfo(name = "meanDirection", title = gettext("Mean Direction"),        type = "number", format = "dp:3")
   if (options$meanLength)
-    circularDescriptivesTable$addColumnInfo(name = "meanLength", title = "Mean Resultant Length", type = "number", format = "dp:3")
+    circularDescriptivesTable$addColumnInfo(name = "meanLength",    title = gettext("Mean Resultant Length"), type = "number", format = "dp:3")
   if (options$median)
-    circularDescriptivesTable$addColumnInfo(name = "median", title = "Median", type = "number", format = "dp:3")
+    circularDescriptivesTable$addColumnInfo(name = "median",        title = gettext("Median"),                type = "number", format = "dp:3")
   if (options$standardDeviation)
-    circularDescriptivesTable$addColumnInfo(name = "stdDev", title = "Standard Deviation", type = "number", format = "dp:3")
+    circularDescriptivesTable$addColumnInfo(name = "stdDev",        title = gettext("Standard Deviation"),    type = "number", format = "dp:3")
   if (options$variance)
-    circularDescriptivesTable$addColumnInfo(name = "variance", title = "Variance", type = "number", format = "dp:3")
+    circularDescriptivesTable$addColumnInfo(name = "variance",      title = gettext("Variance"),              type = "number", format = "dp:3")
   if (options$range)
-    circularDescriptivesTable$addColumnInfo(name = "range", title = "Range", type = "number", format = "dp:3")
+    circularDescriptivesTable$addColumnInfo(name = "range",         title = gettext("Range"),                 type = "number", format = "dp:3")
   
   # create the footnotes
-  circularDescriptivesTable$addFootnote(symbol = "<em>Note.</em>", message = "If not stated otherwise, all values are calculated on a normalized period of 2\u03C0.")
+  circularDescriptivesTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettext("If not stated otherwise, all values are calculated on a normalized period of 2\u03C0."))
   if (options$periodGroup != "pi_2")
-    circularDescriptivesTable$addFootnote(message = "Value is shown with respect to the original period.", colNames = list("meanDirection", "median", "range"))
+    circularDescriptivesTable$addFootnote(message = gettext("Value is shown with respect to the original period."), colNames = list("meanDirection", "median", "range"))
   
   # add citations
-  circularDescriptivesTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
-  circularDescriptivesTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
+  circularDescriptivesTable$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
+  circularDescriptivesTable$addCitation(gettext("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."))
   
   jaspResults[["circularDescriptivesTable"]] <- circularDescriptivesTable
   
@@ -263,7 +263,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 
 .circularDescriptivesCreatePlot <- function(jaspResults, dataset, options, circularDescriptivesResults, wantsSplit, ready){
   # get a container for plots
-  containerPlots <- createJaspContainer(title = "Circular Descriptives Plots", dependencies = c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
+  containerPlots <- createJaspContainer(title = gettext("Circular Descriptives Plots"), dependencies = c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
   jaspResults[["Plots"]] <- containerPlots
   
   plotSize <- 320
@@ -277,8 +277,8 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
         jaspPlot <- createJaspPlot(title=level, width = plotSize, height = plotSize, dependencies = c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
         
         # add citations
-        jaspPlot$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
-        jaspPlot$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
+        jaspPlot$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
+        jaspPlot$addCitation(gettext("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."))
         
         containerLevelPlots[[level]] <- jaspPlot
       }
@@ -289,8 +289,8 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
       jaspPlot <- createJaspPlot(title=variable, width = plotSize, height = plotSize, dependencies = c("variables", "splitby", "period", "periodGroup", "plotVariables", "plotMean", "plotHistogram", "plotStacking"))
       
       # add citations
-      jaspPlot$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
-      jaspPlot$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
+      jaspPlot$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
+      jaspPlot$addCitation(gettext("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."))
       
       containerPlots[[variable]] <- jaspPlot
     }
@@ -299,7 +299,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   if(ready)
     # If the calculations failed, do not fill the plots because they depend on the calculations.
     if(inherits(circularDescriptivesResults, "try-error")){
-      errorMessage <- paste("The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error:", as.character(circularDescriptivesResults))
+      errorMessage <- gettextf("The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error: %s", as.character(circularDescriptivesResults))
       containerPlots$setError(errorMessage)
     } else {
       .circularDescriptivesFillPlots(containerPlots, circularDescriptivesResults, options, dataset, wantsSplit)
@@ -319,7 +319,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
         plot <- try(.circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options))
         # if the plotting fails, do not fill the plot but rather show the error
         if(inherits(plot, "try-error")){
-          errorMessage <- paste("The plotting for this set-up failed with:", as.character(plot))
+          errorMessage <- gettextf("The plotting for this set-up failed with: %s", as.character(plot))
           containerPlots[[variable]][[level]]$setError(errorMessage)
         } else {
           containerPlots[[variable]][[level]]$plotObject <- plot
@@ -335,7 +335,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
       plot <- try(.circularDescriptivesCreatePlotHelper(plotData, meanDirection, meanLength, options))
       # If the plotting fails, do not fill the plot but rather show the error.
       if(inherits(plot, "try-error")){
-        errorMessage <- paste("The plotting for this set-up failed with:", as.character(plot))
+        errorMessage <- gettextf("The plotting for this set-up failed with: %s", as.character(plot))
         containerPlots[[variable]]$setError(errorMessage)
       } else {
         containerPlots[[variable]]$plotObject <- plot

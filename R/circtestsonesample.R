@@ -149,7 +149,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
           validDataCirc <- circular::circular(validDataNormalized)
           meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
           if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
-            return(paste("The data of the variable", variable, "on level", level,"exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"))
+            return(gettextf("The data of the variable %s on level %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?", variable, level))
         }
       }
     } else{
@@ -160,7 +160,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
         validDataCirc <- circular::circular(validDataNormalized)
         meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
         if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
-          return(paste("The data of the variable", variable, "exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"))
+          return(gettextf("The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?", variable))
       }
     }
   }
@@ -193,7 +193,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
           results[[variable]][[level]][["rao"]] <- list(
             variable = variable,
             level = level,
-            testName = "Rao's spacing",
+            testName = gettext("Rao's spacing"),
             alpha = testResults$alpha,
             statistic = testResults$statistic,
             criticalValue = testResults$criticalValue,
@@ -205,7 +205,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
           results[[variable]][[level]][["rayleigh"]] <- list(
             variable = variable,
             level = level,
-            testName = "Rayleigh",
+            testName = gettext("Rayleigh"),
             p = testResults$p,
             statistic = testResults$statistic
           )
@@ -215,7 +215,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
           results[[variable]][[level]][["modifiedRayleigh"]] <- list(
             variable = variable,
             level = level,
-            testName = paste("V against", toString(options$testValue)),
+            testName = gettextf("V against %s", toString(options$testValue)),
             p = testResults$p,
             statistic = testResults$statistic
           )
@@ -235,7 +235,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
         testResults <- .circularTestsOneSampleComputeResultsRao(jaspResults, validDataCirc, options)
         results[[variable]][["rao"]] <- list(
           variable = variable,
-          testName = "Rao's Spacing",
+          testName = gettext("Rao's Spacing"),
           alpha = testResults$alpha,
           statistic = testResults$statistic,
           criticalValue = testResults$criticalValue,
@@ -246,7 +246,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
         testResults <- .circularTestsOneSampleComputeResultsRayleigh(jaspResults, validDataCirc, options)
         results[[variable]][["rayleigh"]] <- list(
           variable = variable,
-          testName = "Rayleigh",
+          testName = gettext("Rayleigh"),
           p = testResults$p,
           statistic = testResults$statistic
         )
@@ -255,7 +255,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
         testResults <- .circularTestsOneSampleComputeResultsModifiedRayleigh(jaspResults, validDataCirc, options)
         results[[variable]][["modifiedRayleigh"]] <- list(
           variable = variable,
-          testName = paste("V against", toString(options$testValue)),
+          testName = gettextf("V against %s", toString(options$testValue)),
           p = testResults$p,
           statistic = testResults$statistic
         )
@@ -388,33 +388,33 @@ return(results)
   wantsSplit <- options$splitby != ""
   
   # Create table
-  oneSampleTable <- createJaspTable(title = "Uniformity Tests")
+  oneSampleTable <- createJaspTable(title = gettext("Uniformity Tests"))
   jaspResults[["oneSampleTable"]] <- oneSampleTable
   jaspResults[["oneSampleTable"]]$dependOn(options = c("variables", "splitby", "rao", "alphaRao", "rayleigh", "modifiedRayleigh", "period", "periodGroup"))
 
   oneSampleTable$showSpecifiedColumnsOnly <- TRUE
 
   # Add columns to table
-  oneSampleTable$addColumnInfo(name = "variable",   title = "Variable",   type = "string", combine = TRUE)
+  oneSampleTable$addColumnInfo(name = "variable",        title = gettext("Variable"),  type = "string", combine = TRUE)
   if (wantsSplit)
-    oneSampleTable$addColumnInfo(name = "level",   title = "Level",   type = "string", combine = TRUE)
+    oneSampleTable$addColumnInfo(name = "level",         title = gettext("Level"),     type = "string", combine = TRUE)
 
-  oneSampleTable$addColumnInfo(name = "testName",   title = "Test",   type = "string")
+  oneSampleTable$addColumnInfo(name = "testName",        title = gettext("Test"),      type = "string")
   if(options$rayleigh || options$modifiedRayleigh){
-    oneSampleTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:3;p:.001")
+    oneSampleTable$addColumnInfo(name = "p",             title = gettext("p"),         type = "pvalue")
   }
   if (options$rao){
-    oneSampleTable$addColumnInfo(name = "alpha",   title = "\u03B1",   type = "number", format = "dp:3")
-    oneSampleTable$addColumnInfo(name = "criticalValue",   title = "Critical",   type = "number", format = "dp:3")
+    oneSampleTable$addColumnInfo(name = "alpha",         title = "\u03B1",             type = "number", format = "dp:3")
+    oneSampleTable$addColumnInfo(name = "criticalValue", title = gettext("Critical"),  type = "number", format = "dp:3")
   }
-  oneSampleTable$addColumnInfo(name = "statistic",   title = "Statistic",   type = "number", format = "dp:3")
+  oneSampleTable$addColumnInfo(name = "statistic",       title = gettext("Statistic"), type = "number", format = "dp:3")
   
-  oneSampleTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2\u03C0.")
+  oneSampleTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("All statistics are calculated on a normalized period of 2%s.", "\u03C0"))
   
   # add citations
-  oneSampleTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
-  oneSampleTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
-  oneSampleTable$addCitation("Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test.")
+  oneSampleTable$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
+  oneSampleTable$addCitation(gettext("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."))
+  oneSampleTable$addCitation(gettext("Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."))
   
   if(ready){
     # If the calculations failed, do not fill the table but rather show the error.
@@ -480,32 +480,32 @@ return(results)
     }
   }
   if (options$rao)
-    oneSampleTable$addFootnote(message = paste("The Rao spacing test was run with \u03B1 = ", options$alphaRao, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
+    oneSampleTable$addFootnote(message = gettextf("The Rao spacing test was run with %s = %s, %s", "\u03B1", options$alphaRao, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
 }
 
 .circularTestsOneSampleCreateTableVonMises <-function (jaspResults, dataset, options, circularTestsOneSampleVonMisesTestResults, ready){
   wantsSplit <- options$splitby != ""
   
   # Create table
-  vonMisesCheckTable <- createJaspTable(title = "Von Mises Assumption Check")
+  vonMisesCheckTable <- createJaspTable(title = gettext("Von Mises Assumption Check"))
   jaspResults[["vonMisesCheckTable"]] <- vonMisesCheckTable
   jaspResults[["vonMisesCheckTable"]]$dependOn(options = c("variables", "splitby", "vonMisesCheck", "alphaVonMises", "period", "periodGroup"))
 
   vonMisesCheckTable$showSpecifiedColumnsOnly <- TRUE
 
   # Add columns to table
-  vonMisesCheckTable$addColumnInfo(name = "variable",   title = "Variable",   type = "string", combine=TRUE)
+  vonMisesCheckTable$addColumnInfo(name = "variable",  title = gettext("Variable"),           type = "string", combine = TRUE)
   if (wantsSplit)
-    vonMisesCheckTable$addColumnInfo(name = "level",   title = "Level",   type = "string", combine = TRUE)
-  vonMisesCheckTable$addColumnInfo(name = "alpha",   title = "\u03B1",   type = "number", format = "dp:3")
-  vonMisesCheckTable$addColumnInfo(name = "critical",   title = "Critical",   type = "number", format = "dp:3")
-  vonMisesCheckTable$addColumnInfo(name = "statistic",   title = "U\u00B2",   type = "number", format = "dp:3")
-  vonMisesCheckTable$addColumnInfo(name = "kappa",   title = "Est. \u03BA",   type = "number", format = "dp:2")
+    vonMisesCheckTable$addColumnInfo(name = "level",   title = gettext("Level"),              type = "string", combine = TRUE)
+  vonMisesCheckTable$addColumnInfo(name = "alpha",     title = gettext("\u03B1"),             type = "number", format = "dp:3")
+  vonMisesCheckTable$addColumnInfo(name = "critical",  title = gettext("Critical"),           type = "number", format = "dp:3")
+  vonMisesCheckTable$addColumnInfo(name = "statistic", title = "U\u00B2",                     type = "number", format = "dp:3")
+  vonMisesCheckTable$addColumnInfo(name = "kappa",     title = gettextf("Est. %s", "\u03BA"), type = "number", format = "dp:2")
   
   # add citations
-  vonMisesCheckTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
-  vonMisesCheckTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
-  vonMisesCheckTable$addCitation("R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution.")
+  vonMisesCheckTable$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
+  vonMisesCheckTable$addCitation(gettext("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."))
+  vonMisesCheckTable$addCitation(gettext("R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution."))
   
   if(ready){
     # If the calculations failed, do not fill the table but rather show the error.
@@ -539,7 +539,7 @@ return(results)
         
       }
     }
-    vonMisesCheckTable$addFootnote(message = "Do not trust a significant result where \u03BA is small (< 1). The data could rather be uniform.", colNames = "kappa", rowNames = rowsForKappaFootnote)
+    vonMisesCheckTable$addFootnote(message = gettextf("Do not trust a significant result where %s is small (< 1). The data could rather be uniform.", "\u03BA"), colNames = "kappa", rowNames = rowsForKappaFootnote)
   }
   else {
     rowsForKappaFootnote <- c()
@@ -550,8 +550,8 @@ return(results)
       if (row$kappa < 1)
         rowsForKappaFootnote <- c(rowsForKappaFootnote, paste(variable))
     }
-    vonMisesCheckTable$addFootnote(message = "Do not trust a significant result where \03BA is small (< 1). The data could rather be uniform.", colNames = "kappa", rowNames = rowsForKappaFootnote)
-    vonMisesCheckTable$addFootnote(symbol = "<em>Note.</em>", message = paste("The test is run with \u03B1 = ",  options$alphaVonMises, "so please compare the statistics to the critical value."))
+    vonMisesCheckTable$addFootnote(message = gettextf("Do not trust a significant result where %s is small (< 1). The data could rather be uniform.", "\u03BA"), colNames = "kappa", rowNames = rowsForKappaFootnote)
+    vonMisesCheckTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("The test is run with %s = %s, so please compare the statistics to the critical value.", "\u03B1", options$alphaVonMises))
   }
 }
 

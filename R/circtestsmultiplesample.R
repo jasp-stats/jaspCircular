@@ -107,7 +107,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
         validDataCirc <- circular::circular(validDataNormalized)
         meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
         if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
-          return(paste("The data of the dependent variable", dependent, "grouped on factor", fac, "exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"))
+          return(gettextf("The data of the dependent variable %s grouped on factor %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?", dependent, fac, ))
       }
     }
   }
@@ -156,7 +156,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   df2 <- as.numeric(testResults$parameter)[2]
 
   results <- list(
-    testName = "Watson-Williams",
+    testName = gettext("Watson-Williams"),
     fac = fac,
     p = p,
     f = f,
@@ -196,7 +196,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   df <- as.numeric(testResults$parameter)
 
   results <- list(
-    testName = "Watson-Wheeler",
+    testName = gettext("Watson-Wheeler"),
     fac = fac,
     p = p,
     w = w,
@@ -378,33 +378,33 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 .circularTestsMultipleSampleTableOneWayAnova <- function(jaspResults, dataset, options, oneWayAnovaResults, ready) {
 
   # Create table
-  oneWayAnovaTable <- createJaspTable(title = "One-way ANOVA")
+  oneWayAnovaTable <- createJaspTable(title = gettext("One-way ANOVA"))
   jaspResults[["oneWayAnovaTable"]] <- oneWayAnovaTable
   jaspResults[["oneWayAnovaTable"]]$dependOn(options = c("dependent", "watsonWilliams", "period", "periodGroup", "watsonWheeler", "fixedFactors"))
 
   oneWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
   # Add columns to table
-  oneWayAnovaTable$addColumnInfo(name = "fac",   title = "Cases",   type = "string", combine = TRUE)
-  oneWayAnovaTable$addColumnInfo(name = "testName",   title = "Test",   type = "string")
-  oneWayAnovaTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:3;p:.001")
+  oneWayAnovaTable$addColumnInfo(  name = "fac",      title = gettext("Cases"), type = "string", combine = TRUE)
+  oneWayAnovaTable$addColumnInfo(  name = "testName", title = gettext("Test"),  type = "string")
+  oneWayAnovaTable$addColumnInfo(  name = "p",        title = gettext("p"),     type = "pvalue")
   if (options$watsonWilliams){
-    oneWayAnovaTable$addColumnInfo(name = "f",   title = "F",   type = "number", format = "dp:3")
-    oneWayAnovaTable$addColumnInfo(name = "df1",   title = "df1",   type = "integer")
-    oneWayAnovaTable$addColumnInfo(name = "df2",   title = "df2",   type = "integer")
+    oneWayAnovaTable$addColumnInfo(name = "f",        title = gettext("F"),     type = "number", format = "dp:3")
+    oneWayAnovaTable$addColumnInfo(name = "df1",      title = gettext("df1"),   type = "integer")
+    oneWayAnovaTable$addColumnInfo(name = "df2",      title = gettext("df2"),   type = "integer")
   }
   if (options$watsonWheeler){
-    oneWayAnovaTable$addColumnInfo(name = "w",   title = "W",   type = "number", format = "dp:3")
-    oneWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
+    oneWayAnovaTable$addColumnInfo(name = "w",        title = gettext("W"),     type = "number", format = "dp:3")
+    oneWayAnovaTable$addColumnInfo(name = "df",       title = gettext("df"),    type = "integer")
   }
 
-  oneWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2\u03C0.")
+  oneWayAnovaTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("All statistics are caclulated on a normalized period of 2%s.", "\u03C0"))
   if (options$watsonWheeler)
-    oneWayAnovaTable$addFootnote(message = "The degrees of freedom of the \u03C7\u00B2-distribution to which W is compared.", colNames = "df")
+    oneWayAnovaTable$addFootnote(message = gettextf("The degrees of freedom of the %s%s-distribution to which W is compared.", "\u03C7", "\u00B2"), colNames = "df")
 
   # add citations
-  oneWayAnovaTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
-  oneWayAnovaTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
+  oneWayAnovaTable$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
+  oneWayAnovaTable$addCitation(gettext("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."))
   
   if(ready){
     # If the calculations failed, do not fill the table but rather show the error.
@@ -427,28 +427,28 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
       
       # add a warning if the equal kappa assumption is violated
       if(row$equalKappaTestPvalue < 0.05)
-        oneWayAnovaTable$addFootnote(symbol = "<em>Warning.</em>", message = paste0("Concentration parameters (", row$kappas, ") not equal between the groups of factor ", fac, ". The Watson-Williams test might not be applicable."))
+        oneWayAnovaTable$addFootnote(symbol = gettext("<em>Warning.</em>"), message = gettextf("Concentration parameters (%s) not equal between the groups of factor %s. The Watson-Williams test might not be applicable.", row$kappas, fac))
     }
     
     if (options$watsonWheeler){
       row <- oneWayAnovaResults[["watsonWheeler"]][[fac]]
       oneWayAnovaTable$addRows(row, rowNames = (paste(fac)))
       if(!row$hasTenMeasurementsPerGroup)
-        oneWayAnovaTable$addFootnote(symbol = "<em>Warning.</em>", message = paste("Some groups of factor ", fac, " contain less than 10 measurements. The Watson-Wheeler test might not be applicable."))
+        oneWayAnovaTable$addFootnote(symbol = gettext("<em>Warning.</em>"), message = gettextf("Some groups of factor %s contain less than 10 measurements. The Watson-Wheeler test might not be applicable.", fac))
     }
   }
 }
 
 .circularTestsMultipleSampleTableTwoWayAnova <- function(jaspResults, dataset, options, twoWayAnovaResults, readyHK) {
   # Create table
-  twoWayAnovaTable <- createJaspTable(title = "Two-way ANOVA (Harrison-Kanji Test)")
+  twoWayAnovaTable <- createJaspTable(title = gettext("Two-way ANOVA (Harrison-Kanji Test)"))
   jaspResults[["twoWayAnovaTable"]] <- twoWayAnovaTable
   jaspResults[["twoWayAnovaTable"]]$dependOn(options = c("dependent", "harrisonKanji", "period", "periodGroup", "fixedFactors"))
   
   twoWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
   # Add columns to table
-  twoWayAnovaTable$addColumnInfo(name = "fac",   title = "Cases",   type = "string")
+  twoWayAnovaTable$addColumnInfo(name = "fac",   title = gettext("Cases"),   type = "string")
   
   
   # If the analysis is not ready, show as default the table of the small kappa case. So we have to set kappa less than 2.
@@ -466,24 +466,24 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   }
   
   if(kappa > 2){    # the HK test differs depending on the estimated kappa
-    twoWayAnovaTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:3;p:.001")
-    twoWayAnovaTable$addColumnInfo(name = "f",   title = "F",   type = "number", format = "dp:3")
-    twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
-    twoWayAnovaTable$addColumnInfo(name = "ss",   title = "Sum of Square",   type = "number", format = "dp:3")
-    twoWayAnovaTable$addColumnInfo(name = "ms",   title = "Mean Square",   type = "number", format = "dp:3")
-    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = paste("We estimated \u03BA = ", round(kappa, digits = 2),  " (> 2). The respective routine was run."))
+    twoWayAnovaTable$addColumnInfo(name = "p",  title = gettext("p"),             type = "pvalue")
+    twoWayAnovaTable$addColumnInfo(name = "f",  title = gettext("F"),             type = "number", format = "dp:3")
+    twoWayAnovaTable$addColumnInfo(name = "df", title = gettext("df"),            type = "integer")
+    twoWayAnovaTable$addColumnInfo(name = "ss", title = gettext("Sum of Square"), type = "number", format = "dp:3")
+    twoWayAnovaTable$addColumnInfo(name = "ms", title = gettext("Mean Square"),   type = "number", format = "dp:3")
+    twoWayAnovaTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("We estimated %s = %s (> 2). The respective routine was run.", "\u03BA", round(kappa, digits = 2)))
   }else{
-    twoWayAnovaTable$addColumnInfo(name = "p",   title = "p",   type = "number", format = "dp:3;p:.001")
-    twoWayAnovaTable$addColumnInfo(name = "chi",   title = "\u03C7\u00B2",   type = "number", format = "dp:3")
-    twoWayAnovaTable$addColumnInfo(name = "df",   title = "df",   type = "integer")
-    twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = paste("We estimated \u03BA = ", round(kappa, digits = 2),  " (< 2). The respective routine was run."))
+    twoWayAnovaTable$addColumnInfo(name = "p",   title = gettext("p"),   type = "pvalue")
+    twoWayAnovaTable$addColumnInfo(name = "chi", title = "\u03C7\u00B2", type = "number", format = "dp:3")
+    twoWayAnovaTable$addColumnInfo(name = "df",  title = gettext("df"),  type = "integer")
+    twoWayAnovaTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("We estimated %s = %s (< 2). The respective routine was run", "\u03BA", round(kappa, digits = 2)))
   }
-  twoWayAnovaTable$addFootnote(symbol = "<em>Note.</em>", message = "All statistics are caclulated on a normalized period of 2\u03C0.")
+  twoWayAnovaTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettext("All statistics are caclulated on a normalized period of 2\u03C0."))
   
   # add citations
-  twoWayAnovaTable$addCitation("Aaron Bahde and Philipp Berens (2019). University of Tuebingen.")
-  twoWayAnovaTable$addCitation("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package].")
-  twoWayAnovaTable$addCitation("D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data.")
+  twoWayAnovaTable$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
+  twoWayAnovaTable$addCitation(gettext("Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."))
+  twoWayAnovaTable$addCitation(gettext("D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data."))
   
   if(readyHK){
     # If the calculations failed, do not fill the table but rather show the error.
