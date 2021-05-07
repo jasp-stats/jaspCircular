@@ -378,7 +378,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
       plotData$y[points] <- seq(from = 1, by = 0.075, length.out = length(points))    # stack points
     }
   }
-    
+  
   p <- ggplot2::ggplot(data = plotData, ggplot2::aes(x = x, y = y)) +
     ggplot2::theme_bw() +
     ggplot2::coord_polar() +

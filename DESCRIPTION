@@ -1,8 +1,8 @@
 Package: jaspCircular
 Type: Package
 Title: CircularStatistics Module for JASP
-Version: 1.0
-Date: 2019-10-01
+Version: 0.15
+Date: 2021-07-05
 Author: Aaron Bahde, Philipp Berens (University of Tuebingen)
 Website: eye-tuebingen.de/berenslab
 Maintainer: Philipp Berens <philipp.berens@uni-tuebingen.de>
@@ -10,9 +10,7 @@ Description: This module offers basic methods for directional data
 License: GPL (>= 2)
 Imports: 
   jaspBase,
-  jaspGraphs,
   circular,
   ggplot2
 Remotes:
-  jasp-stats/jaspBase,
-  jasp-stats/jaspGraphs
+  jasp-stats/jaspBase
