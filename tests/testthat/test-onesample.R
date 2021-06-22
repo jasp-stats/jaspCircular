@@ -1,6 +1,6 @@
 context("Circular One Sample")
 
-options <- analysisOptions("CircularStatisticsOneSampleTests")
+options <- jaspTools::analysisOptions("CircularStatisticsOneSampleTests")
 options$.meta <- list(splitby = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
 options$alphaRao <- "0.01"
 options$alphaVonMises <- "0.01"
@@ -10,7 +10,7 @@ options$splitby <- "Month"
 options$variables <- "WindDirection"
 options$vonMisesCheck <- TRUE
 set.seed(1)
-results <- runAnalysis("CircularStatisticsOneSampleTests", "ElNino.csv", options)
+results <- jaspTools::runAnalysis("CircularStatisticsOneSampleTests", "ElNino.csv", options)
 
 
 test_that("Uniformity Tests table results match", {
