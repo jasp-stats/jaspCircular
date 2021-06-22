@@ -1,30 +1,30 @@
 context("Circular Descriptives")
 
-options <- analysisOptions("CircularStatisticsDescriptives")
+options <- jaspTools::analysisOptions("CircularStatisticsDescriptives")
 options$.meta <- list(splitby = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
 options$plotVariables <- TRUE
 options$splitby <- "Month"
 options$variables <- "WindDirection"
 set.seed(1)
-results <- runAnalysis("CircularStatisticsDescriptives", "ElNino.csv", options)
+results <- jaspTools::runAnalysis("CircularStatisticsDescriptives", "ElNino.csv", options)
 
 
 test_that("August plot matches", {
   plotName <- results[["results"]][["Plots"]][["collection"]][["Plots_WindDirection"]][["collection"]][["Plots_WindDirection_August"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "august", dir="CircularStatisticsDescriptives")
+  jaspTools::expect_equal_plots(testPlot, "august")
 })
 
 test_that("July plot matches", {
   plotName <- results[["results"]][["Plots"]][["collection"]][["Plots_WindDirection"]][["collection"]][["Plots_WindDirection_July"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "july", dir="CircularStatisticsDescriptives")
+  jaspTools::expect_equal_plots(testPlot, "july")
 })
 
 test_that("September plot matches", {
   plotName <- results[["results"]][["Plots"]][["collection"]][["Plots_WindDirection"]][["collection"]][["Plots_WindDirection_September"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "september", dir="CircularStatisticsDescriptives")
+  jaspTools::expect_equal_plots(testPlot, "september")
 })
 
 test_that("Circular Descriptives table results match", {

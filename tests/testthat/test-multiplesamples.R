@@ -1,12 +1,12 @@
 context("Circular Multiple Samples")
 
-options <- analysisOptions("CircularStatisticsMultipleSampleTests")
+options <- jaspTools::analysisOptions("CircularStatisticsMultipleSampleTests")
 options$.meta <- list(dependent = list(shouldEncode = TRUE), fixedFactors = list(
   shouldEncode = TRUE))
 options$dependent <- "WindDirection"
 options$fixedFactors <- "Month"
 set.seed(1)
-results <- runAnalysis("CircularStatisticsMultipleSampleTests", "ElNino.csv", options)
+results <- jaspTools::runAnalysis("CircularStatisticsMultipleSampleTests", "ElNino.csv", options)
 
 
 test_that("One-way ANOVA table results match", {
