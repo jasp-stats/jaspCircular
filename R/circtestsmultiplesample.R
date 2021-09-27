@@ -92,7 +92,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # which leads to data that can be very concentrated when normalized to the unit circle, i.e. almost zero circular variance).
   # This can cause time outs in the circular package.
   .multipleSampleTestsCheckForReasonablePeriodAndConcentration <- function(){
-    tolerance <- 10**-3
+    tolerance <- 1e-3
     
     fixedFactors <- unlist(options$fixedFactors)
     dependent <- unlist(options$dependent)
@@ -107,7 +107,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
         
         meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
         if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
-          return(gettextf("The data of the dependent variable %s grouped on factor %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?", dependent, fac))
+          return(gettextf("The data of the dependent variable %1$s grouped on factor %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?", dependent, fac))
       }
     }
   }
