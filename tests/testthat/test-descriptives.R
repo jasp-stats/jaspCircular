@@ -5,6 +5,8 @@ options$.meta <- list(splitby = list(shouldEncode = TRUE), variables = list(shou
 options$plotVariables <- TRUE
 options$splitby <- "Month"
 options$variables <- "WindDirection"
+options$period <- 360
+options$periodGroup <- "custom"
 set.seed(1)
 results <- jaspTools::runAnalysis("CircularStatisticsDescriptives", "ElNino.csv", options)
 

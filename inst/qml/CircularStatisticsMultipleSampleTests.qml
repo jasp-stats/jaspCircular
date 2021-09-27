@@ -21,45 +21,35 @@ import QtQuick.Layouts 1.3
 import JASP.Controls 1.0
 import JASP.Theme 1.0
 
+import "./common" as Circular
+
 // All Analysis forms must be built with the From QML item
 Form 
 {
 	usesJaspResults: true
 	
-    VariablesForm
-    {
-        AvailableVariablesList { name: "allVariablesList" }
-        AssignedVariablesList { name: "dependent";		title: qsTr("Dependent Variable");	allowedColumns: ["scale"]; singleVariable: true }
-        AssignedVariablesList { name: "fixedFactors";	title: qsTr("Fixed Factors");		suggestedColumns: ["ordinal", "nominal"]; id: fixedFactorsList		}
+	VariablesForm
+	{
+		AvailableVariablesList	{ name: "allVariablesList" }
+		AssignedVariablesList	{ name: "dependent";		title: qsTr("Dependent Variable");	allowedColumns: ["scale"]; singleVariable: true }
+		AssignedVariablesList	{ name: "fixedFactors";		title: qsTr("Fixed Factors");		suggestedColumns: ["ordinal", "nominal"]; id: fixedFactorsList		}
 	}
 
-    ColumnLayout
-    {
-        RadioButtonGroup
-        {
-            name: "periodGroup"
-            title: qsTr("Period")
-            RadioButton { value: "pi";	label: qsTr("π")	}
-            RadioButton { value: "pi_2";	label: qsTr("2π")	}
-            RadioButton
-            {
-                value: "custom";	label: qsTr("Custom:"); checked: true
-                childrenOnSameRow: true
-                DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; min: 0}
-            }
-        }
+	ColumnLayout
+	{
+		Circular.Period{}
 
-        Group
-        {
-            title: qsTr("One-way ANOVA")
-            CheckBox { name: "watsonWilliams";			label: qsTr("Watson-Williams (parametric)")	}
-            CheckBox { name: "watsonWheeler";			label: qsTr("Watson-Wheeler (non-parametric)"); checked: true}
-        }
+		Group
+		{
+			title: qsTr("One-way ANOVA")
+			CheckBox { name: "watsonWilliams";	label: qsTr("Watson-Williams (parametric)")	}
+			CheckBox { name: "watsonWheeler";	label: qsTr("Watson-Wheeler (non-parametric)"); checked: true}
+		}
 
-        Group
-        {
-            title: qsTr("Two-way ANOVA")
-            CheckBox { name: "harrisonKanji";	label: qsTr("Harrison-Kanji")}
-        }
-    }
+		Group
+		{
+			title: qsTr("Two-way ANOVA")
+			CheckBox { name: "harrisonKanji";	label: qsTr("Harrison-Kanji")}
+		}
+	}
 }

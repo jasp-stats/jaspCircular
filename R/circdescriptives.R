@@ -158,8 +158,8 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   range <- as.numeric(circular::range.circular(validDataCircular))
 
   # store the data that needs to be plotted
-  # Plotting data is also normalized.
-  plotData <- data.frame(x = validDataNormalized)
+  # Plotting data is already circular.
+  plotData <- data.frame(x = as.numeric(validDataCircular))
 
   # For interpretation, some measures are converted back to the original period.
   meanDirection <- .circularDescriptivesConvertBack(meanDirection,options$period)
@@ -410,7 +410,11 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 }
 # Helper functions for circular statistics ----
 .normalizeData <- function(data, period){
-  return(((data %% period) / period) * 2 * pi)
+  if(period != 1) {
+    data <- (data %% period) / period
+  }
+  
+  return(data * 2 * pi)
 }
 .circularDescriptivesConvertBack <- function(value, period){
   return((value / (2 * pi)) * period)

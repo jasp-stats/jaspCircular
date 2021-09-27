@@ -40,12 +40,12 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   # Output tables and plots
   if(options$rao || options$rayleigh || options$modifiedRayleigh){
     if(ready)
-      circularTestsOneSampleResults <- try(.circularTestsOneSampleComputeResults(jaspResults, dataset, options))
+      circularTestsOneSampleResults <- try(.circularTestsOneSampleComputeResults(jaspResults, dataset, options), silent = TRUE)
     .circularTestsOneSampleCreateTable(jaspResults, dataset, options, circularTestsOneSampleResults, ready)
   }
   if(options$vonMisesCheck){
     if(ready)
-      circularTestsOneSampleVonMisesResults <- try(.circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options))
+      circularTestsOneSampleVonMisesResults <- try(.circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options), silent = TRUE)
     .circularTestsOneSampleCreateTableVonMises(jaspResults, dataset, options, circularTestsOneSampleVonMisesResults, ready)
   }
 }
@@ -360,6 +360,9 @@ return(results)
   # Get the estimated kappa for the footnote. If kappa is too small, the data might be rather uniform.
   kappa <- circular::mle.vonmises(data, bias = FALSE)$kappa
 
+  if(is.infinite(kappa))
+    stop(gettextf("Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", "\u03BA"))
+  
   testResult <- circular::watson.test(data, alpha = alpha, dist = dist)
   row <- testResult$row
 
@@ -509,8 +512,8 @@ return(results)
   
   if(ready){
     # If the calculations failed, do not fill the table but rather show the error.
-    if(inherits(circularTestsOneSampleVonMisesTestResults, "try-error")){
-      errorMessage <- as.character(circularTestsOneSampleVonMisesTestResults)
+    if(isTryError(circularTestsOneSampleVonMisesTestResults)){
+      errorMessage <- .extractErrorMessage(circularTestsOneSampleVonMisesTestResults)
       vonMisesCheckTable$setError(errorMessage)
       return()
     }
@@ -553,9 +556,4 @@ return(results)
     vonMisesCheckTable$addFootnote(message = gettextf("Do not trust a significant result where %s is small (< 1). The data could rather be uniform.", "\u03BA"), colNames = "kappa", rowNames = rowsForKappaFootnote)
     vonMisesCheckTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("The test is run with %s = %s, so please compare the statistics to the critical value.", "\u03B1", options$alphaVonMises))
   }
-}
-
-# Helper functions for circular statistics ----
-.normalizeData <- function(data, period){
-  return(((data %% period) / period) * 2 * pi)
 }
