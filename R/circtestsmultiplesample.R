@@ -104,6 +104,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
         validData <- column[!is.na(column)]
         validDataNormalized <- .normalizeData(validData, options$period)
         validDataCirc <- circular::circular(validDataNormalized)
+        
         meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
         if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
           return(gettextf("The data of the dependent variable %s grouped on factor %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?", dependent, fac))
@@ -521,7 +522,4 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 .convertBack <- function(circularObject){
   # Sometimes, circular objects have a negative value instead of its modulo positive correspondence. This function ensures the correct backconversion.
   return ((as.numeric(circularObject) + 2 * pi) %% ( 2 * pi))
-}
-.normalizeData <- function(data, period){
-  return(((data %% period) / period) * 2 * pi)
 }

@@ -410,7 +410,11 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 }
 # Helper functions for circular statistics ----
 .normalizeData <- function(data, period){
-  return(((data %% period) / period) * 2 * pi)
+  if(period != 1) {
+    data <- (data %% period) / period
+  }
+  
+  return(data * 2 * pi)
 }
 .circularDescriptivesConvertBack <- function(value, period){
   return((value / (2 * pi)) * period)

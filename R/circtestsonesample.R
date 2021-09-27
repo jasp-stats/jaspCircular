@@ -554,8 +554,3 @@ return(results)
     vonMisesCheckTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("The test is run with %s = %s, so please compare the statistics to the critical value.", "\u03B1", options$alphaVonMises))
   }
 }
-
-# Helper functions for circular statistics ----
-.normalizeData <- function(data, period){
-  return(((data %% period) / period) * 2 * pi)
-}
