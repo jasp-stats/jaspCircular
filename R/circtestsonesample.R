@@ -360,6 +360,9 @@ return(results)
   # Get the estimated kappa for the footnote. If kappa is too small, the data might be rather uniform.
   kappa <- circular::mle.vonmises(data, bias = FALSE)$kappa
 
+  if(is.infinite(kappa))
+    stop(gettextf("Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", "\u03BA"))
+  
   testResult <- circular::watson.test(data, alpha = alpha, dist = dist)
   row <- testResult$row
 
@@ -509,8 +512,8 @@ return(results)
   
   if(ready){
     # If the calculations failed, do not fill the table but rather show the error.
-    if(inherits(circularTestsOneSampleVonMisesTestResults, "try-error")){
-      errorMessage <- as.character(circularTestsOneSampleVonMisesTestResults)
+    if(isTryError(circularTestsOneSampleVonMisesTestResults)){
+      errorMessage <- .extractErrorMessage(circularTestsOneSampleVonMisesTestResults)
       vonMisesCheckTable$setError(errorMessage)
       return()
     }
