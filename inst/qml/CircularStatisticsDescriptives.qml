@@ -21,6 +21,8 @@ import QtQuick.Layouts 1.3
 import JASP.Controls 1.0
 import JASP.Theme 1.0
 
+import "./common" as Circular
+
 // All Analysis forms must be built with the From QML item
 Form 
 {
@@ -28,55 +30,43 @@ Form
 	
 	VariablesForm 
 	{
-        AvailableVariablesList { name: "allVariablesList" }
-        AssignedVariablesList { name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
-        AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
+		AvailableVariablesList { name: "allVariablesList" }
+		AssignedVariablesList { name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
+		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
 	}
 
-    RadioButtonGroup
-    {
-        name: "periodGroup"
-        title: qsTr("Period")
-        RadioButton { value: "pi";	label: qsTr("π")	}
-        RadioButton { value: "pi_2";	label: qsTr("2π")	}
-        RadioButton
-        {
-            value: "custom";	label: qsTr("Custom:"); checked: true
-            childrenOnSameRow: true
-            DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; min: 0}
-        }
-    }
+	Circular.Period {}
 	
-    Section
+	Section
 	{
 		title: qsTr("Plots")
-        Group
-        {
-            CheckBox { name: "plotVariables"; label: qsTr("Distribution plots"); id: plotVariables }
-            CheckBox { name: "plotStacking"; label: qsTr("Stack points"); enabled: plotVariables.checked; indent: true	}
-            CheckBox { name: "plotMean"; label: qsTr("Display mean vector")	; enabled: plotVariables.checked; indent: true}
-            CheckBox { name: "plotHistogram"; label: qsTr("Display histogram"); enabled: plotVariables.checked; indent: true}
-        }
-    }
+		Group
+		{
+			CheckBox { name: "plotVariables"; label: qsTr("Distribution plots"); id: plotVariables }
+			CheckBox { name: "plotStacking"; label: qsTr("Stack points"); enabled: plotVariables.checked; indent: true	}
+			CheckBox { name: "plotMean"; label: qsTr("Display mean vector")	; enabled: plotVariables.checked; indent: true}
+			CheckBox { name: "plotHistogram"; label: qsTr("Display histogram"); enabled: plotVariables.checked; indent: true}
+		}
+	}
 
 	
-    Section
+	Section
 	{
 		title: qsTr("Statistics")
-        Group
-        {
-            title: qsTr("Central Tendency")
-            CheckBox { name: "meanDirection";			text: qsTr("Mean direction");		checked: true	}
-            CheckBox { name: "meanLength";			text: qsTr("Mean resultant length");}
-            CheckBox { name: "median";			text: qsTr("Median");				}
-        }
+		Group
+		{
+			title: qsTr("Central Tendency")
+			CheckBox { name: "meanDirection";	text: qsTr("Mean direction");		checked: true	}
+			CheckBox { name: "meanLength";		text: qsTr("Mean resultant length");}
+			CheckBox { name: "median";			text: qsTr("Median");				}
+		}
 
-        Group
-        {
-            title: qsTr("Dispersion")
-            CheckBox { name: "standardDeviation";	text: qsTr("Std. deviation"); checked: true	}
-            CheckBox { name: "variance";			text: qsTr("Variance")						}
-            CheckBox { name: "range";				text: qsTr("Range")							}
-        }
+		Group
+		{
+			title: qsTr("Dispersion")
+			CheckBox { name: "standardDeviation";	text: qsTr("Std. deviation"); checked: true	}
+			CheckBox { name: "variance";			text: qsTr("Variance")						}
+			CheckBox { name: "range";				text: qsTr("Range")							}
+		}
 	}
 }

@@ -9,6 +9,8 @@ options$rayleigh <- TRUE
 options$splitby <- "Month"
 options$variables <- "WindDirection"
 options$vonMisesCheck <- TRUE
+options$period <- 360
+options$periodGroup <- "custom"
 set.seed(1)
 results <- jaspTools::runAnalysis("CircularStatisticsOneSampleTests", "ElNino.csv", options)
 
