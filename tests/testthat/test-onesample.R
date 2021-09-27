@@ -42,6 +42,8 @@ test_that("Von Mises Assumption Check table results match", {
 
 
 test_that("Von Mises Assumption Check catches too concentrated data", {
+  testthat::skip_on_os("windows")
+  
   options <- analysisOptions("CircularStatisticsOneSampleTests")
   options$.meta <- list(splitby = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
   options$alphaRao <- "0.01"
@@ -54,10 +56,6 @@ test_that("Von Mises Assumption Check catches too concentrated data", {
   set.seed(1)
   results <- runAnalysis("CircularStatisticsOneSampleTests", "test.csv", options)
   errorMessage <- results[["results"]][["vonMisesCheckTable"]][["error"]][["errorMessage"]]
-  if (.Platform$OS.type == "windows") {
-    testthat::expect_true(grepl("Estimated \\S is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", errorMessage))
-  } else {
-    testthat::expect_identical(errorMessage, 
-                               gettextf("Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", "\u03BA"))
-  }
+  testthat::expect_identical(errorMessage, 
+                             gettextf("Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", "\u03BA"))
 })
