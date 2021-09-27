@@ -39,3 +39,21 @@ test_that("Von Mises Assumption Check table results match", {
                                       "WindDirection", 0.01, 0.128, 1.7314268317444, "September",
                                       0.0642929504742415, "WindDirection"))
 })
+
+
+test_that("Von Mises Assumption Check catches too concentrated data", {
+  options <- analysisOptions("CircularStatisticsOneSampleTests")
+  options$.meta <- list(splitby = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
+  options$alphaRao <- "0.01"
+  options$alphaVonMises <- "0.01"
+  options$period <- 360
+  options$periodGroup <- "custom"
+  options$variables <- "contWide"
+  options$vonMisesCheck <- TRUE
+  
+  set.seed(1)
+  results <- runAnalysis("CircularStatisticsOneSampleTests", "test.csv", options)
+  errorMessage <- results[["results"]][["vonMisesCheckTable"]][["error"]][["errorMessage"]]
+  testthat::expect_identical(errorMessage, 
+                             gettextf("Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", "\u03BA"))
+})

@@ -40,12 +40,12 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   # Output tables and plots
   if(options$rao || options$rayleigh || options$modifiedRayleigh){
     if(ready)
-      circularTestsOneSampleResults <- try(.circularTestsOneSampleComputeResults(jaspResults, dataset, options))
+      circularTestsOneSampleResults <- try(.circularTestsOneSampleComputeResults(jaspResults, dataset, options), silent = TRUE)
     .circularTestsOneSampleCreateTable(jaspResults, dataset, options, circularTestsOneSampleResults, ready)
   }
   if(options$vonMisesCheck){
     if(ready)
-      circularTestsOneSampleVonMisesResults <- try(.circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options))
+      circularTestsOneSampleVonMisesResults <- try(.circularTestsOneSampleComputeResultsVonMises(jaspResults, dataset, options), silent = TRUE)
     .circularTestsOneSampleCreateTableVonMises(jaspResults, dataset, options, circularTestsOneSampleVonMisesResults, ready)
   }
 }
