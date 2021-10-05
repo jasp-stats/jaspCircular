@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspCircular 0.15\n"
+"POT-Creation-Date: 2021-10-05 12:40\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Circular Descriptives"
+msgstr ""
+
+msgid "Valid"
+msgstr ""
+
+msgid "Missing"
+msgstr ""
+
+msgid "Mean Direction"
+msgstr ""
+
+msgid "Mean Resultant Length"
+msgstr ""
+
+msgid "Median"
+msgstr ""
+
+msgid "Standard Deviation"
+msgstr ""
+
+msgid "Variance"
+msgstr ""
+
+msgid "Range"
+msgstr ""
+
+msgid "<em>Note.</em>"
+msgstr ""
+
+msgid "If not stated otherwise, all values are calculated on a normalized period of 2π."
+msgstr ""
+
+msgid "Value is shown with respect to the original period."
+msgstr ""
+
+msgid "Aaron Bahde and Philipp Berens (2019). University of Tuebingen."
+msgstr ""
+
+msgid "Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."
+msgstr ""
+
+msgid "Circular Descriptives Plots"
+msgstr ""
+
+msgid "The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error: %s"
+msgstr ""
+
+msgid "The plotting for this set-up failed with: %s"
+msgstr ""
+
+msgid "The data of the dependent variable %1$s grouped on factor %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
+msgstr ""
+
+msgid "Watson-Williams"
+msgstr ""
+
+msgid "Watson-Wheeler"
+msgstr ""
+
+msgid "One-way ANOVA"
+msgstr ""
+
+msgid "Cases"
+msgstr ""
+
+msgid "Test"
+msgstr ""
+
+msgid "p"
+msgstr ""
+
+msgid "F"
+msgstr ""
+
+msgid "df1"
+msgstr ""
+
+msgid "df2"
+msgstr ""
+
+msgid "W"
+msgstr ""
+
+msgid "df"
+msgstr ""
+
+msgid "All statistics are caclulated on a normalized period of 2%s."
+msgstr ""
+
+msgid "The degrees of freedom of the %s%s-distribution to which W is compared."
+msgstr ""
+
+msgid "<em>Warning.</em>"
+msgstr ""
+
+msgid "Concentration parameters (%s) not equal between the groups of factor %s. The Watson-Williams test might not be applicable."
+msgstr ""
+
+msgid "Some groups of factor %s contain less than 10 measurements. The Watson-Wheeler test might not be applicable."
+msgstr ""
+
+msgid "Two-way ANOVA (Harrison-Kanji Test)"
+msgstr ""
+
+msgid "Sum of Square"
+msgstr ""
+
+msgid "Mean Square"
+msgstr ""
+
+msgid "We estimated %s = %s (> 2). The respective routine was run."
+msgstr ""
+
+msgid "We estimated %s = %s (< 2). The respective routine was run"
+msgstr ""
+
+msgid "All statistics are caclulated on a normalized period of 2π."
+msgstr ""
+
+msgid "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data."
+msgstr ""
+
+msgid "The data of the variable %s on level %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
+msgstr ""
+
+msgid "The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
+msgstr ""
+
+msgid "Rao's spacing"
+msgstr ""
+
+msgid "Rayleigh"
+msgstr ""
+
+msgid "V against %s"
+msgstr ""
+
+msgid "Rao's Spacing"
+msgstr ""
+
+msgid "Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check."
+msgstr ""
+
+msgid "Uniformity Tests"
+msgstr ""
+
+msgid "Variable"
+msgstr ""
+
+msgid "Level"
+msgstr ""
+
+msgid "Critical"
+msgstr ""
+
+msgid "Statistic"
+msgstr ""
+
+msgid "All statistics are calculated on a normalized period of 2%s."
+msgstr ""
+
+msgid "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."
+msgstr ""
+
+msgid "The Rao spacing test was run with %s = %s, %s"
+msgstr ""
+
+msgid "Von Mises Assumption Check"
+msgstr ""
+
+msgid "α"
+msgstr ""
+
+msgid "Est. %s"
+msgstr ""
+
+msgid "R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution."
+msgstr ""
+
+msgid "Do not trust a significant result where %s is small (< 1). The data could rather be uniform."
+msgstr ""
+
+msgid "The test is run with %s = %s, so please compare the statistics to the critical value."
+msgstr ""
