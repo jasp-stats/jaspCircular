@@ -398,7 +398,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     oneWayAnovaTable$addColumnInfo(name = "df",       title = gettext("df"),    type = "integer")
   }
 
-  oneWayAnovaTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("All statistics are caclulated on a normalized period of 2%s.", "\u03C0"))
+  oneWayAnovaTable$addFootnote(message = gettextf("All statistics are calculated on a normalized period of 2%s.", "\u03C0"))
   if (options$watsonWheeler)
     oneWayAnovaTable$addFootnote(message = gettextf("The degrees of freedom of the %s%s-distribution to which W is compared.", "\u03C7", "\u00B2"), colNames = "df")
 
@@ -465,20 +465,25 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     kappa <- 0
   }
   
-  if(kappa > 2){    # the HK test differs depending on the estimated kappa
+  footnote <- gettextf("All statistics are calculated on a normalized period of 2%s.", "\u03C0")
+  if(kappa > 2) {    # the HK test differs depending on the estimated kappa
     twoWayAnovaTable$addColumnInfo(name = "p",  title = gettext("p"),             type = "pvalue")
     twoWayAnovaTable$addColumnInfo(name = "f",  title = gettext("F"),             type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "df", title = gettext("df"),            type = "integer")
     twoWayAnovaTable$addColumnInfo(name = "ss", title = gettext("Sum of Square"), type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "ms", title = gettext("Mean Square"),   type = "number", format = "dp:3")
-    twoWayAnovaTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("We estimated %s = %s (> 2). The respective routine was run.", "\u03BA", round(kappa, digits = 2)))
-  }else{
+    footnote <- paste(footnote, 
+                      gettextf("Estimated %s is %s (> 2). The respective routine was run.", "\u03BA", round(kappa, digits = 2)), 
+                      collapse = " ")
+  } else {
     twoWayAnovaTable$addColumnInfo(name = "p",   title = gettext("p"),   type = "pvalue")
     twoWayAnovaTable$addColumnInfo(name = "chi", title = "\u03C7\u00B2", type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "df",  title = gettext("df"),  type = "integer")
-    twoWayAnovaTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("We estimated %s = %s (< 2). The respective routine was run", "\u03BA", round(kappa, digits = 2)))
+    footnote <- paste(footnote, 
+                      gettextf("Estimated %s is %s (< 2). The respective routine was run.", "\u03BA", round(kappa, digits = 2)), 
+                      collapse = " ")
   }
-  twoWayAnovaTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettext("All statistics are caclulated on a normalized period of 2\u03C0."))
+  twoWayAnovaTable$addFootnote(message = footnote)
   
   # add citations
   twoWayAnovaTable$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
