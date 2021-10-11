@@ -25,10 +25,10 @@ RadioButtonGroup
 	name: "periodGroup"
 	title: qsTr("Period")
 	RadioButton { value: "pi";	label: qsTr("π")	}
-	RadioButton { value: "pi_2";	label: qsTr("2π")	}
+	RadioButton { value: "pi_2";	label: qsTr("2π"); checked: true	}
 	RadioButton
 	{
-		value: "custom";	label: qsTr("Custom:"); checked: true
+		value: "custom";	label: qsTr("Custom:")
 		childrenOnSameRow: true
 		DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; min: 0; inclusive: JASP.None}
 	}
