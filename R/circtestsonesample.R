@@ -277,17 +277,19 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   criticalTableColumn <- (1:4)[alpha == c(0.001, 0.01, 0.05, 0.1)]
   # get the table row where the data count is as closest to the one in the table
   countColumn <- c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,35,40,45,50,75,100,150,200,300,400,500,600,700,800,900,1000)
-  criticalTableRow <- which(abs(countColumn-n)==min(abs(countColumn-n)))
+  criticalTableRow <- which.min(abs(countColumn-n))
   criticalValue <- rao.table[criticalTableRow, criticalTableColumn]
   results <- list(alpha = alpha, statistic = U, criticalValue = criticalValue, n = n)
 }
+
 .circularTestsOneSampleComputeResultsRayleigh <- function(jaspResults, data, options) {
   testResult <- circular::rayleigh.test(data)
   p <- testResult$p.value
   statistic <- testResult$statistic
   results <- list(p = p, statistic = statistic)
-return(results)
+  return(results)
 }
+
 .circularTestsOneSampleComputeResultsModifiedRayleigh <- function(jaspResults, data, options) {
   # We do not trust the implementation of the V test in the circular package. Therefore, we implement it on our own following Fisher 1993, p.69.
   # The test statistic is here based on the mean resultant length and not on "rayleighs R". Therefore the resulting statistic differs by a factor of n from other libraries, like CircStat for MATLAB
@@ -434,15 +436,15 @@ return(results)
   splitName <- options$splitby
   wantsSplit <- splitName != ""
   variables <- unlist(options$variables)
-  if (wantsSplit){
+  if (wantsSplit) {
     split <- dataset[[.v(options$splitby)]]
     splitLevels <- levels(split)
     
     rowNamesForRaoFootnote <- c()
     
-    for(variable in variables){
-      for(level in splitLevels){
-        if (options$rao){
+    for (variable in variables) {
+      for (level in splitLevels) {
+        if (options$rao) {
           row <- circularTestsOneSampleResults[[variable]][[level]][["rao"]]
           rowName <- paste(variable, level, "rao")
           oneSampleTable$addRows(row, rowNames = rowName)
@@ -459,24 +461,23 @@ return(results)
         }
       }
     }
-  }
-  else {
+  } else {
     
     rowNamesForRaoFootnote <- c()
     
-    for (variable in variables){
-      if (options$rao){
+    for (variable in variables) {
+      if (options$rao) {
         row <- circularTestsOneSampleResults[[variable]][["rao"]]
         rowName <- paste(variable, "rao")
         oneSampleTable$addRows(row, rowNames = rowName)
         
         rowNamesForRaoFootnote <- c(rowNamesForRaoFootnote, rowName)
       }
-      if (options$rayleigh){
+      if (options$rayleigh) {
         row <- circularTestsOneSampleResults[[variable]][["rayleigh"]]
         oneSampleTable$addRows(row, rowNames = paste(variable))
       }
-      if (options$modifiedRayleigh){
+      if (options$modifiedRayleigh) {
         row <- circularTestsOneSampleResults[[variable]][["modifiedRayleigh"]]
         oneSampleTable$addRows(row, rowNames = paste(variable))
       }
