@@ -409,10 +409,10 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
     oneSampleTable$addColumnInfo(name = "p",             title = gettext("p"),         type = "pvalue")
   }
   if (options$rao){
-    oneSampleTable$addColumnInfo(name = "alpha",         title = "\u03B1",             type = "number", format = "dp:3")
-    oneSampleTable$addColumnInfo(name = "criticalValue", title = gettext("Critical"),  type = "number", format = "dp:3")
+    oneSampleTable$addColumnInfo(name = "alpha",         title = "\u03B1",             type = "number")
+    oneSampleTable$addColumnInfo(name = "criticalValue", title = gettext("Critical"),  type = "number")
   }
-  oneSampleTable$addColumnInfo(name = "statistic",       title = gettext("Statistic"), type = "number", format = "dp:3")
+  oneSampleTable$addColumnInfo(name = "statistic",       title = gettext("Statistic"), type = "number")
   
   oneSampleTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("All statistics are calculated on a normalized period of 2%s.", "\u03C0"))
   
@@ -501,10 +501,10 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   vonMisesCheckTable$addColumnInfo(name = "variable",  title = gettext("Variable"),           type = "string", combine = TRUE)
   if (wantsSplit)
     vonMisesCheckTable$addColumnInfo(name = "level",   title = gettext("Level"),              type = "string", combine = TRUE)
-  vonMisesCheckTable$addColumnInfo(name = "alpha",     title = "\u03B1",             type = "number", format = "dp:3")
-  vonMisesCheckTable$addColumnInfo(name = "critical",  title = gettext("Critical"),           type = "number", format = "dp:3")
-  vonMisesCheckTable$addColumnInfo(name = "statistic", title = "U\u00B2",                     type = "number", format = "dp:3")
-  vonMisesCheckTable$addColumnInfo(name = "kappa",     title = gettextf("Est. %s", "\u03BA"), type = "number", format = "dp:2")
+  vonMisesCheckTable$addColumnInfo(name = "alpha",     title = "\u03B1",                      type = "number")
+  vonMisesCheckTable$addColumnInfo(name = "critical",  title = gettext("Critical"),           type = "number")
+  vonMisesCheckTable$addColumnInfo(name = "statistic", title = "U\u00B2",                     type = "number")
+  vonMisesCheckTable$addColumnInfo(name = "kappa",     title = gettextf("Est. %s", "\u03BA"), type = "number")
   
   # add citations
   vonMisesCheckTable$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
