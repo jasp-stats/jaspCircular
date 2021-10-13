@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspCircular 0.15\n"
-"POT-Creation-Date: 2021-10-05 12:40\n"
+"POT-Creation-Date: 2021-10-13 02:43\n"
 "PO-Revision-Date: 2021-10-05 14:51+0000\n"
 "Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jaspcircular-"
@@ -109,7 +109,7 @@ msgstr ""
 msgid "df"
 msgstr ""
 
-msgid "All statistics are caclulated on a normalized period of 2%s."
+msgid "All statistics are calculated on a normalized period of 2%s."
 msgstr ""
 
 msgid "The degrees of freedom of the %s%s-distribution to which W is compared."
@@ -137,13 +137,10 @@ msgstr ""
 msgid "Mean Square"
 msgstr ""
 
-msgid "We estimated %s = %s (> 2). The respective routine was run."
+msgid "Estimated %s is %s (> 2). The respective routine was run."
 msgstr ""
 
-msgid "We estimated %s = %s (< 2). The respective routine was run"
-msgstr ""
-
-msgid "All statistics are caclulated on a normalized period of 2π."
+msgid "Estimated %s is %s (< 2). The respective routine was run."
 msgstr ""
 
 msgid ""
@@ -194,9 +191,6 @@ msgstr ""
 msgid "Statistic"
 msgstr ""
 
-msgid "All statistics are calculated on a normalized period of 2%s."
-msgstr ""
-
 msgid ""
 "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability "
 "Values for Raos Spacing Test."
@@ -206,9 +200,6 @@ msgid "The Rao spacing test was run with %s = %s, %s"
 msgstr ""
 
 msgid "Von Mises Assumption Check"
-msgstr ""
-
-msgid "α"
 msgstr ""
 
 msgid "Est. %s"
