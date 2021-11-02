@@ -15,6 +15,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+# This is a temporary fix
+# TODO: remove it when R will solve this problem!
+gettextf <- function(fmt, ..., domain = NULL)  {
+  return(sprintf(gettext(fmt, domain = domain), ...))
+}
+
 CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
   if (options$periodGroup == "pi")
