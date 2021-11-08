@@ -2,109 +2,114 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspCircular 0.15\n"
 "POT-Creation-Date: 2021-10-13 02:43\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-11-08 13:05+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspcircular-r/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 msgid "Circular Descriptives"
-msgstr ""
+msgstr "角度記述統計"
 
 msgid "Valid"
-msgstr ""
+msgstr "妥当"
 
 msgid "Missing"
-msgstr ""
+msgstr "欠損値"
 
 msgid "Mean Direction"
-msgstr ""
+msgstr "平均方向"
 
 msgid "Mean Resultant Length"
-msgstr ""
+msgstr "平均結果長"
 
 msgid "Median"
-msgstr ""
+msgstr "中央値"
 
 msgid "Standard Deviation"
-msgstr ""
+msgstr "標準偏差"
 
 msgid "Variance"
-msgstr ""
+msgstr "分散"
 
 msgid "Range"
-msgstr ""
+msgstr "範囲"
 
 msgid "<em>Note.</em>"
-msgstr ""
+msgstr "<em>注</em>"
 
 msgid "If not stated otherwise, all values are calculated on a normalized period of 2π."
-msgstr ""
+msgstr "特に記載のない限り、すべての値は2πの正規化された周期で計算されています."
 
 msgid "Value is shown with respect to the original period."
-msgstr ""
+msgstr "値は元の期間を基準にして表示されます."
 
 msgid "Aaron Bahde and Philipp Berens (2019). University of Tuebingen."
-msgstr ""
+msgstr "Aaron Bahde and Philipp Berens (2019). University of Tuebingen."
 
 msgid "Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."
 msgstr ""
+"Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): "
+"Circular Statistics [R Package]."
 
 msgid "Circular Descriptives Plots"
-msgstr ""
+msgstr "角度記述統計プロット"
 
 msgid "The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error: %s"
-msgstr ""
+msgstr "プロットは、いくつかの計算(平均方向など)に依存します。しかし、計算は次のエラーを返しました: %s"
 
 msgid "The plotting for this set-up failed with: %s"
-msgstr ""
+msgstr "このセットアップのプロットに失敗しました: %s"
 
 msgid "The data of the dependent variable %1$s grouped on factor %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
 
 msgid "Watson-Williams"
-msgstr ""
+msgstr "ワトソン-ウィリアムズ(Watson-Williams)"
 
 msgid "Watson-Wheeler"
-msgstr ""
+msgstr "ワトソン-ウィーラー(Watson-Wheeler)"
 
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "一元配置分散分析"
 
 msgid "Cases"
-msgstr ""
+msgstr "ケース"
 
 msgid "Test"
-msgstr ""
+msgstr "検定"
 
 msgid "p"
-msgstr ""
+msgstr "p"
 
 msgid "F"
-msgstr ""
+msgstr "F"
 
 msgid "df1"
-msgstr ""
+msgstr "df1"
 
 msgid "df2"
-msgstr ""
+msgstr "df2"
 
 msgid "W"
-msgstr ""
+msgstr "W"
 
 msgid "df"
-msgstr ""
+msgstr "df"
 
 msgid "All statistics are calculated on a normalized period of 2%s."
-msgstr ""
+msgstr "すべての統計量は、2%s の正規化された期間で計算されています."
 
 msgid "The degrees of freedom of the %s%s-distribution to which W is compared."
-msgstr ""
+msgstr "W と比較する %s%s 分布の自由度."
 
 msgid "<em>Warning.</em>"
-msgstr ""
+msgstr "<em>警告</em>"
 
 msgid "Concentration parameters (%s) not equal between the groups of factor %s. The Watson-Williams test might not be applicable."
 msgstr ""
