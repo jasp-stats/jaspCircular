@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspCircular 0.15\n"
 "POT-Creation-Date: 2021-10-13 02:43\n"
-"PO-Revision-Date: 2021-11-08 08:52+0000\n"
+"PO-Revision-Date: 2021-11-08 10:54+0000\n"
 "Last-Translator: DanaJohanna <dana__@live.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspcircular-r/nl/>\n"
@@ -20,202 +20,234 @@ msgid "Valid"
 msgstr "Geldig"
 
 msgid "Missing"
-msgstr ""
+msgstr "Ontbrekend"
 
 msgid "Mean Direction"
-msgstr ""
+msgstr "Gemiddelde Richting"
 
 msgid "Mean Resultant Length"
-msgstr ""
+msgstr "Gemiddelde resultante lengte"
 
 msgid "Median"
-msgstr ""
+msgstr "Mediaan"
 
 msgid "Standard Deviation"
-msgstr ""
+msgstr "Standaardafwijking"
 
 msgid "Variance"
-msgstr ""
+msgstr "Variantie"
 
 msgid "Range"
-msgstr ""
+msgstr "Bereik"
 
 msgid "<em>Note.</em>"
-msgstr ""
+msgstr "</em>Notitie.</em>"
 
 msgid ""
 "If not stated otherwise, all values are calculated on a normalized period of "
 "2π."
 msgstr ""
+"Alle waardes zijn berekend met een genormaliseerde periode van 2π, tenzij "
+"anders aangegeven."
 
 msgid "Value is shown with respect to the original period."
-msgstr ""
+msgstr "Waarde is getoond ten opzichte van de orginele periode."
 
 msgid "Aaron Bahde and Philipp Berens (2019). University of Tuebingen."
-msgstr ""
+msgstr "Aaron Bahde en Philipp Berens (2019). University of Tuebingen."
 
 msgid ""
 "Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): "
 "Circular Statistics [R Package]."
 msgstr ""
+"Ulric Lund en Claudio Agostinelli (2017). Circular (Version 0.4-93): "
+"Circular Statistics [R Package]."
 
 msgid "Circular Descriptives Plots"
-msgstr ""
+msgstr "Circulaire Beschrijvingen Grafieken"
 
 msgid ""
 "The plotting depends on some of the calculations (e.g. the mean direction). "
 "But the calculations returned the following error: %s"
 msgstr ""
+"Het plotten hangt af van bepaalde berekeningen (e.g. de gemiddelde richting)"
+", maar de berekeningen gaven de volgende foutmelding: %s"
 
 msgid "The plotting for this set-up failed with: %s"
-msgstr ""
+msgstr "Het plotten van deze opzet is mislukt met: %s"
 
 msgid ""
 "The data of the dependent variable %1$s grouped on factor %2$s exceeds the "
 "tolerance for the concentration. The data shows almost zero variance. Did "
 "you maybe specify the wrong period?"
 msgstr ""
+"De data van de afhankelijke variabele %1$s gegroepeerd met factor %2$s "
+"overschrijdt de tolerantie van de concentratie. De data toont bijna geen "
+"variantie. Kan je de verkeerde periode hebben opgegeven?"
 
 msgid "Watson-Williams"
-msgstr ""
+msgstr "Watson-Williams"
 
 msgid "Watson-Wheeler"
-msgstr ""
+msgstr "Watson-Wheeler"
 
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "Eenweg ANOVA"
 
 msgid "Cases"
-msgstr ""
+msgstr "Gevallen"
 
 msgid "Test"
-msgstr ""
+msgstr "Toets"
 
 msgid "p"
-msgstr ""
+msgstr "p"
 
 msgid "F"
-msgstr ""
+msgstr "F"
 
 msgid "df1"
-msgstr ""
+msgstr "df1"
 
 msgid "df2"
-msgstr ""
+msgstr "df2"
 
 msgid "W"
-msgstr ""
+msgstr "W"
 
 msgid "df"
-msgstr ""
+msgstr "df"
 
 msgid "All statistics are calculated on a normalized period of 2%s."
 msgstr ""
+"Alle statistieken zijn berekend met een genormaliseerde periode van 2%s."
 
 msgid "The degrees of freedom of the %s%s-distribution to which W is compared."
-msgstr ""
+msgstr "De vrijheidsgraden van de %s%s-distributie waarmee W is vergeleken."
 
 msgid "<em>Warning.</em>"
-msgstr ""
+msgstr "<em>Waarschuwing.</em>"
 
 msgid ""
 "Concentration parameters (%s) not equal between the groups of factor %s. The "
 "Watson-Williams test might not be applicable."
 msgstr ""
+"Concentratie parameters (%s) niet gelijk tussen de groepen van factor %s. De "
+"Watson-Williams toets kan ongeschikt zijn."
 
 msgid ""
 "Some groups of factor %s contain less than 10 measurements. The Watson-"
 "Wheeler test might not be applicable."
 msgstr ""
+"Sommige groepen van factor %s bevatten minder dan 10 metingen. De Watson-"
+"Wheeler toets kan ongeschikt zijn."
 
 msgid "Two-way ANOVA (Harrison-Kanji Test)"
-msgstr ""
+msgstr "Tweeweg ANOVA (Harrison-Kanji Toets)"
 
 msgid "Sum of Square"
-msgstr ""
+msgstr "Kwadraatsom"
 
 msgid "Mean Square"
-msgstr ""
+msgstr "Gemiddelde Kwadraat"
 
 msgid "Estimated %s is %s (> 2). The respective routine was run."
-msgstr ""
+msgstr "Geschatte %s is %s (>2). De respectieve routine werd uitgevoerd."
 
 msgid "Estimated %s is %s (< 2). The respective routine was run."
-msgstr ""
+msgstr "Geschatte %s is %s (<2). De respectieve routine werd uitgevoerd."
 
 msgid ""
 "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for "
 "Circular Data."
 msgstr ""
+"D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for "
+"Circular Data."
 
 msgid ""
 "The data of the variable %s on level %s exceeds the tolerance for the "
 "concentration. The data shows almost zero variance. Did you maybe specify "
 "the wrong period?"
 msgstr ""
+"De gegevens van de variabele %s op niveau %s overschrijden de tolerantie "
+"voor de concentratie. De gegevens vertonen bijna geen variantie. Heb je "
+"misschien de verkeerde periode opgegeven?"
 
 msgid ""
 "The data of the variable %s exceeds the tolerance for the concentration. The "
 "data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"De gegevens van de variabele %s overschrijden de tolerantie voor de "
+"concentratie. De gegevens vertonen bijna geen variantie. Heb je misschien de "
+"verkeerde periode opgegeven?"
 
 msgid "Rao's spacing"
-msgstr ""
+msgstr "Rao's spacing"
 
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgid "V against %s"
-msgstr ""
+msgstr "V ten opzichte van %s"
 
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "Rao's Spacing"
 
 msgid ""
 "Estimated %s is infinite, could not compute results. Your data is too "
 "concentrated to calculate the assumption check."
 msgstr ""
+"Geschatte %s is oneindig, kon geen resultaten berekenen. Uw gegevens zijn te "
+"geconcentreerd om de assumptie te toetsen."
 
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "Uniformiteitstoetsen"
 
 msgid "Variable"
-msgstr ""
+msgstr "Variabele"
 
 msgid "Level"
-msgstr ""
+msgstr "Niveau"
 
 msgid "Critical"
-msgstr ""
+msgstr "Kritiek"
 
 msgid "Statistic"
-msgstr ""
+msgstr "Statistiek"
 
 msgid ""
 "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability "
 "Values for Raos Spacing Test."
 msgstr ""
+"Gerald Russell en Daniel Levitin (2007). An Extended Table of Probability "
+"Values for Raos Spacing Test."
 
 msgid "The Rao spacing test was run with %s = %s, %s"
-msgstr ""
+msgstr "The Rao spacing toets is uitgevoerd met %s = %s, %s"
 
 msgid "Von Mises Assumption Check"
-msgstr ""
+msgstr "Von Mises Assumptie Toets"
 
 msgid "Est. %s"
-msgstr ""
+msgstr "Geschat %s"
 
 msgid ""
 "R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises "
 "Distribution."
 msgstr ""
+"R. A. Lockhart en M. A. Stephens (1985). Tests of Fit for the Von Mises "
+"Distribution."
 
 msgid ""
 "Do not trust a significant result where %s is small (< 1). The data could "
 "rather be uniform."
 msgstr ""
+"Vertrouw niet op een significant resultaat als %s klein is (< 1). De "
+"gegevens zouden eerder uniform kunnen zijn."
 
 msgid ""
 "The test is run with %s = %s, so please compare the statistics to the "
 "critical value."
 msgstr ""
+"De test is uitgevoerd met %s = %s, dus vergelijk de statistieken met de "
+"kritieke waarde."
