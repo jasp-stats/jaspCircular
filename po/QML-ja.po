@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-11-08 10:54+0000\n"
+"PO-Revision-Date: 2021-11-10 04:46+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspcircular-qml/ja/>\n"
@@ -78,7 +78,7 @@ msgstr "平均方向"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean resultant length"
-msgstr ""
+msgstr "平均リザルト長"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
@@ -138,7 +138,7 @@ msgstr "分割"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "一様性(Uniformity)検定"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rao's Spacing"
