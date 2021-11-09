@@ -1,173 +1,181 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-11-10 04:46+0000\n"
+"Last-Translator: shun wang <yootell@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"jasp/jaspcircular-qml/zh_Hans/>\n"
+"Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.9-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Circular Statistics"
-msgstr ""
+msgstr "循环统计"
 
 msgctxt "Description|"
 msgid "This module offers basic methods for directional data"
-msgstr ""
+msgstr "该模块提供了定向数据处理的基本方法"
 
 msgctxt "Description|"
 msgid "Circular Descriptives"
-msgstr ""
+msgstr "循环描述"
 
 msgctxt "Description|"
 msgid "Hypothesis Tests"
-msgstr ""
+msgstr "假设检验"
 
 msgctxt "Description|"
 msgid "Circular One-Sample Tests"
-msgstr ""
+msgstr "循环单样本检验"
 
 msgctxt "Description|"
 msgid "Circular Multiple-Sample Tests"
-msgstr ""
+msgstr "循环多样本检验"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "变量"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
-msgstr ""
+msgstr "拆分"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "绘图"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "分布图"
 
+#, fuzzy
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
-msgstr ""
+msgstr "堆栈点"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display mean vector"
-msgstr ""
+msgstr "显示平均向量"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display histogram"
-msgstr ""
+msgstr "显示直方图"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "统计量"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "集中趋势"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
-msgstr ""
+msgstr "平均方向"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean resultant length"
-msgstr ""
+msgstr "平均合向量长度（resultant）"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
-msgstr ""
+msgstr "中位数"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "离散趋势"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Std. deviation"
-msgstr ""
+msgstr "标准差"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "方差"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Range"
-msgstr ""
+msgstr "极差"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Dependent Variable"
-msgstr ""
+msgstr "因变量"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Fixed Factors"
-msgstr ""
+msgstr "固定因子"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "单因素方差分析"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Williams (parametric)"
-msgstr ""
+msgstr "Watson-Williams（参数）"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Wheeler (non-parametric)"
-msgstr ""
+msgstr "Watson-Wheeler（非参数）"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Two-way ANOVA"
-msgstr ""
+msgstr "双因素方差分析"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Harrison-Kanji"
-msgstr ""
+msgstr "Harrison-Kanji"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
-msgstr ""
+msgstr "变量"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
-msgstr ""
+msgstr "拆分"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "均匀性检验"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "Rao's Spacing"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.01"
-msgstr ""
+msgstr "α = 0.01"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.05"
-msgstr ""
+msgstr "α = 0.05"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.1"
-msgstr ""
+msgstr "α = 0.1"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "V (modified Rayleigh)"
-msgstr ""
+msgstr "V (modified Rayleigh)"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Test value:"
-msgstr ""
+msgstr "检验值："
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Assumption Checks"
-msgstr ""
+msgstr "假设检验"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Von Mises (Watson's goodness-of-fit)"
-msgstr ""
+msgstr "Von Mises（Watson's 拟合优度）"
 
 msgctxt "Period|"
 msgid "Period"
