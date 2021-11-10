@@ -273,12 +273,12 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   n <- testResult$n
   # The following is a routine that gets the critical value for the specified alpha value, depending in the dataset size.
   # It is neccesary, since the circular package just prints the test results without returning the critical values.
-  data(rao.table, package = "circular", envir = sys.frame(which = sys.nframe()))    # table for critical values (Levitin, Rusell 1995)
   criticalTableColumn <- (1:4)[alpha == c(0.001, 0.01, 0.05, 0.1)]
   # get the table row where the data count is as closest to the one in the table
   countColumn <- c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,35,40,45,50,75,100,150,200,300,400,500,600,700,800,900,1000)
   criticalTableRow <- which.min(abs(countColumn-n))
-  criticalValue <- rao.table[criticalTableRow, criticalTableColumn]
+  # table for critical values (Levitin, Rusell 1995)
+  criticalValue <- circular::rao.table[criticalTableRow, criticalTableColumn]
   results <- list(alpha = alpha, statistic = U, criticalValue = criticalValue, n = n)
 }
 
