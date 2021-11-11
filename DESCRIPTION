@@ -10,7 +10,9 @@ Description: This module offers basic methods for directional data
 License: GPL (>= 2)
 Imports: 
   jaspBase,
+  jaspGraphs,
   circular,
   ggplot2
 Remotes:
-  jasp-stats/jaspBase
+  jasp-stats/jaspBase,
+  jasp-stats/jaspGraphs
