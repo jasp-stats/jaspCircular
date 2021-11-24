@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-11-13 16:56+0000\n"
+"PO-Revision-Date: 2021-11-19 10:47+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspcircular-qml/zh_Hans/>\n"
@@ -52,7 +52,6 @@ msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
 msgstr "分布图"
 
-#, fuzzy
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
 msgstr "堆栈点"
