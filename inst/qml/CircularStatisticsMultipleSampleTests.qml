@@ -26,8 +26,6 @@ import "./common" as Circular
 // All Analysis forms must be built with the From QML item
 Form 
 {
-	usesJaspResults: true
-	
 	VariablesForm
 	{
 		AvailableVariablesList	{ name: "allVariablesList" }
