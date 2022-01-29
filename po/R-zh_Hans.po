@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspCircular 0.15\n"
 "POT-Creation-Date: 2021-10-13 02:43\n"
-"PO-Revision-Date: 2022-01-10 12:54+0000\n"
+"PO-Revision-Date: 2022-01-30 07:53+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspcircular-r/zh_Hans/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 msgid "Circular Descriptives"
 msgstr ""
@@ -77,28 +77,28 @@ msgid "One-way ANOVA"
 msgstr ""
 
 msgid "Cases"
-msgstr ""
+msgstr "个案"
 
 msgid "Test"
 msgstr ""
 
 msgid "p"
-msgstr ""
+msgstr "p"
 
 msgid "F"
-msgstr ""
+msgstr "F"
 
 msgid "df1"
-msgstr ""
+msgstr "df1"
 
 msgid "df2"
-msgstr ""
+msgstr "df2"
 
 msgid "W"
 msgstr ""
 
 msgid "df"
-msgstr ""
+msgstr "df"
 
 msgid "All statistics are calculated on a normalized period of 2%s."
 msgstr ""
@@ -122,7 +122,7 @@ msgid "Sum of Square"
 msgstr ""
 
 msgid "Mean Square"
-msgstr ""
+msgstr "均方"
 
 msgid "Estimated %s is %s (> 2). The respective routine was run."
 msgstr ""
@@ -161,13 +161,13 @@ msgid "Variable"
 msgstr "变量"
 
 msgid "Level"
-msgstr ""
+msgstr "水平"
 
 msgid "Critical"
 msgstr ""
 
 msgid "Statistic"
-msgstr ""
+msgstr "统计量"
 
 msgid "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."
 msgstr ""
