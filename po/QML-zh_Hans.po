@@ -11,6 +11,8 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.10-dev\n"
 "X-Qt-Contexts: true\n"
+"X-Language: zh_Hans\n"
+
 
 msgctxt "Description|"
 msgid "Circular Statistics"
