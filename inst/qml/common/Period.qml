@@ -22,14 +22,14 @@ import JASP 1.0
 
 RadioButtonGroup
 {
-	name: "periodGroup"
+	name: "periodOption"
 	title: qsTr("Period")
 	RadioButton { value: "pi";	label: qsTr("π")	}
-	RadioButton { value: "pi_2";	label: qsTr("2π"); checked: true	}
+	RadioButton { value: "pi2";	label: qsTr("2π"); checked: true	}
 	RadioButton
 	{
 		value: "custom";	label: qsTr("Custom:")
 		childrenOnSameRow: true
-		DoubleField { name: "period"; defaultValue: 360; fieldWidth: 70; min: 0; inclusive: JASP.None}
+		DoubleField { name: "customPeriod"; defaultValue: 360; fieldWidth: 70; min: 0; inclusive: JASP.None}
 	}
 }

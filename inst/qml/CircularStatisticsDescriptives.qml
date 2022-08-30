@@ -30,7 +30,7 @@ Form
 	{
 		AvailableVariablesList { name: "allVariablesList" }
 		AssignedVariablesList { name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
-		AssignedVariablesList { name: "splitby";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
+		AssignedVariablesList { name: "splitVariable";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
 	}
 
 	Circular.Period {}
@@ -40,10 +40,10 @@ Form
 		title: qsTr("Plots")
 		Group
 		{
-			CheckBox { name: "plotVariables"; label: qsTr("Distribution plots"); id: plotVariables }
-			CheckBox { name: "plotStacking"; label: qsTr("Stack points"); enabled: plotVariables.checked; indent: true	}
-			CheckBox { name: "plotMean"; label: qsTr("Display mean vector")	; enabled: plotVariables.checked; indent: true}
-			CheckBox { name: "plotHistogram"; label: qsTr("Display histogram"); enabled: plotVariables.checked; indent: true}
+			CheckBox { name: "distributionPlot"; label: qsTr("Distribution plots"); id: distributionPlot }
+			CheckBox { name: "distributionPlotPointStack"; label: qsTr("Stack points"); enabled: distributionPlot.checked; indent: true	}
+			CheckBox { name: "distributionPlotMeanVector"; label: qsTr("Display mean vector")	; enabled: distributionPlot.checked; indent: true}
+			CheckBox { name: "distributionPlotHistogram"; label: qsTr("Display histogram"); enabled: distributionPlot.checked; indent: true}
 		}
 	}
 

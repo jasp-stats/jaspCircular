@@ -17,10 +17,10 @@
 
 CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
-  if (options$periodGroup == "pi")
-    options$period <- pi
-  if (options$periodGroup == "pi_2")
-    options$period <- 2 * pi
+  if (options$periodOption == "pi")
+    options$customPeriod <- pi
+  if (options$periodOption == "pi2")
+    options$customPeriod <- 2 * pi
 
   # Set title
   #jaspResults$title <- "Test Results"
@@ -102,7 +102,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
       for(level in splitLevels){
         column <- dataset[[.v(dependent)]][split == level]
         validData <- column[!is.na(column)]
-        validDataNormalized <- .normalizeData(validData, options$period)
+        validDataNormalized <- .normalizeData(validData, options$customPeriod)
         validDataCirc <- circular::circular(validDataNormalized)
         
         meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
@@ -140,7 +140,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 
   # get valid data and normalize period
   validIndices <- !is.na(dataset[[.v(dependent)]])
-  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$period)
+  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$customPeriod)
   factorColumn <- dataset[[.v(fac)]][validIndices]
 
   # Check if the test is applicable, i.e. the assumption of equal kappas across the groups is justified. Store the result to decide on a warning footnote when creating the table.
@@ -172,9 +172,9 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 
   dependent <- unlist(options$dependent)
 
-  # get valid data and normalize period
+  # get valid data and normalize customPeriod
   validIndices <- !is.na(dataset[[.v(dependent)]])
-  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$period)
+  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$customPeriod)
   factorColumn <- dataset[[.v(fac)]][validIndices]
 
   # Check if each group has at least 10 measurements. Store the result to add a warning as a footnote later (if neccessary).
@@ -215,7 +215,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
 
   # get valid data and normalize period
   validIndices <- !is.na(dataset[[.v(dependent)]])
-  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$period)
+  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$customPeriod)
   fac1Column <- dataset[[.v(fac1)]][validIndices]
   fac2Column <- dataset[[.v(fac2)]][validIndices]
 
@@ -380,7 +380,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Create table
   oneWayAnovaTable <- createJaspTable(title = gettext("One-way ANOVA"))
   jaspResults[["oneWayAnovaTable"]] <- oneWayAnovaTable
-  jaspResults[["oneWayAnovaTable"]]$dependOn(options = c("dependent", "watsonWilliams", "period", "periodGroup", "watsonWheeler", "fixedFactors"))
+  jaspResults[["oneWayAnovaTable"]]$dependOn(options = c("dependent", "watsonWilliams", "customPeriod", "periodOption", "watsonWheeler", "fixedFactors"))
 
   oneWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -443,7 +443,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Create table
   twoWayAnovaTable <- createJaspTable(title = gettext("Two-way ANOVA (Harrison-Kanji Test)"))
   jaspResults[["twoWayAnovaTable"]] <- twoWayAnovaTable
-  jaspResults[["twoWayAnovaTable"]]$dependOn(options = c("dependent", "harrisonKanji", "period", "periodGroup", "fixedFactors"))
+  jaspResults[["twoWayAnovaTable"]]$dependOn(options = c("dependent", "harrisonKanji", "periodOption", "customPeriod", "fixedFactors"))
   
   twoWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
