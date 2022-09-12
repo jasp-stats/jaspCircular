@@ -6,7 +6,7 @@ Description
 	name		: "jaspCircular"
 	title		: qsTr("Circular Statistics")
 	description	: qsTr("This module offers basic methods for directional data")
-	version		: "0.15"
+	version		: "0.16.4"
 	author		: "Aaron Bahde, Philipp Berens (University of Tuebingen)"
 	maintainer	: "Philipp Berens <philipp.berens@uni.tuebingen.de>"
 	website		: "eye-tuebingen.de/berenslab/"
