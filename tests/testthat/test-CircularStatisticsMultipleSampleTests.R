@@ -6,7 +6,7 @@ options$.meta <- list(dependent = list(shouldEncode = TRUE), fixedFactors = list
 options$dependent <- "WindDirection"
 options$fixedFactors <- "Month"
 options$customPeriod <- 360
-options$periodOption <- "custom"
+options$period <- "custom"
 set.seed(1)
 results <- jaspTools::runAnalysis("CircularStatisticsMultipleSampleTests", "ElNino.csv", options)
 
@@ -25,7 +25,7 @@ test_that("Analysis works with period of 1", {
   options$dependent <- "dependent"
   options$fixedFactors <- "factor"
   options$customPeriod <- 1
-  options$periodOption <- "custom"
+  options$period <- "custom"
   options$watsonWilliams <- TRUE
   set.seed(1)
   data <- data.frame(dependent = rnorm(100), factor = sample(1:2, 100, TRUE))
@@ -44,7 +44,7 @@ test_that("Analysis throws an error for too concentrated data", {
   options$dependent <- "dependent"
   options$fixedFactors <- "factor"
   options$customPeriod <- 1
-  options$periodOption <- "custom"
+  options$period <- "custom"
   options$watsonWilliams <- TRUE
   set.seed(1)
   data <- data.frame(dependent = 1:100, factor = sample(1:2, 100, TRUE))

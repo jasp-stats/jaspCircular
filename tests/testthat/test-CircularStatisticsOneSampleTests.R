@@ -2,7 +2,7 @@ context("Circular One Sample")
 
 options <- jaspTools::analysisOptions("CircularStatisticsOneSampleTests")
 options$.meta <- list(splitVariable = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
-options$alphaRao <- "0.01"
+options$raoAlpha <- "0.01"
 options$vonMisesCheckAlpha <- "0.01"
 options$modifiedRayleigh <- TRUE
 options$rayleigh <- TRUE
@@ -10,7 +10,7 @@ options$splitVariable <- "Month"
 options$variables <- "WindDirection"
 options$vonMisesCheck <- TRUE
 options$customPeriod <- 360
-options$periodOption <- "custom"
+options$period <- "custom"
 set.seed(1)
 results <- jaspTools::runAnalysis("CircularStatisticsOneSampleTests", "ElNino.csv", options)
 
@@ -46,10 +46,10 @@ test_that("Von Mises Assumption Check catches too concentrated data", {
   
   options <- analysisOptions("CircularStatisticsOneSampleTests")
   options$.meta <- list(splitVariable = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
-  options$alphaRao <- "0.01"
+  options$raoAlpha <- "0.01"
   options$vonMisesCheckAlpha <- "0.01"
   options$customPeriod <- 360
-  options$periodOption <- "custom"
+  options$period <- "custom"
   options$variables <- "contWide"
   options$vonMisesCheck <- TRUE
   

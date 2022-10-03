@@ -22,7 +22,7 @@ import JASP 1.0
 
 RadioButtonGroup
 {
-	name: "periodOption"
+	name: "period"
 	title: qsTr("Period")
 	RadioButton { value: "pi";	label: qsTr("π")	}
 	RadioButton { value: "pi2";	label: qsTr("2π"); checked: true	}

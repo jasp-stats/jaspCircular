@@ -6,7 +6,7 @@ options$distributionPlot <- TRUE
 options$splitVariable <- "Month"
 options$variables <- "WindDirection"
 options$customPeriod <- 360
-options$periodOption <- "custom"
+options$period <- "custom"
 set.seed(1)
 results <- jaspTools::runAnalysis("CircularStatisticsDescriptives", "ElNino.csv", options)
 

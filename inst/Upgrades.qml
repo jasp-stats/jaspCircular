@@ -6,26 +6,26 @@ Upgrades
 	Upgrade
 	{
 		functionName:		"CircularStatisticsDescriptives"
-		fromVersion:		"0.15"
-		toVersion:			"0.16.4"
+		fromVersion:		"0.16.4"
+		toVersion:			"0.17.0"
 
 		ChangeRename { from: "splitby";					to: "splitVariable"							}
 		ChangeRename { from: "plotVariables";			to: "distributionPlot"						}
 		ChangeRename { from: "plotStacking";			to: "distributionPlotPointStack"			}
 		ChangeRename { from: "plotMean";				to: "distributionPlotMeanVector"			}
 		ChangeRename { from: "plotHistogram";			to: "distributionPlotHistogram"				}
-		ChangeRename { from: "periodGroup";			    to: "periodOption"				            }
-		ChangeRename { from: "period";			        to: "customPeriod"				            }
+		ChangeRename { from: "period";	                to: "customPeriod"                          }
+		ChangeRename { from: "periodGroup";	            to: "period"                                }
 
 		ChangeJS
 		{
-			name:		"periodOption"
+			name:		"period"
 			jsFunction:	function(options)
 			{
-				switch(options["periodOption"])
+				switch(options["period"])
 				{
 				case "pi_2":		            return "pi2";
-				default:					    return options["periodOption"];
+				default:					    return options["period"];
 				}
 			}
 		}
@@ -34,23 +34,24 @@ Upgrades
 	Upgrade
 	{
 		functionName:		"CircularStatisticsOneSampleTests"
-		fromVersion:		"0.15"
-		toVersion:			"0.16.4"
+		fromVersion:		"0.16.4"
+		toVersion:			"0.17.0"
 
 		ChangeRename { from: "splitby";					to: "splitVariable"							}
 		ChangeRename { from: "alphaVonMises";			to: "vonMisesCheckAlpha"					}
-		ChangeRename { from: "periodGroup";			    to: "periodOption"				            }
-		ChangeRename { from: "period";			        to: "customPeriod"				            }
+		ChangeRename { from: "period";	                to: "customPeriod"                          }
+		ChangeRename { from: "periodGroup";	            to: "period"                                }
+		ChangeRename { from: "alphaRao";			    to: "raoAlpha"				                }
 
 		ChangeJS
 		{
-			name:		"periodOption"
+			name:		"period"
 			jsFunction:	function(options)
 			{
-				switch(options["periodOption"])
+				switch(options["period"])
 				{
 				case "pi_2":		            return "pi2";
-				default:					    return options["periodOption"];
+				default:					    return options["period"];
 				}
 			}
 		}
@@ -59,21 +60,21 @@ Upgrades
 	Upgrade
 	{
 		functionName:		"CircularStatisticsMultipleSampleTests"
-		fromVersion:		"0.15"
-		toVersion:			"0.16.4"
+		fromVersion:		"0.16.4"
+		toVersion:			"0.17.0"
 
-		ChangeRename { from: "periodGroup";			    to: "periodOption"				            }
-		ChangeRename { from: "period";			        to: "customPeriod"				            }
+		ChangeRename { from: "period";	to: "customPeriod" }
+		ChangeRename { from: "periodGroup";	to: "period" }
 
 		ChangeJS
 		{
-			name:		"periodOption"
+			name:		"period"
 			jsFunction:	function(options)
 			{
-				switch(options["periodOption"])
+				switch(options["period"])
 				{
 				case "pi_2":		            return "pi2";
-				default:					    return options["periodOption"];
+				default:					    return options["period"];
 				}
 			}
 		}

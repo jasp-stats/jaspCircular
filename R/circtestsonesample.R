@@ -17,10 +17,10 @@
 
 CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...) {
   # Get the correct customPeriod. This step is neccessary since pi is hard to specify in the GUI.
-  if (options$periodOption == "pi")
+  if (options$period == "pi")
     options$customPeriod <- pi
-  if (options$periodOption == "pi2")
-    options$periodOption <- 2 * pi
+  if (options$period == "pi2")
+    options$period <- 2 * pi
 
   # Set title
   #jaspResults$title <- "Test Results"
@@ -267,7 +267,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 }
 .circularTestsOneSampleComputeResultsRao <- function(jaspResults, data, options) {
   
-  alpha <- as.numeric(options$alphaRao)
+  alpha <- as.numeric(options$raoAlpha)
   testResult <- circular::rao.spacing.test(data,alpha=alpha)
   U <- testResult$statistic
   n <- testResult$n
@@ -395,7 +395,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   # Create table
   oneSampleTable <- createJaspTable(title = gettext("Uniformity Tests"))
   jaspResults[["oneSampleTable"]] <- oneSampleTable
-  jaspResults[["oneSampleTable"]]$dependOn(options = c("variables", "splitVariable", "rao", "alphaRao", "rayleigh", "modifiedRayleigh", "customPeriod", "periodOption"))
+  jaspResults[["oneSampleTable"]]$dependOn(options = c("variables", "splitVariable", "rao", "raoAlpha", "rayleigh", "modifiedRayleigh", "customPeriod", "period"))
 
   oneSampleTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -484,7 +484,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
     }
   }
   if (options$rao)
-    oneSampleTable$addFootnote(message = gettextf("The Rao spacing test was run with %s = %s, %s", "\u03B1", options$alphaRao, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
+    oneSampleTable$addFootnote(message = gettextf("The Rao spacing test was run with %s = %s, %s", "\u03B1", options$raoAlpha, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
 }
 
 .circularTestsOneSampleCreateTableVonMises <-function (jaspResults, dataset, options, circularTestsOneSampleVonMisesTestResults, ready){
@@ -493,7 +493,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   # Create table
   vonMisesCheckTable <- createJaspTable(title = gettext("Von Mises Assumption Check"))
   jaspResults[["vonMisesCheckTable"]] <- vonMisesCheckTable
-  jaspResults[["vonMisesCheckTable"]]$dependOn(options = c("variables", "splitVariable", "vonMisesCheck", "vonMisesCheckAlpha", "customPeriod", "periodOption"))
+  jaspResults[["vonMisesCheckTable"]]$dependOn(options = c("variables", "splitVariable", "vonMisesCheck", "vonMisesCheckAlpha", "customPeriod", "period"))
 
   vonMisesCheckTable$showSpecifiedColumnsOnly <- TRUE
 

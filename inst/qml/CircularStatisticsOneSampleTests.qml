@@ -46,7 +46,7 @@ Form
 				name: "rao"; label: qsTr("Rao's Spacing"); checked: true
 				RadioButtonGroup
 				{
-					name: "alphaRao"
+					name: "raoAlpha"
 					indent: true
 					radioButtonsOnSameRow: true
 					RadioButton { value: "0.01";	label: qsTr("α = 0.01")	}

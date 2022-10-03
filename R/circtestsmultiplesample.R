@@ -17,9 +17,9 @@
 
 CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
-  if (options$periodOption == "pi")
+  if (options$period == "pi")
     options$customPeriod <- pi
-  if (options$periodOption == "pi2")
+  if (options$period == "pi2")
     options$customPeriod <- 2 * pi
 
   # Set title
@@ -380,7 +380,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Create table
   oneWayAnovaTable <- createJaspTable(title = gettext("One-way ANOVA"))
   jaspResults[["oneWayAnovaTable"]] <- oneWayAnovaTable
-  jaspResults[["oneWayAnovaTable"]]$dependOn(options = c("dependent", "watsonWilliams", "customPeriod", "periodOption", "watsonWheeler", "fixedFactors"))
+  jaspResults[["oneWayAnovaTable"]]$dependOn(options = c("dependent", "watsonWilliams", "customPeriod", "period", "watsonWheeler", "fixedFactors"))
 
   oneWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -443,7 +443,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
   # Create table
   twoWayAnovaTable <- createJaspTable(title = gettext("Two-way ANOVA (Harrison-Kanji Test)"))
   jaspResults[["twoWayAnovaTable"]] <- twoWayAnovaTable
-  jaspResults[["twoWayAnovaTable"]]$dependOn(options = c("dependent", "harrisonKanji", "periodOption", "customPeriod", "fixedFactors"))
+  jaspResults[["twoWayAnovaTable"]]$dependOn(options = c("dependent", "harrisonKanji", "period", "customPeriod", "fixedFactors"))
   
   twoWayAnovaTable$showSpecifiedColumnsOnly <- TRUE
 

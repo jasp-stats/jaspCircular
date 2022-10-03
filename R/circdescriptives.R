@@ -23,9 +23,9 @@ gettextf <- function(fmt, ..., domain = NULL)  {
 
 CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
-  if (options$periodOption == "pi")
+  if (options$period == "pi")
     options$customPeriod <- pi
-  if (options$periodOption == "pi2")
+  if (options$period == "pi2")
     options$customPeriod <- 2 * pi
 
   # Set title
@@ -135,7 +135,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 
   # save results to state
   jaspResults[["stateCircDescriptivesResults"]] <- createJaspState(results)
-  jaspResults[["stateCircDescriptivesResults"]]$dependOn(options = c("variables", "splitVariable", "customPeriod", "periodOption", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
+  jaspResults[["stateCircDescriptivesResults"]]$dependOn(options = c("variables", "splitVariable", "customPeriod", "period", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
   return(results)
 }
 .circularDescriptivesComputeResultsSub <- function(column, options){
@@ -190,7 +190,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 .circularDescriptivesCreateTable <- function(jaspResults, circularDescriptivesResults, dataset, options, ready, wantsSplit) {
   
   circularDescriptivesTable <- createJaspTable(title = gettext("Circular Descriptives"))
-  circularDescriptivesTable$dependOn(options = c("variables", "splitVariable", "customPeriod", "periodOption", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
+  circularDescriptivesTable$dependOn(options = c("variables", "splitVariable", "customPeriod", "period", "meanDirection", "meanLength", "standardDeviation", "variance", "range", "median"))
   
   circularDescriptivesTable$showSpecifiedColumnsOnly <- TRUE
   circularDescriptivesTable$transpose <- TRUE
@@ -222,7 +222,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
   
   # create the footnotes
   circularDescriptivesTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettext("If not stated otherwise, all values are calculated on a normalized period of 2\u03C0."))
-  if (options$periodOption != "pi2")
+  if (options$period != "pi2")
     circularDescriptivesTable$addFootnote(message = gettext("Value is shown with respect to the original period."), colNames = list("meanDirection", "median", "range"))
   
   # add citations
@@ -269,7 +269,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
 
 .circularDescriptivesCreatePlot <- function(jaspResults, dataset, options, circularDescriptivesResults, wantsSplit, ready){
   # get a container for plots
-  containerPlots <- createJaspContainer(title = gettext("Circular Descriptives Plots"), dependencies = c("variables", "splitVariable", "customPeriod", "periodOption", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
+  containerPlots <- createJaspContainer(title = gettext("Circular Descriptives Plots"), dependencies = c("variables", "splitVariable", "customPeriod", "period", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
   jaspResults[["Plots"]] <- containerPlots
   
   plotSize <- 320
@@ -278,9 +278,9 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
     split <- dataset[[.v(options$splitVariable)]]
     splitLevels <- levels(split)
     for (variable in variables){
-      containerLevelPlots <- createJaspContainer(title = variable, dependencies = c("variables", "splitVariable", "customPeriod", "periodOption", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
+      containerLevelPlots <- createJaspContainer(title = variable, dependencies = c("variables", "splitVariable", "customPeriod", "period", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
       for (level in splitLevels){
-        jaspPlot <- createJaspPlot(title=level, width = plotSize, height = plotSize, dependencies = c("variables", "splitVariable", "customPeriod", "periodOption", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
+        jaspPlot <- createJaspPlot(title=level, width = plotSize, height = plotSize, dependencies = c("variables", "splitVariable", "customPeriod", "period", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
         
         # add citations
         jaspPlot$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
@@ -292,7 +292,7 @@ CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
     }
   } else {
     for (variable in variables){
-      jaspPlot <- createJaspPlot(title=variable, width = plotSize, height = plotSize, dependencies = c("variables", "splitVariable", "customPeriod", "periodOption", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
+      jaspPlot <- createJaspPlot(title=variable, width = plotSize, height = plotSize, dependencies = c("variables", "splitVariable", "customPeriod", "period", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
       
       # add citations
       jaspPlot$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))
