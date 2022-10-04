@@ -16,10 +16,10 @@
 #
 
 CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...) {
-  # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
-  if (options$periodGroup == "pi")
-    options$period <- pi
-  if (options$periodGroup == "pi_2")
+  # Get the correct customPeriod. This step is neccessary since pi is hard to specify in the GUI.
+  if (options$period == "pi")
+    options$customPeriod <- pi
+  if (options$period == "pi2")
     options$period <- 2 * pi
 
   # Set title
@@ -53,7 +53,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 # Preprocessing functions ----
 .circularTestsOneSampleReadData <- function(dataset, options) {
   variables <- unlist(options$variables)
-  splitName <- options$splitby
+  splitName <- options$splitVariable
   wantsSplit <- splitName != ""
   if (wantsSplit) {
     dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = splitName)
@@ -63,7 +63,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   return(dataset)
 }
 .circularTestsOneSampleCheckErrors <- function(dataset, options){
-  splitName <- options$splitby
+  splitName <- options$splitVariable
   wantsSplit <- splitName != ""
   if(wantsSplit){
     
@@ -72,7 +72,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
       dataset              = dataset,
       perform              = "run",
       type                 = "factorLevels",
-      factorLevels.target  = options$splitby,
+      factorLevels.target  = options$splitVariable,
       factorLevels.amount  = "< 1",
       exitAnalysisIfErrors = TRUE)
     
@@ -80,7 +80,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
     .hasErrors(dataset, 
              type = c('observations', 'infinity'),
              all.target = options$variables, 
-             all.grouping = options$splitby,
+             all.grouping = options$splitVariable,
              observations.amount = c('< 1'), 
              exitAnalysisIfErrors = TRUE)
     
@@ -89,16 +89,16 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
       .hasErrors(dataset, 
                  type = c('observations'),
                  all.target = options$variables, 
-                 all.grouping = options$splitby,
+                 all.grouping = options$splitVariable,
                  observations.amount = c('< 4'), 
                  exitAnalysisIfErrors = TRUE)
     
     # The von Mises check fails if there is zero variance in the data.
-    if(options$vonMises)
+    if(options$vonMisesCheck)
       .hasErrors(dataset, 
                  type = c('variance'),
                  all.target = options$variables, 
-                 all.grouping = options$splitby, 
+                 all.grouping = options$splitVariable, 
                  exitAnalysisIfErrors = TRUE)
     
   } else {
@@ -119,7 +119,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
                  exitAnalysisIfErrors = TRUE)
     
     # The von Mises check fails if there is zero variance in the data.
-    if(options$vonMises)
+    if(options$vonMisesCheck)
       .hasErrors(dataset, 
                  type = c('variance'),
                  all.target = options$variables, 
@@ -134,18 +134,18 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 
     tolerance <- 10**-3
 
-    splitName <- options$splitby
+    splitName <- options$splitVariable
     wantsSplit <- splitName != ""
     variables <- unlist(options$variables)
 
     if(wantsSplit){
-      split <- dataset[[.v(options$splitby)]]
+      split <- dataset[[.v(options$splitVariable)]]
       splitLevels <- levels(split)
       for(variable in variables){
         for(level in splitLevels){
           column <- dataset[[.v(variable)]][split == level]
           validData <- column[!is.na(column)]
-          validDataNormalized <- .normalizeData(validData, options$period)
+          validDataNormalized <- .normalizeData(validData, options$customPeriod)
           validDataCirc <- circular::circular(validDataNormalized)
           meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
           if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
@@ -156,7 +156,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
       for(variable in variables){
         column <- dataset[[.v(variable)]]
         validData <- column[!is.na(column)]
-        validDataNormalized <- .normalizeData(validData, options$period)
+        validDataNormalized <- .normalizeData(validData, options$customPeriod)
         validDataCirc <- circular::circular(validDataNormalized)
         meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
         if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
@@ -172,20 +172,20 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 # Results functions ----
 .circularTestsOneSampleComputeResults <- function(jaspResults, dataset, options) {
   
-  splitName <- options$splitby
+  splitName <- options$splitVariable
   wantsSplit <- splitName != ""
   variables <- unlist(options$variables)
 
   results <- list()
 
   if(wantsSplit){
-    split <- dataset[[.v(options$splitby)]]
+    split <- dataset[[.v(options$splitVariable)]]
     splitLevels <- levels(split)
     for(variable in variables){
       for(level in splitLevels){
         column <- dataset[[.v(variable)]][split == level]
         validData <- column[!is.na(column)]
-        validDataNormalized <- .normalizeData(validData, options$period)
+        validDataNormalized <- .normalizeData(validData, options$customPeriod)
         validDataCirc <- circular::circular(validDataNormalized)
 
         if (options$rao){
@@ -228,7 +228,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
     for (variable in variables){
       column <- dataset[[.v(variable)]]
       validData <- column[!is.na(column)]
-      validDataNormalized <- .normalizeData(validData, options$period)
+      validDataNormalized <- .normalizeData(validData, options$customPeriod)
       validDataCirc <- circular::circular(validDataNormalized)
 
       if (options$rao){
@@ -267,7 +267,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 }
 .circularTestsOneSampleComputeResultsRao <- function(jaspResults, data, options) {
   
-  alpha <- as.numeric(options$alphaRao)
+  alpha <- as.numeric(options$raoAlpha)
   testResult <- circular::rao.spacing.test(data,alpha=alpha)
   U <- testResult$statistic
   n <- testResult$n
@@ -296,7 +296,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 
   # calculate the statistic r0Bar
   n <- length(data)
-  mu0 <- .normalizeData(options$testValue, options$period)    # test direction must be normalized as well
+  mu0 <- .normalizeData(options$testValue, options$customPeriod)    # test direction must be normalized as well
   meanDirection <- as.numeric(circular::mean.circular(data))
   meanResultantLength <- as.numeric(circular::rho.circular(data))
   r0Bar <- meanResultantLength * cos(meanDirection - mu0)
@@ -312,20 +312,20 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 }
 
 .circularTestsOneSampleComputeResultsVonMises <- function(jaspResults, dataset, options){
-  splitName <- options$splitby
+  splitName <- options$splitVariable
   wantsSplit <- splitName != ""
   variables <- unlist(options$variables)
 
   circularTestsOneSampleVonMisesTestResults <- list()
 
   if (wantsSplit){
-    split       <- dataset[[.v(options$splitby)]]
+    split       <- dataset[[.v(options$splitVariable)]]
     splitLevels <- levels(split)
     for(variable in variables){
       for(level in splitLevels){
         column    <- dataset[[.v(variable)]][split == level]
         validData <- column[!is.na(column)]
-        validDataNormalized <- .normalizeData(validData, options$period)
+        validDataNormalized <- .normalizeData(validData, options$customPeriod)
         validDataCirc <- circular::circular(validDataNormalized)
         testResults <- .circularTestsOneSampleComputeResultsVonMisesSub(validDataCirc, options, "vonmises")
         circularTestsOneSampleVonMisesTestResults[[variable]][[level]] <- list(
@@ -342,7 +342,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
     for (variable in variables){
       column <- dataset[[.v(variable)]]
       validData <- column[!is.na(column)]
-      validDataNormalized <- .normalizeData(validData, options$period)
+      validDataNormalized <- .normalizeData(validData, options$customPeriod)
       validDataCirc <- circular::circular(validDataNormalized)
       testResults <- .circularTestsOneSampleComputeResultsVonMisesSub(validDataCirc, options, "vonmises")
       circularTestsOneSampleVonMisesTestResults[[variable]] <- list(
@@ -357,7 +357,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   return(circularTestsOneSampleVonMisesTestResults)
 }
 .circularTestsOneSampleComputeResultsVonMisesSub <- function(data, options, dist = "vonmises"){
-  alpha <- as.numeric(options$alphaVonMises)
+  alpha <- as.numeric(options$vonMisesCheckAlpha)
 
   # Get the estimated kappa for the footnote. If kappa is too small, the data might be rather uniform.
   kappa <- circular::mle.vonmises(data, bias = FALSE)$kappa
@@ -390,12 +390,12 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 # Output functions ----
 .circularTestsOneSampleCreateTable <- function(jaspResults, dataset, options, circularTestsOneSampleResults, ready) {
 
-  wantsSplit <- options$splitby != ""
+  wantsSplit <- options$splitVariable != ""
   
   # Create table
   oneSampleTable <- createJaspTable(title = gettext("Uniformity Tests"))
   jaspResults[["oneSampleTable"]] <- oneSampleTable
-  jaspResults[["oneSampleTable"]]$dependOn(options = c("variables", "splitby", "rao", "alphaRao", "rayleigh", "modifiedRayleigh", "period", "periodGroup"))
+  jaspResults[["oneSampleTable"]]$dependOn(options = c("variables", "splitVariable", "rao", "raoAlpha", "rayleigh", "modifiedRayleigh", "customPeriod", "period"))
 
   oneSampleTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -433,11 +433,11 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
   }
 }
 .circularTestsOneSampleFillTable <- function(oneSampleTable, circularTestsOneSampleResults, options, dataset) {
-  splitName <- options$splitby
+  splitName <- options$splitVariable
   wantsSplit <- splitName != ""
   variables <- unlist(options$variables)
   if (wantsSplit) {
-    split <- dataset[[.v(options$splitby)]]
+    split <- dataset[[.v(options$splitVariable)]]
     splitLevels <- levels(split)
     
     rowNamesForRaoFootnote <- c()
@@ -484,16 +484,16 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
     }
   }
   if (options$rao)
-    oneSampleTable$addFootnote(message = gettextf("The Rao spacing test was run with %s = %s, %s", "\u03B1", options$alphaRao, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
+    oneSampleTable$addFootnote(message = gettextf("The Rao spacing test was run with %s = %s, %s", "\u03B1", options$raoAlpha, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
 }
 
 .circularTestsOneSampleCreateTableVonMises <-function (jaspResults, dataset, options, circularTestsOneSampleVonMisesTestResults, ready){
-  wantsSplit <- options$splitby != ""
+  wantsSplit <- options$splitVariable != ""
   
   # Create table
   vonMisesCheckTable <- createJaspTable(title = gettext("Von Mises Assumption Check"))
   jaspResults[["vonMisesCheckTable"]] <- vonMisesCheckTable
-  jaspResults[["vonMisesCheckTable"]]$dependOn(options = c("variables", "splitby", "vonMisesCheck", "alphaVonMises", "period", "periodGroup"))
+  jaspResults[["vonMisesCheckTable"]]$dependOn(options = c("variables", "splitVariable", "vonMisesCheck", "vonMisesCheckAlpha", "customPeriod", "period"))
 
   vonMisesCheckTable$showSpecifiedColumnsOnly <- TRUE
 
@@ -523,12 +523,12 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
 }
 .circularTestsOneSampleFillTableVonMises <- function(vonMisesCheckTable, circularTestsOneSampleVonMisesTestResults, options, dataset) {
   
-  splitName <- options$splitby
+  splitName <- options$splitVariable
   wantsSplit <- splitName != ""
   variables <- unlist(options$variables)
   
   if (wantsSplit){
-    split       <- dataset[[.v(options$splitby)]]
+    split       <- dataset[[.v(options$splitVariable)]]
     splitLevels <- levels(split)
     
     rowsForKappaFootnote <- c()
@@ -555,6 +555,6 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
         rowsForKappaFootnote <- c(rowsForKappaFootnote, paste(variable))
     }
     vonMisesCheckTable$addFootnote(message = gettextf("Do not trust a significant result where %s is small (< 1). The data could rather be uniform.", "\u03BA"), colNames = "kappa", rowNames = rowsForKappaFootnote)
-    vonMisesCheckTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("The test is run with %s = %s, so please compare the statistics to the critical value.", "\u03B1", options$alphaVonMises))
+    vonMisesCheckTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("The test is run with %s = %s, so please compare the statistics to the critical value.", "\u03B1", options$vonMisesCheckAlpha))
   }
 }

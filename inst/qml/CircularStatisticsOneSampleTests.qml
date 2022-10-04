@@ -30,7 +30,7 @@ Form
 	{
 		AvailableVariablesList	{ name: "allVariablesList" }
 		AssignedVariablesList	{ name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
-		AssignedVariablesList	{ name: "splitby";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
+		AssignedVariablesList	{ name: "splitVariable";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
 	}
 
 	ColumnLayout
@@ -46,7 +46,7 @@ Form
 				name: "rao"; label: qsTr("Rao's Spacing"); checked: true
 				RadioButtonGroup
 				{
-					name: "alphaRao"
+					name: "raoAlpha"
 					indent: true
 					radioButtonsOnSameRow: true
 					RadioButton { value: "0.01";	label: qsTr("α = 0.01")	}
@@ -73,7 +73,7 @@ Form
 				name: "vonMisesCheck";	label: qsTr("Von Mises (Watson's goodness-of-fit)")
 				RadioButtonGroup
 				{
-					name: "alphaVonMises"
+					name: "vonMisesCheckAlpha"
 					indent: true
 					radioButtonsOnSameRow: true
 					RadioButton { value: "0.01";	label: qsTr("α = 0.01")	}
