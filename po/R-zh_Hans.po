@@ -109,7 +109,7 @@ msgstr ""
 msgid "<em>Warning.</em>"
 msgstr ""
 
-msgid "Concentration parameters (%s) not equal between the groups of factor %s. The Watson-Williams test might not be applicable."
+msgid "Concentration parameters (%1$s) not equal between the groups of factor %2$s. The Watson-Williams test might not be applicable."
 msgstr ""
 
 msgid "Some groups of factor %s contain less than 10 measurements. The Watson-Wheeler test might not be applicable."
@@ -124,16 +124,16 @@ msgstr ""
 msgid "Mean Square"
 msgstr "均方"
 
-msgid "Estimated %s is %s (> 2). The respective routine was run."
+msgid "Estimated %1$s is %2$s (> 2). The respective routine was run."
 msgstr ""
 
-msgid "Estimated %s is %s (< 2). The respective routine was run."
+msgid "Estimated %1$s is %2$s (< 2). The respective routine was run."
 msgstr ""
 
 msgid "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data."
 msgstr ""
 
-msgid "The data of the variable %s on level %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
+msgid "The data of the variable %1$s on level %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
 
 msgid "The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
@@ -172,7 +172,7 @@ msgstr "统计量"
 msgid "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."
 msgstr ""
 
-msgid "The Rao spacing test was run with %s = %s, %s"
+msgid "The Rao spacing test was run with %1$s = %2$s, %3$s"
 msgstr ""
 
 msgid "Von Mises Assumption Check"

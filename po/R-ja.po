@@ -113,8 +113,8 @@ msgstr "W と比較する %s%s 分布の自由度."
 msgid "<em>Warning.</em>"
 msgstr "<em>警告</em>"
 
-msgid "Concentration parameters (%s) not equal between the groups of factor %s. The Watson-Williams test might not be applicable."
-msgstr "集中度パラメータ(%s)が要因%sの群間で等しくありません。Watson-Williams 検定が適用できない可能性があります."
+msgid "Concentration parameters (%1$s) not equal between the groups of factor %2$s. The Watson-Williams test might not be applicable."
+msgstr "集中度パラメータ(%1$s)が要因%2$sの群間で等しくありません。Watson-Williams 検定が適用できない可能性があります."
 
 msgid "Some groups of factor %s contain less than 10 measurements. The Watson-Wheeler test might not be applicable."
 msgstr "要因 %s の一部の群には 10 個未満の測定値しか含まれていません。Watson-Wheeler 検定が適用できない場合があります."
@@ -128,19 +128,19 @@ msgstr "平方和"
 msgid "Mean Square"
 msgstr "平均平方"
 
-msgid "Estimated %s is %s (> 2). The respective routine was run."
-msgstr "推定値 %s は %s (> 2)です。それぞれのルーチンが実行されました."
+msgid "Estimated %1$s is %2$s (> 2). The respective routine was run."
+msgstr "推定値 %1$s は %2$s (> 2)です。それぞれのルーチンが実行されました."
 
-msgid "Estimated %s is %s (< 2). The respective routine was run."
-msgstr "推定値 %s は %s (< 2)です。それぞれのルーチンが実行されました."
+msgid "Estimated %1$ is %2$s (< 2). The respective routine was run."
+msgstr "推定値 %1$s は %2$s (< 2)です。それぞれのルーチンが実行されました."
 
 msgid "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data."
 msgstr ""
 "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for "
 "Circular Data."
 
-msgid "The data of the variable %s on level %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
-msgstr "水準 %s の変数 %s のデータは、集中度の許容値を超えています。データはほぼゼロの分散を示しています。期間の指定が間違っていませんか?"
+msgid "The data of the variable %1$s on level %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
+msgstr "水準 %1$s の変数 %2$s のデータは、集中度の許容値を超えています。データはほぼゼロの分散を示しています。期間の指定が間違っていませんか?"
 
 msgid "The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr "変数 %s のデータが、集中度の許容値を超えています。データはほぼゼロの分散を示しています。期間の指定が間違っていませんか?"
@@ -180,8 +180,8 @@ msgstr ""
 "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability "
 "Values for Raos Spacing Test."
 
-msgid "The Rao spacing test was run with %s = %s, %s"
-msgstr "Rao spacing 検定は、%s = %s, %sで実行されました"
+msgid "The Rao spacing test was run with %1$s = %2$s, %3$s"
+msgstr "Rao spacing 検定は、%1$s = %2$s, %3$sで実行されました"
 
 msgid "Von Mises Assumption Check"
 msgstr "フォンミーゼスの仮定の確認"
