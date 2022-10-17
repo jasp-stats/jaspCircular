@@ -427,7 +427,7 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
       
       # add a warning if the equal kappa assumption is violated
       if(row$equalKappaTestPvalue < 0.05)
-        oneWayAnovaTable$addFootnote(symbol = gettext("<em>Warning.</em>"), message = gettextf("Concentration parameters (%s) not equal between the groups of factor %s. The Watson-Williams test might not be applicable.", row$kappas, fac))
+        oneWayAnovaTable$addFootnote(symbol = gettext("<em>Warning.</em>"), message = gettextf("Concentration parameters (%1$s) not equal between the groups of factor %2$s. The Watson-Williams test might not be applicable.", row$kappas, fac))
     }
     
     if (options$watsonWheeler){
@@ -473,14 +473,14 @@ CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options,
     twoWayAnovaTable$addColumnInfo(name = "ss", title = gettext("Sum of Square"), type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "ms", title = gettext("Mean Square"),   type = "number", format = "dp:3")
     footnote <- paste(footnote, 
-                      gettextf("Estimated %s is %s (> 2). The respective routine was run.", "\u03BA", round(kappa, digits = 2)), 
+                      gettextf("Estimated %1$s is %2$s (> 2). The respective routine was run.", "\u03BA", round(kappa, digits = 2)), 
                       collapse = " ")
   } else {
     twoWayAnovaTable$addColumnInfo(name = "p",   title = gettext("p"),   type = "pvalue")
     twoWayAnovaTable$addColumnInfo(name = "chi", title = "\u03C7\u00B2", type = "number", format = "dp:3")
     twoWayAnovaTable$addColumnInfo(name = "df",  title = gettext("df"),  type = "integer")
     footnote <- paste(footnote, 
-                      gettextf("Estimated %s is %s (< 2). The respective routine was run.", "\u03BA", round(kappa, digits = 2)), 
+                      gettextf("Estimated %1$s is %2$s (< 2). The respective routine was run.", "\u03BA", round(kappa, digits = 2)), 
                       collapse = " ")
   }
   twoWayAnovaTable$addFootnote(message = footnote)

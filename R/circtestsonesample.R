@@ -149,7 +149,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
           validDataCirc <- circular::circular(validDataNormalized)
           meanResultantLength <- as.numeric(circular::rho.circular(validDataCirc))
           if (abs(meanResultantLength-1) < tolerance)    # The maximum mean resultant length is 1. So if it exceeds the tolerance, return an error.
-            return(gettextf("The data of the variable %s on level %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?", variable, level))
+            return(gettextf("The data of the variable %1$s on level %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?", variable, level))
         }
       }
     } else{
@@ -484,7 +484,7 @@ CircularStatisticsOneSampleTests <- function(jaspResults, dataset, options, ...)
     }
   }
   if (options$rao)
-    oneSampleTable$addFootnote(message = gettextf("The Rao spacing test was run with %s = %s, %s", "\u03B1", options$raoAlpha, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
+    oneSampleTable$addFootnote(message = gettextf("The Rao spacing test was run with %1$s = %2$s, %3$s", "\u03B1", options$raoAlpha, "so please compare the statistics to the critical value."), colNames = "testName", rowNames = rowNamesForRaoFootnote)
 }
 
 .circularTestsOneSampleCreateTableVonMises <-function (jaspResults, dataset, options, circularTestsOneSampleVonMisesTestResults, ready){
