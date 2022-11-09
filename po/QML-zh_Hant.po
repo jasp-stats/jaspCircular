@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-01 15:28+0000\n"
+"PO-Revision-Date: 2022-11-08 09:33+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspcircular-qml/zh_Hant/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.14.2\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -38,7 +38,7 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "變數"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
@@ -106,7 +106,7 @@ msgstr "依變數"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Fixed Factors"
-msgstr ""
+msgstr "固定因子"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
@@ -130,11 +130,11 @@ msgstr ""
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
-msgstr ""
+msgstr "變數"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
-msgstr ""
+msgstr "分群"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
@@ -170,7 +170,7 @@ msgstr ""
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Assumption Checks"
-msgstr ""
+msgstr "檢查統計技術假設"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Von Mises (Watson's goodness-of-fit)"
