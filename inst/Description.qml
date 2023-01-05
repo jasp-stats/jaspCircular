@@ -12,6 +12,7 @@ Description
 	website		: "eye-tuebingen.de/berenslab/"
 	license		: "GPL (>= 2)"
 	icon		: "analysis-circstats-descriptives.svg"
+	hasWrappers	: true
 
 	GroupTitle
 	{

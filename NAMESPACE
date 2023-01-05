@@ -1,3 +1,6 @@
+export(CircularStatisticsDescriptivesInternal)
+export(CircularStatisticsOneSampleTestsInternal)
+export(CircularStatisticsMultipleSampleTestsInternal)
 export(CircularStatisticsDescriptives)
 export(CircularStatisticsOneSampleTests)
 export(CircularStatisticsMultipleSampleTests)
