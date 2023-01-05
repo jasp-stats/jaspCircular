@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-CircularStatisticsMultipleSampleTests <- function(jaspResults, dataset, options, ...) {
+CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
   if (options$period == "pi")
     options$customPeriod <- pi

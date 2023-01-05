@@ -21,7 +21,7 @@ gettextf <- function(fmt, ..., domain = NULL)  {
   return(sprintf(gettext(fmt, domain = domain), ...))
 }
 
-CircularStatisticsDescriptives <- function(jaspResults, dataset, options, ...) {
+CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options, ...) {
   # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
   if (options$period == "pi")
     options$customPeriod <- pi
