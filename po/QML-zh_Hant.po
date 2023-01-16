@@ -1,16 +1,10 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-08 09:33+0000\n"
-"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
-"jasp/jaspcircular-qml/zh_Hant/>\n"
-"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Language: zh_hant\n"
-"X-Generator: Weblate 4.14.2\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -41,9 +35,10 @@ msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
 msgstr "變數"
 
+#, fuzzy
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
-msgstr ""
+msgstr "分群"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
