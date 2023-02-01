@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-01-31 20:35+0000\n"
+"Last-Translator: Ünal Halit ÖZDEN <uozden@ticaret.edu.tr>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
+"jaspcircular-qml/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.16-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
@@ -21,7 +27,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Hypothesis Tests"
-msgstr ""
+msgstr "Hipotez Testleri"
 
 msgctxt "Description|"
 msgid "Circular One-Sample Tests"
@@ -33,7 +39,7 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Değişkenler"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
@@ -41,11 +47,11 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "Grafikler"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Dağılım grafikleri"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
@@ -57,15 +63,15 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display histogram"
-msgstr ""
+msgstr "Histogramı göster"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "İstatistik"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "Merkezi Eğilim"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
@@ -77,19 +83,19 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Medyan"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "Dağılım"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Std. deviation"
-msgstr ""
+msgstr "std. sapma"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Varyans"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Range"
@@ -97,15 +103,15 @@ msgstr ""
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Dependent Variable"
-msgstr ""
+msgstr "Bağımlı değişken"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Fixed Factors"
-msgstr ""
+msgstr "Sabit Faktörler"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "Tek yönlü ANOVA"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Williams (parametric)"
@@ -113,19 +119,19 @@ msgstr ""
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Wheeler (non-parametric)"
-msgstr ""
+msgstr "Watson-Wheeler (parametrik olmayan)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Two-way ANOVA"
-msgstr ""
+msgstr "İki yönlü ANOVA"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Harrison-Kanji"
-msgstr ""
+msgstr "Harrison-Kanji"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
-msgstr ""
+msgstr "Değişkenler"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
