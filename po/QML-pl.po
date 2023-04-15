@@ -1,10 +1,16 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-04-14 19:49+0000\n"
+"Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
+"jaspcircular-qml/pl/>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17-dev\n"
 "X-Language: pl\n"
 "X-Qt-Contexts: true\n"
 
@@ -22,7 +28,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Hypothesis Tests"
-msgstr ""
+msgstr "Testowanie hipotez"
 
 msgctxt "Description|"
 msgid "Circular One-Sample Tests"
@@ -34,19 +40,19 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Zmienne"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Podziel"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "Wykresy"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Wykresy rozkładów"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
@@ -58,11 +64,11 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display histogram"
-msgstr ""
+msgstr "Wyświetl histogram"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Statystyki"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
@@ -78,11 +84,11 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Mediana"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "Rozproszenie"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Std. deviation"
@@ -90,47 +96,47 @@ msgstr "Odchylenie std."
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Wariancja"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Rozstęp"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Dependent Variable"
-msgstr ""
+msgstr "Zmienna zależna"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Fixed Factors"
-msgstr ""
+msgstr "Czynniki stałe"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "Jednoczynnikowa ANOVA"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Williams (parametric)"
-msgstr ""
+msgstr "Watson-Williams (parametryczny)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Wheeler (non-parametric)"
-msgstr ""
+msgstr "Watson-Wheeler (nieparametryczny)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Two-way ANOVA"
-msgstr ""
+msgstr "Dwuczynnikowa ANOVA"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Harrison-Kanji"
-msgstr ""
+msgstr "Harrison-Kanji"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
-msgstr ""
+msgstr "Zmienne"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
-msgstr ""
+msgstr "Podziel"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
@@ -142,31 +148,31 @@ msgstr ""
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.01"
-msgstr ""
+msgstr "α = 0.01"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.05"
-msgstr ""
+msgstr "α = 0.05"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.1"
-msgstr ""
+msgstr "α = 0.1"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "V (modified Rayleigh)"
-msgstr ""
+msgstr "V (zmodyfikowny Rayleigh)"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Test value:"
-msgstr ""
+msgstr "Wartość testu:"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Assumption Checks"
-msgstr ""
+msgstr "Weryfikacja założeń"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Von Mises (Watson's goodness-of-fit)"
@@ -178,11 +184,11 @@ msgstr ""
 
 msgctxt "Period|"
 msgid "π"
-msgstr ""
+msgstr "π"
 
 msgctxt "Period|"
 msgid "2π"
-msgstr ""
+msgstr "2π"
 
 msgctxt "Period|"
 msgid "Custom:"
