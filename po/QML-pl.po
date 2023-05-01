@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-29 08:47+0000\n"
+"PO-Revision-Date: 2023-05-02 05:11+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspcircular-qml/pl/>\n"
@@ -44,7 +44,7 @@ msgstr "Zmienne"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
-msgstr "Podziel"
+msgstr "Podziel według"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
@@ -136,7 +136,7 @@ msgstr "Zmienne"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
-msgstr "Podziel"
+msgstr "Podziel według"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
