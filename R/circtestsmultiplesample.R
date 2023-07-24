@@ -400,7 +400,7 @@ CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, 
 
   oneWayAnovaTable$addFootnote(message = gettextf("All statistics are calculated on a normalized period of 2%s.", "\u03C0"))
   if (options$watsonWheeler)
-    oneWayAnovaTable$addFootnote(message = gettextf("The degrees of freedom of the %s%s-distribution to which W is compared.", "\u03C7", "\u00B2"), colNames = "df")
+    oneWayAnovaTable$addFootnote(message = gettextf("The degrees of freedom of the %1$s%2$s-distribution to which W is compared.", "\u03C7", "\u00B2"), colNames = "df")
 
   # add citations
   oneWayAnovaTable$addCitation(gettext("Aaron Bahde and Philipp Berens (2019). University of Tuebingen."))

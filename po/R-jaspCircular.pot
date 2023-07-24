@@ -100,7 +100,7 @@ msgstr ""
 msgid "All statistics are calculated on a normalized period of 2%s."
 msgstr ""
 
-msgid "The degrees of freedom of the %s%s-distribution to which W is compared."
+msgid "The degrees of freedom of the %1$s%2$s-distribution to which W is compared."
 msgstr ""
 
 msgid "<em>Warning.</em>"
@@ -184,5 +184,5 @@ msgstr ""
 msgid "Do not trust a significant result where %s is small (< 1). The data could rather be uniform."
 msgstr ""
 
-msgid "The test is run with %s = %s, so please compare the statistics to the critical value."
+msgid "The test is run with %1$s = %2$s, so please compare the statistics to the critical value."
 msgstr ""

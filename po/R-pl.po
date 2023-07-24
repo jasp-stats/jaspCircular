@@ -113,7 +113,7 @@ msgstr "df"
 msgid "All statistics are calculated on a normalized period of 2%s."
 msgstr ""
 
-msgid "The degrees of freedom of the %s%s-distribution to which W is compared."
+msgid "The degrees of freedom of the %1$s%2$s-distribution to which W is compared."
 msgstr ""
 
 msgid "<em>Warning.</em>"
@@ -219,6 +219,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"The test is run with %s = %s, so please compare the statistics to the "
+"The test is run with %1$s = %2$s, so please compare the statistics to the "
 "critical value."
 msgstr ""
