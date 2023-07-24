@@ -555,6 +555,6 @@ CircularStatisticsOneSampleTestsInternal <- function(jaspResults, dataset, optio
         rowsForKappaFootnote <- c(rowsForKappaFootnote, paste(variable))
     }
     vonMisesCheckTable$addFootnote(message = gettextf("Do not trust a significant result where %s is small (< 1). The data could rather be uniform.", "\u03BA"), colNames = "kappa", rowNames = rowsForKappaFootnote)
-    vonMisesCheckTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("The test is run with %s = %s, so please compare the statistics to the critical value.", "\u03B1", options$vonMisesCheckAlpha))
+    vonMisesCheckTable$addFootnote(symbol = gettext("<em>Note.</em>"), message = gettextf("The test is run with %1$s = %2$s, so please compare the statistics to the critical value.", "\u03B1", options$vonMisesCheckAlpha))
   }
 }

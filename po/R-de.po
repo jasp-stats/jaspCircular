@@ -124,8 +124,8 @@ msgstr ""
 "Alle Statistiken sind bezüglich einer normalisierten Periode von 2%s "
 "berechnet."
 
-msgid "The degrees of freedom of the %s%s-distribution to which W is compared."
-msgstr "Die Freiheitsgrade der %s%s-Verteilung, mit der W verglichen wird."
+msgid "The degrees of freedom of the %1$s%2$s-distribution to which W is compared."
+msgstr "Die Freiheitsgrade der %1$s%2$s-Verteilung, mit der W verglichen wird."
 
 msgid "<em>Warning.</em>"
 msgstr "<em>Warnung.</em>"
@@ -250,10 +250,10 @@ msgstr ""
 "Daten könnten auch eher uniform sein."
 
 msgid ""
-"The test is run with %s = %s, so please compare the statistics to the "
+"The test is run with %1$s = %2$s, so please compare the statistics to the "
 "critical value."
 msgstr ""
-"Der Test wird mit %s = %s durchgeführt, also bitte die Statistiken mit dem "
+"Der Test wird mit %1$s = %2$s durchgeführt, also bitte die Statistiken mit dem "
 "kritischen Wert vergleichen."
 
 #~ msgid "All statistics are caclulated on a normalized period of 2%s."
