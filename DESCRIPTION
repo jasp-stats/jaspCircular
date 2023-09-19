@@ -1,7 +1,7 @@
 Package: jaspCircular
 Type: Package
 Title: CircularStatistics Module for JASP
-Version: 0.18.0
+Version: 0.18.1
 Date: 2022-10-05
 Author: Aaron Bahde, Philipp Berens (University of Tuebingen)
 Website: eye-tuebingen.de/berenslab
