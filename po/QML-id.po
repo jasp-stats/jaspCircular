@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-11-20 23:04+0000\n"
+"Last-Translator: rania rahida <raniarahida3@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
+"jaspcircular-qml/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.2\n"
 "X-Language: id\n"
 "X-Qt-Contexts: true\n"
 
@@ -33,7 +39,7 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabel"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
@@ -41,11 +47,11 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "Plot"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Plot distribusi"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
@@ -57,11 +63,11 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display histogram"
-msgstr ""
+msgstr "Tampilan Histogram"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Statistik"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
@@ -77,11 +83,11 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Median"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "Sebaran"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Std. deviation"
@@ -97,11 +103,11 @@ msgstr ""
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Dependent Variable"
-msgstr ""
+msgstr "Variabel Terikat"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Fixed Factors"
-msgstr ""
+msgstr "Faktor Tetap"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
@@ -125,7 +131,7 @@ msgstr ""
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabel"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
@@ -185,4 +191,4 @@ msgstr ""
 
 msgctxt "Period|"
 msgid "Custom:"
-msgstr ""
+msgstr "Kustom:"
