@@ -19,7 +19,7 @@
 
 CircularStatisticsMultipleSampleTests <- function(
           data = NULL,
-          version = "0.17",
+          version = "0.18.2",
           customPeriod = 360,
           dependent = "",
           fixedFactors = list(),

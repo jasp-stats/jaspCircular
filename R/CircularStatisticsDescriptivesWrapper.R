@@ -19,7 +19,7 @@
 
 CircularStatisticsDescriptives <- function(
           data = NULL,
-          version = "0.17",
+          version = "0.18.2",
           customPeriod = 360,
           distributionPlot = FALSE,
           distributionPlotHistogram = FALSE,

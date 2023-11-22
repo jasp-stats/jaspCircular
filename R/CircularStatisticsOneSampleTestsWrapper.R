@@ -19,14 +19,14 @@
 
 CircularStatisticsOneSampleTests <- function(
           data = NULL,
-          version = "0.17",
+          version = "0.18.2",
           customPeriod = 360,
           modifiedRayleigh = FALSE,
           period = "pi2",
           plotHeight = 320,
           plotWidth = 480,
           rao = TRUE,
-          raoAlpha = "0.01",
+          raoAlpha = "0.05",
           rayleigh = FALSE,
           splitVariable = "",
           testValue = 180,
