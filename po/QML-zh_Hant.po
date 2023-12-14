@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-12-13 06:07+0000\n"
+"PO-Revision-Date: 2023-12-15 01:10+0000\n"
 "Last-Translator: Ginger Shu-Ying Yeh <gingershuying@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspcircular-qml/zh_Hant/>\n"
@@ -9,13 +9,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.3-dev\n"
+"X-Generator: Weblate 5.3\n"
 "X-Language: zh_hant\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Circular Statistics"
-msgstr ""
+msgstr "循環統計學"
 
 msgctxt "Description|"
 msgid "This module offers basic methods for directional data"
@@ -23,19 +23,19 @@ msgstr "此模組提供方向資料的基礎方法"
 
 msgctxt "Description|"
 msgid "Circular Descriptives"
-msgstr ""
+msgstr "圓形資料的敘述性統計"
 
 msgctxt "Description|"
 msgid "Hypothesis Tests"
-msgstr ""
+msgstr "假設檢定"
 
 msgctxt "Description|"
 msgid "Circular One-Sample Tests"
-msgstr ""
+msgstr "週期性單一樣本檢定"
 
 msgctxt "Description|"
 msgid "Circular Multiple-Sample Tests"
-msgstr ""
+msgstr "圓形資料的多樣本檢定"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
@@ -48,55 +48,55 @@ msgstr "分群"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "圖"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "分佈圖"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
-msgstr ""
+msgstr "堆疊點"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display mean vector"
-msgstr ""
+msgstr "顯示平均向量"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display histogram"
-msgstr ""
+msgstr "顯示直方圖"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "統計量"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "集中趨勢"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
-msgstr ""
+msgstr "平均方向"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean resultant length"
-msgstr ""
+msgstr "平均合成長度"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
-msgstr ""
+msgstr "中位數"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "離散"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Std. deviation"
-msgstr ""
+msgstr "標準差"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "變異數"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Range"
@@ -112,23 +112,23 @@ msgstr "固定因子"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "單因子變異數分析"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Williams (parametric)"
-msgstr ""
+msgstr "Watson-Williams (有母數)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Wheeler (non-parametric)"
-msgstr ""
+msgstr "Watson-Wheeler (無母數)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Two-way ANOVA"
-msgstr ""
+msgstr "雙因子變異數分析"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Harrison-Kanji"
-msgstr ""
+msgstr "Harrison-Kanji"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
@@ -136,11 +136,11 @@ msgstr "變數"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
-msgstr "分群"
+msgstr "分割"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "均勻性檢定"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rao's Spacing"
@@ -148,19 +148,19 @@ msgstr ""
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.01"
-msgstr ""
+msgstr "α = 0.01"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.05"
-msgstr ""
+msgstr "α = 0.05"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.1"
-msgstr ""
+msgstr "α = 0.1"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "V (modified Rayleigh)"
@@ -168,7 +168,7 @@ msgstr ""
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Test value:"
-msgstr ""
+msgstr "檢定值："
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Assumption Checks"
@@ -176,7 +176,7 @@ msgstr "檢查統計技術假設"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Von Mises (Watson's goodness-of-fit)"
-msgstr ""
+msgstr "Von Mises (Watson的適合度)"
 
 msgctxt "Period|"
 msgid "Period"
@@ -184,12 +184,12 @@ msgstr ""
 
 msgctxt "Period|"
 msgid "π"
-msgstr ""
+msgstr "π"
 
 msgctxt "Period|"
 msgid "2π"
-msgstr ""
+msgstr "2π"
 
 msgctxt "Period|"
 msgid "Custom:"
-msgstr ""
+msgstr "自訂："
