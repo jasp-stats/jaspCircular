@@ -22,7 +22,7 @@ msgstr "Descriptives Circulaires"
 
 msgctxt "Description|"
 msgid "Hypothesis Tests"
-msgstr ""
+msgstr "Tests d'Hypothèse"
 
 msgctxt "Description|"
 msgid "Circular One-Sample Tests"
