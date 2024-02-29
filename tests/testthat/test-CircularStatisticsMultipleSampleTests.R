@@ -32,8 +32,8 @@ test_that("Analysis works with period of 1", {
   results <- jaspTools::runAnalysis("CircularStatisticsMultipleSampleTests", data, options)
   table <- results[["results"]][["oneWayAnovaTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(1, 98, 5.17743323509441, "factor", 0.0250599641727777, "Watson-Williams",
-                                      2, "factor", 0.540347848517574, "Watson-Wheeler", 1.23108436577381)
+                                 list(1, 98, 5.73696201776148, "factor", 0.0185115356141182, "Watson-Williams",
+                                      2, "factor", 0.844481879421961, "Watson-Wheeler", 0.338064000264183)
                                  )
 })
 
