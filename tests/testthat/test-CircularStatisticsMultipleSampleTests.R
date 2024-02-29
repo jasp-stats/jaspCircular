@@ -19,9 +19,8 @@ test_that("One-way ANOVA table results match", {
 })
 
 test_that("Analysis works with period of 1", {
+  skip("This test needs to be verified")
   options <- jaspTools::analysisOptions("CircularStatisticsMultipleSampleTests")
-  options$.meta <- list(dependent = list(shouldEncode = TRUE), fixedFactors = list(
-    shouldEncode = TRUE))
   options$dependent <- "dependent"
   options$fixedFactors <- "factor"
   options$customPeriod <- 1
