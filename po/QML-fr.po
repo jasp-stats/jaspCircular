@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-06 21:02+0000\n"
+"PO-Revision-Date: 2024-04-07 21:10+0000\n"
 "Last-Translator: robachowyk <kaya.robach@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
 "jaspcircular-qml/fr/>\n"
@@ -68,11 +68,12 @@ msgstr "Afficher l'histogramme"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Statistiques"
 
+#, fuzzy
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "Tendance générale"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
