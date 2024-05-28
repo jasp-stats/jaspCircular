@@ -19,20 +19,20 @@
 
 CircularStatisticsOneSampleTests <- function(
           data = NULL,
-          version = "0.18.2",
+          version = "0.19",
           customPeriod = 360,
           modifiedRayleigh = FALSE,
           period = "pi2",
           plotHeight = 320,
           plotWidth = 480,
           rao = TRUE,
-          raoAlpha = "0.05",
+          raoAlpha = "0.01",
           rayleigh = FALSE,
           splitVariable = "",
           testValue = 180,
           variables = list(),
           vonMisesCheck = FALSE,
-          vonMisesCheckAlpha = "0.01") {
+          vonMisesCheckAlpha = "0.1") {
 
    defaultArgCalls <- formals(jaspCircular::CircularStatisticsOneSampleTests)
    defaultArgs <- lapply(defaultArgCalls, eval)
