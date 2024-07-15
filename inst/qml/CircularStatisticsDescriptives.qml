@@ -30,7 +30,7 @@ Form
 	{
 		AvailableVariablesList { name: "allVariablesList" }
 		AssignedVariablesList { name: "variables";	title: qsTr("Variables"); allowedColumns: ["scale"] }
-		AssignedVariablesList { name: "splitVariable";	title: qsTr("Split"); singleVariable: true; suggestedColumns: ["ordinal", "nominal"] }
+		AssignedVariablesList { name: "splitVariable";	title: qsTr("Split"); singleVariable: true; allowedColumns: ["nominal"] }
 	}
 
 	Circular.Period {}
