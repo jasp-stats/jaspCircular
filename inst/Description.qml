@@ -4,7 +4,7 @@ import JASP.Module
 Description
 {
 	name		: "jaspCircular"
-	title		: qsTr("Circular Statistics")
+	title		: qsTr("Circular Statistics (update)")
 	description	: qsTr("This module offers basic methods for directional data")
 	version			: "0.19.2"
 	author		: "Aaron Bahde, Philipp Berens (University of Tuebingen)"
@@ -13,6 +13,7 @@ Description
 	license		: "GPL (>= 2)"
 	icon		: "analysis-circstats-descriptives.svg"
 	hasWrappers	: true
+	preloadData: true
 
 	GroupTitle
 	{
