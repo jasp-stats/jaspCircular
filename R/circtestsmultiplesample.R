@@ -16,24 +16,16 @@
 #
 
 CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, options, ...) {
-  # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
+  # Get the correct period. This step is necessary since pi is hard to specify in the GUI.
   if (options$period == "pi")
     options$customPeriod <- pi
   if (options$period == "pi2")
     options$customPeriod <- 2 * pi
 
-  # Set title
-  #jaspResults$title <- "Test Results"
-
   ready <- (options$dependent != "") && (length(options$fixedFactors) > 0)
-  readyHK <- (options$dependent != "") && (length(options$fixedFactors) >= 2)    # The HK test is only runable if there are at least two factors.
-  if (ready){
-    # Read dataset
-    dataset <- .circularTestsMultipleSampleReadData(dataset, options)
-
-    # Error checking
-    .circularTestsMultipleSampleCheckErrors(dataset, options)
-  }
+  readyHK <- (options$dependent != "") && (length(options$fixedFactors) >= 2)    # The HK test is only runnable if there are at least two factors.
+  
+  if (ready) .circularTestsMultipleSampleCheckErrors(dataset, options)
   
   if(options$watsonWilliams || options$watsonWheeler){
     if(ready)
@@ -48,13 +40,7 @@ CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, 
   }
 }
 
-# Preprocessing functions ----
-.circularTestsMultipleSampleReadData <- function(dataset, options){
-  dependent <- unlist(options$dependent)
-  factors <- unlist(options$fixedFactors)
-  dataset <- .readDataSetToEnd(columns.as.numeric = dependent, columns.as.factor = factors)
-  return(dataset)
-}
+# Pre-processing functions ----
 .circularTestsMultipleSampleCheckErrors <- function(dataset, options){
     
   # check that there is at least one level for each fixed factor

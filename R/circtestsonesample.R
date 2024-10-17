@@ -16,26 +16,16 @@
 #
 
 CircularStatisticsOneSampleTestsInternal <- function(jaspResults, dataset, options, ...) {
-  # Get the correct customPeriod. This step is neccessary since pi is hard to specify in the GUI.
+  # Get the correct customPeriod. This step is necessary since pi is hard to specify in the GUI.
   if (options$period == "pi")
     options$customPeriod <- pi
   if (options$period == "pi2")
     options$period <- 2 * pi
 
-  # Set title
-  #jaspResults$title <- "Test Results"
-
   ready <- (length(options$variables) > 0)
   
-  # Read dataset
-  if(ready){
-    
-    dataset <- .circularTestsOneSampleReadData(dataset, options)
-
-    # Error checking
+  if(ready)
     errors <- .circularTestsOneSampleCheckErrors(dataset, options)
-  }
-
   
   # Output tables and plots
   if(options$rao || options$rayleigh || options$modifiedRayleigh){
@@ -50,18 +40,7 @@ CircularStatisticsOneSampleTestsInternal <- function(jaspResults, dataset, optio
   }
 }
 
-# Preprocessing functions ----
-.circularTestsOneSampleReadData <- function(dataset, options) {
-  variables <- unlist(options$variables)
-  splitName <- options$splitVariable
-  wantsSplit <- splitName != ""
-  if (wantsSplit) {
-    dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = splitName)
-  } else {
-    dataset <- .readDataSetToEnd(columns.as.numeric = variables)
-  }
-  return(dataset)
-}
+# Pre-processing functions ----
 .circularTestsOneSampleCheckErrors <- function(dataset, options){
   splitName <- options$splitVariable
   wantsSplit <- splitName != ""
