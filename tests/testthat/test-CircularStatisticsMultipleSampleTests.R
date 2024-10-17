@@ -27,7 +27,7 @@ test_that("Analysis works with period of 1", {
   options$period <- "custom"
   options$watsonWilliams <- TRUE
   set.seed(1)
-  data <- data.frame(dependent = rnorm(100), factor = sample(1:2, 100, TRUE))
+  data <- data.frame(dependent = rnorm(100), factor = factor(sample(1:2, 100, TRUE)))
   results <- jaspTools::runAnalysis("CircularStatisticsMultipleSampleTests", data, options)
   table <- results[["results"]][["oneWayAnovaTable"]][["data"]]
   jaspTools::expect_equal_tables(table,
@@ -46,8 +46,8 @@ test_that("Analysis throws an error for too concentrated data", {
   options$period <- "custom"
   options$watsonWilliams <- TRUE
   set.seed(1)
-  data <- data.frame(dependent = 1:100, factor = sample(1:2, 100, TRUE))
+  data <- data.frame(dependent = 1:100, factor = factor(sample(1:2, 100, TRUE)))
   results <- jaspTools::runAnalysis("CircularStatisticsMultipleSampleTests", data, options)
-  testthat::expect(results[["results"]][["error"]],
+  testthat::expect(isTRUE(results[["results"]][["error"]]),
                    "Analysis failed to check for too concentrated data")
 })
