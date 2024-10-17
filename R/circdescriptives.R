@@ -97,20 +97,20 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
 
   if (wantsSplit)
   {
-    split <- dataset[[.v(options$splitVariable)]]
+    split <- dataset[[options$splitVariable]]
     splitLevels <- levels(split)
 
     for (variable in variables)
       for (level in splitLevels)
       {
         results[["descr"]][[variable]][[level]] <- list()
-        column <- dataset[[.v(variable)]][split == level]
+        column <- dataset[[variable]][split == level]
         results[["descr"]][[variable]][[level]] <- .circularDescriptivesComputeResultsSub(column, options)
         }
   } else {
     for (variable in options$variables){
       results[["descr"]][[variable]] <- list()
-      column <- dataset[[.v(variable)]]
+      column <- dataset[[variable]]
       results[["descr"]][[variable]] <- .circularDescriptivesComputeResultsSub(column, options)
     }
   }
@@ -228,7 +228,7 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
   variables <- unlist(options$variables)
   if (wantsSplit)
   {
-    split <- dataset[[.v(options$splitVariable)]]
+    split <- dataset[[options$splitVariable]]
     splitLevels <- levels(split)
     
     for (variable in variables)
@@ -257,7 +257,7 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
   plotSize <- 320
   variables <- unlist(options$variables)
   if (wantsSplit) {
-    split <- dataset[[.v(options$splitVariable)]]
+    split <- dataset[[options$splitVariable]]
     splitLevels <- levels(split)
     for (variable in variables){
       containerLevelPlots <- createJaspContainer(title = variable, dependencies = c("variables", "splitVariable", "customPeriod", "period", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
@@ -297,7 +297,7 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
   
   variables <- unlist(options$variables)
   if (wantsSplit) {
-    split <- dataset[[.v(options$splitVariable)]]
+    split <- dataset[[options$splitVariable]]
     splitLevels <- levels(split)
     for (variable in variables){
       for (level in splitLevels){

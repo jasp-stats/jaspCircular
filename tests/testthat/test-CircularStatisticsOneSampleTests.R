@@ -42,7 +42,7 @@ test_that("Von Mises Assumption Check table results match", {
 
 
 test_that("Von Mises Assumption Check catches too concentrated data", {
-  options <- analysisOptions("CircularStatisticsOneSampleTests")
+  options <- jaspTools::analysisOptions("CircularStatisticsOneSampleTests")
   options$.meta <- list(splitVariable = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
   options$raoAlpha <- "0.01"
   options$vonMisesCheckAlpha <- "0.01"
@@ -52,7 +52,7 @@ test_that("Von Mises Assumption Check catches too concentrated data", {
   options$vonMisesCheck <- TRUE
   
   set.seed(1)
-  results <- runAnalysis("CircularStatisticsOneSampleTests", "test.csv", options)
+  results <- jaspTools::runAnalysis("CircularStatisticsOneSampleTests", "test.csv", options)
   
   if (jaspBase::getOS() == "osx") {
     errorMessage <- results[["results"]][["errorMessage"]]
