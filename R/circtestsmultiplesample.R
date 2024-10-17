@@ -83,10 +83,10 @@ CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, 
     fixedFactors <- unlist(options$fixedFactors)
     dependent <- unlist(options$dependent)
     for(fac in fixedFactors){
-      split <- dataset[[.v(fac)]]
+      split <- dataset[[fac]]
       splitLevels <- levels(split)
       for(level in splitLevels){
-        column <- dataset[[.v(dependent)]][split == level]
+        column <- dataset[[dependent]][split == level]
         validData <- column[!is.na(column)]
         validDataNormalized <- .normalizeData(validData, options$customPeriod)
         validDataCirc <- circular::circular(validDataNormalized)
@@ -125,9 +125,9 @@ CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, 
   dependent <- unlist(options$dependent)
 
   # get valid data and normalize period
-  validIndices <- !is.na(dataset[[.v(dependent)]])
-  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$customPeriod)
-  factorColumn <- dataset[[.v(fac)]][validIndices]
+  validIndices <- !is.na(dataset[[dependent]])
+  dependentColumnNormalized <- .normalizeData(dataset[[dependent]][validIndices], options$customPeriod)
+  factorColumn <- dataset[[fac]][validIndices]
 
   # Check if the test is applicable, i.e. the assumption of equal kappas across the groups is justified. Store the result to decide on a warning footnote when creating the table.
   equalKappaTestResult <- circular::equal.kappa.test(dependentColumnNormalized, factorColumn)
@@ -159,16 +159,16 @@ CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, 
   dependent <- unlist(options$dependent)
 
   # get valid data and normalize customPeriod
-  validIndices <- !is.na(dataset[[.v(dependent)]])
-  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$customPeriod)
-  factorColumn <- dataset[[.v(fac)]][validIndices]
+  validIndices <- !is.na(dataset[[dependent]])
+  dependentColumnNormalized <- .normalizeData(dataset[[dependent]][validIndices], options$customPeriod)
+  factorColumn <- dataset[[fac]][validIndices]
 
   # Check if each group has at least 10 measurements. Store the result to add a warning as a footnote later (if neccessary).
   hasTenMeasurementsPerGroup <- TRUE    # default is TRUE
-  split <- dataset[[.v(fac)]]
+  split <- dataset[[fac]]
   splitLevels <- levels(split)
   for (level in splitLevels){
-    groupData <- dataset[[.v(dependent)]][split == level]
+    groupData <- dataset[[dependent]][split == level]
     validGroupData <- groupData[!is.na(groupData)]
     groupSize <- length(validGroupData)
     if(groupSize < 10)
@@ -200,10 +200,10 @@ CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, 
   fac2 <- options$fixedFactors[2]
 
   # get valid data and normalize period
-  validIndices <- !is.na(dataset[[.v(dependent)]])
-  dependentColumnNormalized <- .normalizeData(dataset[[.v(dependent)]][validIndices], options$customPeriod)
-  fac1Column <- dataset[[.v(fac1)]][validIndices]
-  fac2Column <- dataset[[.v(fac2)]][validIndices]
+  validIndices <- !is.na(dataset[[dependent]])
+  dependentColumnNormalized <- .normalizeData(dataset[[dependent]][validIndices], options$customPeriod)
+  fac1Column <- dataset[[fac1]][validIndices]
+  fac2Column <- dataset[[fac2]][validIndices]
 
   results <- list()
 
