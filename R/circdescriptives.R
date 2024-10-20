@@ -22,31 +22,21 @@ gettextf <- function(fmt, ..., domain = NULL)  {
 }
 
 CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options, ...) {
-  # Get the correct period. This step is neccessary since pi is hard to specify in the GUI.
+  # Get the correct period. This step is necessary since pi is hard to specify in the GUI.
   if (options$period == "pi")
     options$customPeriod <- pi
   if (options$period == "pi2")
     options$customPeriod <- 2 * pi
 
-  # Set title
-  #jaspResults$title <- "Circular Descriptives"
-
   ready <- (length(options$variables) > 0)
-  
   # Determine if the user splits the calculation or not. It has an effect on the whole analysis.
   wantsSplit <- options$splitVariable != ""
-  
-  # Read dataset
-  if (ready){
-    dataset <- .circularDescriptivesReadData(dataset, options, wantsSplit)
-    
-    # Error checking
-    errors <- .circularDescriptivesCheckErrors(dataset, options)
-  }
-    
+
   # If ready, calculate the results
-  if (ready)
+  if (ready) {
+    errors <- .circularDescriptivesCheckErrors(dataset, options)
     circularDescriptivesResults <- try(.circularDescriptivesComputeResults(jaspResults, dataset, options))
+  }
   
   # Output tables
   if(is.null(jaspResults[["circularDescriptivesTable"]]))
@@ -55,19 +45,11 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
   # Output plots
   if(options$distributionPlot && is.null(jaspResults[["Plots"]]))
     .circularDescriptivesCreatePlot(jaspResults, dataset, options, circularDescriptivesResults, wantsSplit, ready)
+  
   return()
 }
 
-# Preprocessing functions ----
-.circularDescriptivesReadData <- function(dataset, options, wantsSplit) {
-  variables <- unlist(options$variables)
-  if (wantsSplit) {
-    splitName <- options$splitVariable
-    dataset         <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = splitName)
-  } else {
-    dataset         <- .readDataSetToEnd(columns.as.numeric = variables)
-  }
-}
+# Pre-processing functions ----
 
 .circularDescriptivesCheckErrors <- function(dataset, options){
   splitName <- options$splitVariable
@@ -115,20 +97,20 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
 
   if (wantsSplit)
   {
-    split <- dataset[[.v(options$splitVariable)]]
+    split <- dataset[[options$splitVariable]]
     splitLevels <- levels(split)
 
     for (variable in variables)
       for (level in splitLevels)
       {
         results[["descr"]][[variable]][[level]] <- list()
-        column <- dataset[[.v(variable)]][split == level]
+        column <- dataset[[variable]][split == level]
         results[["descr"]][[variable]][[level]] <- .circularDescriptivesComputeResultsSub(column, options)
         }
   } else {
     for (variable in options$variables){
       results[["descr"]][[variable]] <- list()
-      column <- dataset[[.v(variable)]]
+      column <- dataset[[variable]]
       results[["descr"]][[variable]] <- .circularDescriptivesComputeResultsSub(column, options)
     }
   }
@@ -246,7 +228,7 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
   variables <- unlist(options$variables)
   if (wantsSplit)
   {
-    split <- dataset[[.v(options$splitVariable)]]
+    split <- dataset[[options$splitVariable]]
     splitLevels <- levels(split)
     
     for (variable in variables)
@@ -275,7 +257,7 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
   plotSize <- 320
   variables <- unlist(options$variables)
   if (wantsSplit) {
-    split <- dataset[[.v(options$splitVariable)]]
+    split <- dataset[[options$splitVariable]]
     splitLevels <- levels(split)
     for (variable in variables){
       containerLevelPlots <- createJaspContainer(title = variable, dependencies = c("variables", "splitVariable", "customPeriod", "period", "distributionPlot", "distributionPlotMeanVector", "distributionPlotHistogram", "distributionPlotPointStack"))
@@ -315,7 +297,7 @@ CircularStatisticsDescriptivesInternal <- function(jaspResults, dataset, options
   
   variables <- unlist(options$variables)
   if (wantsSplit) {
-    split <- dataset[[.v(options$splitVariable)]]
+    split <- dataset[[options$splitVariable]]
     splitLevels <- levels(split)
     for (variable in variables){
       for (level in splitLevels){
