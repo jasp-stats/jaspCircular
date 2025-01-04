@@ -1,0 +1,187 @@
+msgid ""
+msgstr ""
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Circular Statistics"
+msgstr ""
+
+msgctxt "Description|"
+msgid "This module offers basic methods for directional data"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Circular Descriptives"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Hypothesis Tests"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Circular One-Sample Tests"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Circular Multiple-Sample Tests"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Variables"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Split"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Plots"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Distribution plots"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Stack points"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Display mean vector"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Display histogram"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Statistics"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Central Tendency"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Mean direction"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Mean resultant length"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Median"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Dispersion"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Std. deviation"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Variance"
+msgstr ""
+
+msgctxt "CircularStatisticsDescriptives|"
+msgid "Range"
+msgstr ""
+
+msgctxt "CircularStatisticsMultipleSampleTests|"
+msgid "Dependent Variable"
+msgstr ""
+
+msgctxt "CircularStatisticsMultipleSampleTests|"
+msgid "Fixed Factors"
+msgstr ""
+
+msgctxt "CircularStatisticsMultipleSampleTests|"
+msgid "One-way ANOVA"
+msgstr ""
+
+msgctxt "CircularStatisticsMultipleSampleTests|"
+msgid "Watson-Williams (parametric)"
+msgstr ""
+
+msgctxt "CircularStatisticsMultipleSampleTests|"
+msgid "Watson-Wheeler (non-parametric)"
+msgstr ""
+
+msgctxt "CircularStatisticsMultipleSampleTests|"
+msgid "Two-way ANOVA"
+msgstr ""
+
+msgctxt "CircularStatisticsMultipleSampleTests|"
+msgid "Harrison-Kanji"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "Variables"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "Split"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "Uniformity Tests"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "Rao's Spacing"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "α = 0.01"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "α = 0.05"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "α = 0.1"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "Rayleigh"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "V (modified Rayleigh)"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "Test value:"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "Assumption Checks"
+msgstr ""
+
+msgctxt "CircularStatisticsOneSampleTests|"
+msgid "Von Mises (Watson's goodness-of-fit)"
+msgstr ""
+
+msgctxt "Period|"
+msgid "Period"
+msgstr ""
+
+msgctxt "Period|"
+msgid "π"
+msgstr ""
+
+msgctxt "Period|"
+msgid "2π"
+msgstr ""
+
+msgctxt "Period|"
+msgid "Custom:"
+msgstr ""
