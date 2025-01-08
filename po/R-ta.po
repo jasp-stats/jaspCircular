@@ -2,187 +2,220 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspCircular 0.19.0\n"
 "POT-Creation-Date: 2024-05-29 02:42\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-01-04 06:04+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
+"jaspcircular-r/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid "Circular Descriptives"
-msgstr ""
+msgstr "வட்ட விளக்கங்கள்"
 
 msgid "Valid"
-msgstr ""
+msgstr "செல்லுபடியாகும்"
 
 msgid "Missing"
-msgstr ""
+msgstr "இல்லை"
 
 msgid "Mean Direction"
-msgstr ""
+msgstr "சராசரி திசை"
 
 msgid "Mean Resultant Length"
-msgstr ""
+msgstr "இதன் விளைவாக நீளம்"
 
 msgid "Median"
-msgstr ""
+msgstr "இடைநடு"
 
 msgid "Standard Deviation"
-msgstr ""
+msgstr "திட்டவிலக்கல், நியம விலகல்"
 
 msgid "Variance"
-msgstr ""
+msgstr "மாறுபாட்டெண்"
 
 msgid "Range"
-msgstr ""
+msgstr "வீச்சு"
 
 msgid "<em>Note.</em>"
-msgstr ""
+msgstr "<em> குறிப்பு.</em>"
 
 msgid "If not stated otherwise, all values are calculated on a normalized period of 2π."
 msgstr ""
+"வேறுவிதமாகக் கூறப்படாவிட்டால், அனைத்து மதிப்புகளும் 2π இயல்பாக்கப்பட்ட காலகட்டத்தில் "
+"கணக்கிடப்படுகின்றன."
 
 msgid "Value is shown with respect to the original period."
-msgstr ""
+msgstr "அசல் காலத்தைப் பொறுத்து மதிப்பு காட்டப்பட்டுள்ளது."
 
 msgid "Aaron Bahde and Philipp Berens (2019). University of Tuebingen."
-msgstr ""
+msgstr "ஆரோன் பாவ்தே மற்றும் பிலிப் பியர்ச் (2019). குழாய்களின் உலகளாவிய தன்மை."
 
 msgid "Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."
 msgstr ""
+"உல்ரிக் லண்ட் மற்றும் கிளாடியோ அகோச்டினெல்லி (2017). வட்ட (பதிப்பு 0.4-93): வட்ட "
+"புள்ளிவிவரங்கள் [ஆர் தொகுப்பு]."
 
 msgid "Circular Descriptives Plots"
-msgstr ""
+msgstr "வட்ட விளக்கங்கள் அடுக்கு"
 
 msgid "The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error: %s"
 msgstr ""
+"சதித்திட்டம் சில கணக்கீடுகளைப் பொறுத்தது (எ.கா. சராசரி திசை). ஆனால் கணக்கீடுகள் பின்வரும் "
+"பிழையைத் திருப்பின: %s"
 
 msgid "The plotting for this set-up failed with: %s"
-msgstr ""
+msgstr "இந்த அமைப்பிற்கான சூழ்ச்சி தோல்வியுற்றது: %s"
 
 msgid "The data of the dependent variable %1$s grouped on factor %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"காரணி %2$s இல் தொகுக்கப்பட்ட சார்பு மாறியின் தரவு %1$s இன் தரவு செறிவுக்கான "
+"சகிப்புத்தன்மையை மீறுகிறது. தரவு கிட்டத்தட்ட சுழிய மாறுபாட்டைக் காட்டுகிறது. தவறான "
+"காலத்தை நீங்கள் குறிப்பிட்டுள்ளீர்களா?"
 
 msgid "Watson-Williams"
-msgstr ""
+msgstr "வாட்சன்-வில்லியம்ச்"
 
 msgid "Watson-Wheeler"
-msgstr ""
+msgstr "வாட்சன்-வீலர்"
 
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "ஒரு வழி ANOVA"
 
 msgid "Cases"
-msgstr ""
+msgstr "வழக்குகள்"
 
 msgid "Test"
-msgstr ""
+msgstr "தேர்வு"
 
 msgid "p"
 msgstr ""
 
 msgid "F"
-msgstr ""
+msgstr "F"
 
 msgid "df1"
-msgstr ""
+msgstr "டி.எஃப் 1"
 
 msgid "df2"
-msgstr ""
+msgstr "டி.எஃப் 2"
 
 msgid "W"
-msgstr ""
+msgstr "W"
 
 msgid "df"
 msgstr ""
 
 msgid "All statistics are calculated on a normalized period of 2%s."
 msgstr ""
+"அனைத்து புள்ளிவிவரங்களும் 2%s இயல்பாக்கப்பட்ட காலகட்டத்தில் கணக்கிடப்படுகின்றன."
 
 msgid "The degrees of freedom of the %1$s%2$s-distribution to which W is compared."
-msgstr ""
+msgstr "W ஒப்பிடப்படும் %1$s %2$s- விநியோகத்தின் சுதந்திரத்தின் அளவுகள்."
 
 msgid "<em>Warning.</em>"
-msgstr ""
+msgstr "<em> எச்சரிக்கை. </em>"
 
 msgid "Concentration parameters (%1$s) not equal between the groups of factor %2$s. The Watson-Williams test might not be applicable."
 msgstr ""
+"செறிவு அளவுருக்கள் ( %1$s) காரணி %2$s குழுக்களுக்கு இடையில் சமமாக இல்லை. "
+"வாட்சன்-வில்லியம்ச் சோதனை பொருந்தாது."
 
 msgid "Some groups of factor %s contain less than 10 measurements. The Watson-Wheeler test might not be applicable."
 msgstr ""
+"காரணி %s இன் சில குழுக்கள் 10 க்கும் குறைவான அளவீடுகளைக் கொண்டுள்ளன. வாட்சன்-வீலர் சோதனை "
+"பொருந்தாது."
 
 msgid "Two-way ANOVA (Harrison-Kanji Test)"
-msgstr ""
+msgstr "இருவழி ANOVA (ஆரிசன்-கஞ்சி சோதனை)"
 
 msgid "Sum of Square"
-msgstr ""
+msgstr "சதுர தொகை"
 
 msgid "Mean Square"
-msgstr ""
+msgstr "சராசரி நாற்கை"
 
 msgid "Estimated %1$s is %2$s (> 2). The respective routine was run."
-msgstr ""
+msgstr "மதிப்பிடப்பட்ட %1$s %2$s (> 2). அந்தந்த வழக்கம் இயக்கப்பட்டது."
 
 msgid "Estimated %1$s is %2$s (< 2). The respective routine was run."
-msgstr ""
+msgstr "மதிப்பிடப்பட்ட %1$s %2$s (<2). அந்தந்த வழக்கம் இயக்கப்பட்டது."
 
 msgid "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data."
 msgstr ""
+"டி. ஆரிசன், சி.கே காஞ்சி மற்றும் ஆர். சே. காட்ச்டன் (2016). வட்ட தரவுகளுக்கான "
+"மாறுபாட்டின் பகுப்பாய்வு."
 
 msgid "The data of the variable %1$s on level %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"நிலை %2$s இல் உள்ள மாறி %1$s இன் தரவு செறிவுக்கான சகிப்புத்தன்மையை மீறுகிறது. தரவு "
+"கிட்டத்தட்ட சுழிய மாறுபாட்டைக் காட்டுகிறது. தவறான காலத்தை நீங்கள் குறிப்பிட்டுள்ளீர்களா?"
 
 msgid "The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"மாறி %s இன் தரவு செறிவுக்கான சகிப்புத்தன்மையை மீறுகிறது. தரவு கிட்டத்தட்ட சுழிய "
+"மாறுபாட்டைக் காட்டுகிறது. தவறான காலத்தை நீங்கள் குறிப்பிட்டுள்ளீர்களா?"
 
 msgid "Rao's spacing"
-msgstr ""
+msgstr "ராவின் இடைவெளி"
 
 msgid "Rayleigh"
-msgstr ""
+msgstr "ரேலே"
 
 msgid "V against %s"
-msgstr ""
+msgstr "V %s க்கு எதிராக"
 
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "ராவின் இடைவெளி"
 
 msgid "Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check."
 msgstr ""
+"மதிப்பிடப்பட்ட %s எல்லையற்றவை, முடிவுகளை கணக்கிட முடியவில்லை. அனுமான காசோலையை கணக்கி"
+"ட உங்கள் தரவு மிகவும் குவிந்துள்ளது."
 
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "சீரான சோதனைகள்"
 
 msgid "Variable"
-msgstr ""
+msgstr "மாறக்கூடிய"
 
 msgid "Level"
-msgstr ""
+msgstr "நிலை"
 
 msgid "Critical"
-msgstr ""
+msgstr "விமர்சன"
 
 msgid "Statistic"
-msgstr ""
+msgstr "புள்ளிவிவரம்"
 
 msgid "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."
 msgstr ""
+"செரால்ட் ரச்சல் மற்றும் டேனியல் லெவிடின் (2007). RAOS இடைவெளி சோதனைக்கான நிகழ்தகவு "
+"மதிப்புகளின் நீட்டிக்கப்பட்ட அட்டவணை."
 
 msgid "The Rao spacing test was run with %1$s = %2$s, %3$s"
-msgstr ""
+msgstr "ராவ் இடைவெளி சோதனை %1$s = %2$s, %3$s உடன் இயக்கப்பட்டது"
 
 msgid "Von Mises Assumption Check"
-msgstr ""
+msgstr "வான் மைசச் அனுமானம் காசோலை"
 
 msgid "Est. %s"
-msgstr ""
+msgstr "கிழக்கு. %s"
 
 msgid "R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution."
 msgstr ""
+"ஆர். ஏ. லாக்ஆர்ட் மற்றும் எம். ஏ. ச்டீபன்ச் (1985). வான் மைசச் விநியோகத்திற்கான பொருத்தத்தின் "
+"சோதனைகள்."
 
 msgid "Do not trust a significant result where %s is small (< 1). The data could rather be uniform."
 msgstr ""
+"%s சிறியதாக இருக்கும் குறிப்பிடத்தக்க முடிவை நம்ப வேண்டாம் (<1). தரவு ஒரே மாதிரியாக "
+"இருக்கலாம்."
 
 msgid "The test is run with %1$s = %2$s, so please compare the statistics to the critical value."
 msgstr ""
+"சோதனை %1$s = %2$s உடன் இயக்கப்படுகிறது, எனவே புள்ளிவிவரங்களை முக்கியமான மதிப்புடன் "
+"ஒப்பிடுங்கள்."
