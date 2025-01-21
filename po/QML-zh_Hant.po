@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-10 21:19+0000\n"
+"PO-Revision-Date: 2025-01-22 11:01+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspcircular-qml/zh_Hant/>\n"
@@ -39,7 +39,7 @@ msgstr "圓形資料的多樣本檢定"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
-msgstr "變數"
+msgstr "變項"
 
 #, fuzzy
 msgctxt "CircularStatisticsDescriptives|"
@@ -132,7 +132,7 @@ msgstr "Harrison-Kanji"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
-msgstr "變數"
+msgstr "變項"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
