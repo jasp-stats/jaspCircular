@@ -42,9 +42,7 @@ test_that("Von Mises Assumption Check table results match", {
 
 
 test_that("Von Mises Assumption Check catches too concentrated data", {
-  testthat::skip_on_os("windows")
-  
-  options <- analysisOptions("CircularStatisticsOneSampleTests")
+  options <- jaspTools::analysisOptions("CircularStatisticsOneSampleTests")
   options$.meta <- list(splitVariable = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
   options$raoAlpha <- "0.01"
   options$vonMisesCheckAlpha <- "0.01"
@@ -54,8 +52,15 @@ test_that("Von Mises Assumption Check catches too concentrated data", {
   options$vonMisesCheck <- TRUE
   
   set.seed(1)
-  results <- runAnalysis("CircularStatisticsOneSampleTests", "test.csv", options)
-  errorMessage <- results[["results"]][["vonMisesCheckTable"]][["error"]][["errorMessage"]]
-  testthat::expect_identical(errorMessage, 
-                             gettextf("Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", "\u03BA"))
+  results <- jaspTools::runAnalysis("CircularStatisticsOneSampleTests", "test.csv", options)
+  
+  if (jaspBase::getOS() == "osx") {
+    errorMessage <- results[["results"]][["errorMessage"]]
+    testthat::expect_identical(errorMessage, 
+                               "The following problem(s) occurred while running the analysis:<ul><li>The data of the variable contWide exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?</li></ul>")
+  } else {
+    errorMessage <- results[["results"]][["vonMisesCheckTable"]][["error"]][["errorMessage"]]
+    testthat::expect_identical(errorMessage, 
+                               gettextf("Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", "\u03BA"))
+  }
 })

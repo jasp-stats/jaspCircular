@@ -13,6 +13,7 @@ Description
 	license		: "GPL (>= 2)"
 	icon		: "analysis-circstats-descriptives.svg"
 	hasWrappers	: true
+	preloadData: true
 
 	GroupTitle
 	{
