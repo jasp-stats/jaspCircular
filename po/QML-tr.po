@@ -1,23 +1,29 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-04-04 15:07+0000\n"
+"Last-Translator: Uğur ÇELİK <prof_ugur@hotmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
+"jaspcircular-qml/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Circular Statistics"
-msgstr ""
+msgstr "Dairesel İstatistikler"
 
 msgctxt "Description|"
 msgid "This module offers basic methods for directional data"
-msgstr ""
+msgstr "Bu modül, yön verileri için temel yöntemler sunar"
 
 msgctxt "Description|"
 msgid "Circular Descriptives"
-msgstr ""
+msgstr "Dairesel Tanımlayıcılar"
 
 msgctxt "Description|"
 msgid "Hypothesis Tests"
@@ -25,11 +31,11 @@ msgstr "Hipotez Testleri"
 
 msgctxt "Description|"
 msgid "Circular One-Sample Tests"
-msgstr ""
+msgstr "Dairesel Tek Örneklemli Testler"
 
 msgctxt "Description|"
 msgid "Circular Multiple-Sample Tests"
-msgstr ""
+msgstr "Dairesel Çoklu Örnek Testleri"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
@@ -37,7 +43,7 @@ msgstr "Değişkenler"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Bölmek"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
@@ -49,11 +55,11 @@ msgstr "Dağılım grafikleri"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
-msgstr ""
+msgstr "Yığın puanları"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display mean vector"
-msgstr ""
+msgstr "Ortalama vektörü görüntüle"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display histogram"
@@ -69,11 +75,11 @@ msgstr "Merkezi Eğilim"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
-msgstr ""
+msgstr "Ortalama yön"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean resultant length"
-msgstr ""
+msgstr "Ortalama sonuç uzunluğu"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
@@ -93,7 +99,7 @@ msgstr "Varyans"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Aralık"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Dependent Variable"
@@ -109,7 +115,7 @@ msgstr "Tek yönlü ANOVA"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Williams (parametric)"
-msgstr ""
+msgstr "Watson-Williams (parametrik)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Wheeler (non-parametric)"
@@ -129,60 +135,60 @@ msgstr "Değişkenler"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
-msgstr ""
+msgstr "Bölmek"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "Tekdüzelik Testleri"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "Rao'nun Aralığı"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.01"
-msgstr ""
+msgstr "α = 0.01"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.05"
-msgstr ""
+msgstr "α = 0.05"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.1"
-msgstr ""
+msgstr "α = 0.1"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "V (modified Rayleigh)"
-msgstr ""
+msgstr "V (değiştirilmiş Rayleigh)"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Test value:"
-msgstr ""
+msgstr "Test değeri:"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Assumption Checks"
-msgstr ""
+msgstr "Varsayım Kontrolleri"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Von Mises (Watson's goodness-of-fit)"
-msgstr ""
+msgstr "Von Mises (Watson'ın uyum iyiliği)"
 
 msgctxt "Period|"
 msgid "Period"
-msgstr ""
+msgstr "Periyot"
 
 msgctxt "Period|"
 msgid "π"
-msgstr ""
+msgstr "π"
 
 msgctxt "Period|"
 msgid "2π"
-msgstr ""
+msgstr "2π"
 
 msgctxt "Period|"
 msgid "Custom:"
-msgstr ""
+msgstr "Özel:"
