@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-07-18 11:10+0000\n"
-"Last-Translator: Sunu Bagaskara <sunu.bagaskara@gmail.com>\n"
+"PO-Revision-Date: 2025-07-30 03:24+0000\n"
+"Last-Translator: herdiyan maulana <herdiyan-maulana@unj.ac.id>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspcircular-qml/id/>\n"
 "Language: id\n"
@@ -71,7 +71,7 @@ msgstr "Statistik"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "Tendensi_sentral"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
@@ -95,7 +95,7 @@ msgstr ""
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Varian"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Range"
@@ -111,7 +111,7 @@ msgstr "Faktor Tetap"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "ANOVA Satu Arah"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Williams (parametric)"
