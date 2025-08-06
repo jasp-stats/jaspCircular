@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-08-06 02:02+0000\n"
+"PO-Revision-Date: 2025-08-06 07:43+0000\n"
 "Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspcircular-qml/pt/>\n"
@@ -51,39 +51,39 @@ msgstr "Gráficos"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Gráficos de distribuição"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
-msgstr ""
+msgstr "Pontos de pilha"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display mean vector"
-msgstr ""
+msgstr "Exibir vetor médio"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display histogram"
-msgstr ""
+msgstr "Exibir histograma"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Estatística"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "Tendência Central"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
-msgstr ""
+msgstr "Direção média"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean resultant length"
-msgstr ""
+msgstr "Comprimento médio resultante"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Mediana"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Dispersion"
