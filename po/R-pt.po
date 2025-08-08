@@ -2,188 +2,222 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspCircular 0.95.0\n"
 "POT-Creation-Date: 2025-06-21 03:05\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-08-08 21:01+0000\n"
+"Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
+"jaspcircular-r/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 msgid "Circular Descriptives"
-msgstr ""
+msgstr "Descritivas Circulares"
 
 msgid "Valid"
-msgstr ""
+msgstr "Válido"
 
 msgid "Missing"
-msgstr ""
+msgstr "Ausente"
 
 msgid "Mean Direction"
-msgstr ""
+msgstr "Direção Média"
 
 msgid "Mean Resultant Length"
-msgstr ""
+msgstr "Comprimento Resultante Médio"
 
 msgid "Median"
-msgstr ""
+msgstr "Mediana"
 
 msgid "Standard Deviation"
-msgstr ""
+msgstr "Desvio Padrão"
 
 msgid "Variance"
-msgstr ""
+msgstr "Variância"
 
 msgid "Range"
-msgstr ""
+msgstr "Faixa"
 
 msgid "<em>Note.</em>"
-msgstr ""
+msgstr "<em>Nota.</em>"
 
 msgid "If not stated otherwise, all values are calculated on a normalized period of 2π."
 msgstr ""
+"Se não indicado de outra forma, todos os valores são calculados em um "
+"período normalizado de 2π."
 
 msgid "Value is shown with respect to the original period."
-msgstr ""
+msgstr "O valor é mostrado em relação ao período original."
 
 msgid "Aaron Bahde and Philipp Berens (2019). University of Tuebingen."
-msgstr ""
+msgstr "Aaron Bahde e Philipp Berens (2019). Universidade de Tuebingen."
 
 msgid "Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."
 msgstr ""
+"Ulric Lund e Claudio Agostinelli (2017). Circular (Versão 0.4-93): "
+"Estatística Circular [Pacote R]."
 
 msgid "Circular Descriptives Plots"
-msgstr ""
+msgstr "Gráficos Descritivos Circulares"
 
 msgid "The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error: %s"
 msgstr ""
+"A plotagem depende de alguns cálculos (e.g., a direção média). Mas os "
+"cálculos retornaram o seguinte erro: %s"
 
 msgid "The plotting for this set-up failed with: %s"
-msgstr ""
+msgstr "A plotagem para esta configuração falhou com: %s"
 
 msgid "The data of the dependent variable %1$s grouped on factor %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"Os dados da variável dependente %1$s agrupados no fator %2$s excedem a "
+"tolerância para a concentração. Os dados mostram variância quase zero. "
+"Talvez você tenha especificado o período errado?"
 
 msgid "Watson-Williams"
-msgstr ""
+msgstr "Watson-Williams"
 
 msgid "Watson-Wheeler"
-msgstr ""
+msgstr "Watson-Wheeler"
 
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "ANOVA Simples"
 
 msgid "Cases"
-msgstr ""
+msgstr "Casos"
 
 msgid "Test"
-msgstr ""
+msgstr "Teste"
 
 msgid "p"
-msgstr ""
+msgstr "p"
 
 msgid "F"
-msgstr ""
+msgstr "F"
 
 msgid "df1"
-msgstr ""
+msgstr "gl1"
 
 msgid "df2"
-msgstr ""
+msgstr "gl2"
 
 msgid "W"
-msgstr ""
+msgstr "W"
 
 msgid "df"
-msgstr ""
+msgstr "gl"
 
 msgid "All statistics are calculated on a normalized period of 2%s."
-msgstr ""
+msgstr "Todas as estatísticas são calculadas em um período normalizado de 2%s."
 
 msgid "The degrees of freedom of the %1$s%2$s-distribution to which W is compared."
 msgstr ""
+"Os graus de liberdade da distribuição %1$s%2$s com a qual W é comparado."
 
 msgid "<em>Warning.</em>"
-msgstr ""
+msgstr "<em>Aviso.</em>"
 
 msgid "Concentration parameters (%1$s) not equal between the groups of factor %2$s. The Watson-Williams test might not be applicable."
 msgstr ""
+"Os parâmetros de concentração (%1$s) não são iguais entre os grupos do fator "
+"%2$s. O Teste Watson-Williams pode não ser aplicável."
 
 msgid "Some groups of factor %s contain less than 10 measurements. The Watson-Wheeler test might not be applicable."
 msgstr ""
+"Alguns grupos do fator %s contêm menos de 10 medições. o teste Watson-"
+"Wheeler pode não ser aplicável."
 
 msgid "Two-way ANOVA (Harrison-Kanji Test)"
-msgstr ""
+msgstr "ANOVA Bifatorial (Teste Harrison-Kanji)"
 
 msgid "Sum of Square"
-msgstr ""
+msgstr "Soma do Quadrado"
 
 msgid "Mean Square"
-msgstr ""
+msgstr "Quadrado Médio"
 
 msgid "Estimated %1$s is %2$s (> 2). The respective routine was run."
-msgstr ""
+msgstr "A estimativa %1$s é %2$s (> 2). A respectiva rotina foi executada."
 
 msgid "Estimated %1$s is %2$s (< 2). The respective routine was run."
-msgstr ""
+msgstr "A estimativa %1$s é %2$s (< 2). A respectiva rotina foi executada."
 
 msgid "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data."
 msgstr ""
+"D. Harrison, G.K Kanji e R. J. Gadsden (2016). Análise de Variância para "
+"Dados Circulares."
 
 msgid "The data of the variable %1$s on level %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"Os dados da variável %1$s no nível %2$s excedem a tolerância para a "
+"concentração. Os dados mostram variância quase zero. Talvez você tenha "
+"especificado o período errado?"
 
 msgid "The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"Os dados da variável %s excedem a tolerância para a concentração. Os dados "
+"mostram variância quase zero. Talvez você tenha especificado o período "
+"errado?"
 
 msgid "Rao's spacing"
-msgstr ""
+msgstr "Espaçamento de Rao"
 
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgid "V against %s"
-msgstr ""
+msgstr "V contra %s"
 
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "Espaçamento de Rao"
 
 msgid "Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check."
 msgstr ""
+"A estimativa %s é infinita, não foi possível calcular os resultados. Seus "
+"dados são muito concentrados para calcular a verificação de pressuposto."
 
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "Testes de Uniformidade"
 
 msgid "Variable"
-msgstr ""
+msgstr "Variável"
 
 msgid "Level"
-msgstr ""
+msgstr "Nível"
 
 msgid "Critical"
-msgstr ""
+msgstr "Crítico"
 
 msgid "Statistic"
-msgstr ""
+msgstr "Estatística"
 
 msgid "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."
 msgstr ""
+"Gerald Russell e Daniel Levitin (2007). Uma tabela estendida de valores de "
+"probabilidade para o teste de espaçamento de Rao."
 
 msgid "The Rao spacing test was run with %1$s = %2$s, %3$s"
-msgstr ""
+msgstr "O teste de espaçamento de Rao foi executado com %1$s = %2$s, %3$s"
 
 msgid "Von Mises Assumption Check"
-msgstr ""
+msgstr "Verificação do Pressuposto de Von Mises"
 
 msgid "Est. %s"
-msgstr ""
+msgstr "Est. %s"
 
 msgid "R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution."
 msgstr ""
+"R. A. Lockhart e M. A. Stephens (1985). Testes de Ajuste para a Distribuição "
+"de Von Mises."
 
 msgid "Do not trust a significant result where %s is small (< 1). The data could rather be uniform."
 msgstr ""
+"Não confie em um resultado significativo onde %s é pequeno (< 1). Os dados "
+"poderiam ser uniformes."
 
 msgid "The test is run with %1$s = %2$s, so please compare the statistics to the critical value."
 msgstr ""
+"O teste é executado com %1$s = %2$s, então, por favor, compare a estatística "
+"com o valor crítico."
