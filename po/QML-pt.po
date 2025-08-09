@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-08-07 20:31+0000\n"
+"Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
+"jaspcircular-qml/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Language: pt\n"
 "X-Qt-Contexts: true\n"
 
@@ -45,146 +51,144 @@ msgstr "Gráficos"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Gráficos de distribuição"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
-msgstr ""
+msgstr "Pontos de pilha"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display mean vector"
-msgstr ""
+msgstr "Exibir vetor médio"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display histogram"
-msgstr ""
+msgstr "Exibir histograma"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Estatística"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "Tendência Central"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
-msgstr ""
+msgstr "Direção média"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean resultant length"
-msgstr ""
+msgstr "Comprimento médio resultante"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Mediana"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "Dispersão"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Std. deviation"
-msgstr ""
+msgstr "Desvio Pad."
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Variância"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Faixa"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Dependent Variable"
-msgstr ""
+msgstr "Variável Dependente"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Fixed Factors"
-msgstr ""
+msgstr "Fatores Fixos"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "ANOVA Simples"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Williams (parametric)"
-msgstr ""
+msgstr "Watson-Williams (paramétrico)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Wheeler (non-parametric)"
-msgstr ""
+msgstr "Watson-Wheeler (não paramétrico)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Two-way ANOVA"
-msgstr ""
+msgstr "ANOVA Bifatorial"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Harrison-Kanji"
-msgstr ""
+msgstr "Harrison-Kanji"
 
-#, fuzzy
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
 msgstr "Variáveis"
 
-#, fuzzy
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
 msgstr "Dividir"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "Testes de Uniformidade"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "Separação de Rao"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.01"
-msgstr ""
+msgstr "α = 0,01"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.05"
-msgstr ""
+msgstr "α = 0,05"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.1"
-msgstr ""
+msgstr "α = 0,1"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "V (modified Rayleigh)"
-msgstr ""
+msgstr "V (Rayleigh modificado)"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Test value:"
-msgstr ""
+msgstr "Valor de teste:"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Assumption Checks"
-msgstr ""
+msgstr "Verificação de Suposições"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Von Mises (Watson's goodness-of-fit)"
-msgstr ""
+msgstr "Von Mises (qualidade de ajuste de Watson)"
 
 msgctxt "Period|"
 msgid "Period"
-msgstr ""
+msgstr "Período"
 
 msgctxt "Period|"
 msgid "π"
-msgstr ""
+msgstr "π"
 
 msgctxt "Period|"
 msgid "2π"
-msgstr ""
+msgstr "2π"
 
 msgctxt "Period|"
 msgid "Custom:"
-msgstr ""
+msgstr "Personalizado:"
