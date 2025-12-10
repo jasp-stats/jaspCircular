@@ -27,11 +27,10 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.1.0.8.1",
+      "Version": "1.1.0",
       "Source": "Repository",
       "Requirements": [
         "methods",
-        "R",
         "utils"
       ]
     },
@@ -65,8 +64,8 @@
       "Version": "1.3-32",
       "Source": "Repository",
       "Requirements": [
-        "graphics",
         "R",
+        "graphics",
         "stats"
       ]
     },
