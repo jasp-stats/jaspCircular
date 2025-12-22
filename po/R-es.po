@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspCircular 0.95.0\n"
 "POT-Creation-Date: 2025-06-21 03:05\n"
-"PO-Revision-Date: 2025-12-21 09:00+0000\n"
+"PO-Revision-Date: 2025-12-23 10:37+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspcircular-r/es/>\n"
@@ -74,7 +74,7 @@ msgid "The data of the dependent variable %1$s grouped on factor %2$s exceeds th
 msgstr ""
 "Los datos de la variable dependiente %1$s agrupados por el factor %2$s "
 "exceden la tolerancia para la concentración. Los datos muestran una varianza "
-"casi nula. ¿Puede haberse especificado el período equivocado?"
+"casi nula. ¿Puede haberse especificado un período equivocado?"
 
 msgid "Watson-Williams"
 msgstr "Watson-Williams"
@@ -151,57 +151,74 @@ msgstr ""
 
 msgid "The data of the variable %1$s on level %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"Los datos de la variable %1$s en el nivel %2$s exceden la tolerancia para la "
+"concentración. Los datos muestran una varianza casi nula. ¿Puede haberse "
+"especificado un período equivocado?"
 
 msgid "The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
 msgstr ""
+"Los datos de la variable %s exceden la tolerancia para la concentración. Los "
+"datos muestran una varianza casi nula. ¿Puede haberse especificado un "
+"período equivocado?"
 
 msgid "Rao's spacing"
-msgstr ""
+msgstr "Separación de Rao"
 
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgid "V against %s"
-msgstr ""
+msgstr "V frente a %s"
 
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "Separación de Rao"
 
 msgid "Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check."
 msgstr ""
+"La estimación de %s es infinita; no se puede calcular el resultado. Sus "
+"datos están demasiado concentrados para calcular la verificación de "
+"supuestos."
 
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "Contrastes de Uniformidad"
 
 msgid "Variable"
-msgstr ""
+msgstr "Variable"
 
 msgid "Level"
-msgstr ""
+msgstr "Nivel"
 
 msgid "Critical"
-msgstr ""
+msgstr "Crítico"
 
 msgid "Statistic"
-msgstr ""
+msgstr "Estadístico"
 
 msgid "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."
 msgstr ""
+"Gerald Russell y Daniel Levitin (2007). An Extended Table of Probability "
+"Values for Raos Spacing Test."
 
 msgid "The Rao spacing test was run with %1$s = %2$s, %3$s"
-msgstr ""
+msgstr "El contraste de separación de Rao se ejecutó con %1$s = %2$s, %3$s"
 
 msgid "Von Mises Assumption Check"
-msgstr ""
+msgstr "Verificación de supuestos de Von Mises"
 
 msgid "Est. %s"
-msgstr ""
+msgstr "Est. %s"
 
 msgid "R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution."
 msgstr ""
+"R. A. Lockhart y M. A. Stephens (1985). Tests of Fit for the Von Mises "
+"Distribution."
 
 msgid "Do not trust a significant result where %s is small (< 1). The data could rather be uniform."
 msgstr ""
+"No se confía en un resultado significativo cuando %s es pequeño (< 1). Los "
+"datos podrían ser más bien Uniformes."
 
 msgid "The test is run with %1$s = %2$s, so please compare the statistics to the critical value."
 msgstr ""
+"El contraste se ejecuta con %1$s = %2$s, así que compare los estadísticos "
+"con el valor crítico, por favor."
