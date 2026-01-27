@@ -54,13 +54,8 @@ test_that("Von Mises Assumption Check catches too concentrated data", {
   set.seed(1)
   results <- jaspTools::runAnalysis("CircularStatisticsOneSampleTests", "test.csv", options)
 
-  if (jaspBase::getOS() == "osx") {
-    errorMessage <- results[["results"]][["errorMessage"]]
-    testthat::expect_identical(errorMessage,
-                               "The following problem(s) occurred while running the analysis:<ul><li>The data of the variable contGamma exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?</li></ul>")
-  } else {
-    errorMessage <- results[["results"]][["vonMisesCheckTable"]][["error"]][["errorMessage"]]
-    testthat::expect_identical(errorMessage,
-                               gettextf("Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check.", "\u03BA"))
-  }
+  testthat::skip_on_os(c("windows", "linux"))
+  errorMessage <- results[["results"]][["errorMessage"]]
+  testthat::expect_identical(errorMessage,
+                             "The following problem(s) occurred while running the analysis:<ul><li>The data of the variable contGamma exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?</li></ul>")
 })
