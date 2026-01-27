@@ -20,7 +20,7 @@ CircularStatisticsOneSampleTestsInternal <- function(jaspResults, dataset, optio
   if (options$period == "pi")
     options$customPeriod <- pi
   if (options$period == "pi2")
-    options$period <- 2 * pi
+    options$customPeriod <- 2 * pi
 
   ready <- (length(options$variables) > 0)
   
@@ -257,7 +257,8 @@ CircularStatisticsOneSampleTestsInternal <- function(jaspResults, dataset, optio
   countColumn <- c(4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,35,40,45,50,75,100,150,200,300,400,500,600,700,800,900,1000)
   criticalTableRow <- which.min(abs(countColumn-n))
   # table for critical values (Levitin, Rusell 1995)
-  criticalValue <- circular::rao.table[criticalTableRow, criticalTableColumn]
+  data(rao.table, package="circular", envir = environment())
+  criticalValue <- rao.table[criticalTableRow, criticalTableColumn]
   results <- list(alpha = alpha, statistic = U, criticalValue = criticalValue, n = n)
 }
 
