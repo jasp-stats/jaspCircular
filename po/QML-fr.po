@@ -34,15 +34,15 @@ msgstr "Tests circulaires pour Plusieurs Echantillons"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Variables"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Scinder"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "Graphiques"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Distribution plots"
@@ -50,7 +50,7 @@ msgstr "Graphiques des distributions"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Stack points"
-msgstr ""
+msgstr "Empiler les points"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Display mean vector"
@@ -71,15 +71,15 @@ msgstr "Tendance générale"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean direction"
-msgstr ""
+msgstr "Direction moyenne"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Mean resultant length"
-msgstr ""
+msgstr "Longueur moyenne du vecteur résultant"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Médiane"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Dispersion"
@@ -95,7 +95,7 @@ msgstr "Variance"
 
 msgctxt "CircularStatisticsDescriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Étendue"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Dependent Variable"
@@ -103,11 +103,11 @@ msgstr "Variable Dépendante"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Fixed Factors"
-msgstr ""
+msgstr "Facteurs fixes"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "ANOVA à un facteur"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Watson-Williams (parametric)"
@@ -119,7 +119,7 @@ msgstr "Watson-Wheeler (non-paramétrique)"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Two-way ANOVA"
-msgstr ""
+msgstr "ANOVA à deux facteurs"
 
 msgctxt "CircularStatisticsMultipleSampleTests|"
 msgid "Harrison-Kanji"
@@ -127,64 +127,64 @@ msgstr "Harrison-Kanji"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Variables"
-msgstr ""
+msgstr "Variables"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Split"
-msgstr ""
+msgstr "Scinder"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "Tests d'uniformité"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "Espacement de Rao"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.01"
-msgstr ""
+msgstr "α = 0.01"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.05"
-msgstr ""
+msgstr "α = 0.05"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "α = 0.1"
-msgstr ""
+msgstr "α = 0.1"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "V (modified Rayleigh)"
-msgstr ""
+msgstr "V (Rayleigh modifié)"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Test value:"
-msgstr ""
+msgstr "Valeur de test :"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Assumption Checks"
-msgstr ""
+msgstr "Vérifications des présupposés"
 
 msgctxt "CircularStatisticsOneSampleTests|"
 msgid "Von Mises (Watson's goodness-of-fit)"
-msgstr ""
+msgstr "Von Mises (test d'adéquation de Watson)"
 
 msgctxt "Period|"
 msgid "Period"
-msgstr ""
+msgstr "Période"
 
 msgctxt "Period|"
 msgid "π"
-msgstr ""
+msgstr "π"
 
 msgctxt "Period|"
 msgid "2π"
-msgstr ""
+msgstr "2π"
 
 msgctxt "Period|"
 msgid "Custom:"
-msgstr ""
+msgstr "Personnalisé :"
