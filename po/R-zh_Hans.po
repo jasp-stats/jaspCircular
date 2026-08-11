@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 5.13-dev\n"
 
 msgid "Circular Descriptives"
-msgstr ""
+msgstr "循环描述统计"
 
 msgid "Valid"
 msgstr "有效"
@@ -23,13 +23,13 @@ msgid "Missing"
 msgstr "缺失"
 
 msgid "Mean Direction"
-msgstr ""
+msgstr "平均方向"
 
 msgid "Mean Resultant Length"
-msgstr ""
+msgstr "平均合向量长度"
 
 msgid "Median"
-msgstr ""
+msgstr "中位数"
 
 msgid "Standard Deviation"
 msgstr "标准差"
@@ -38,43 +38,43 @@ msgid "Variance"
 msgstr "方差"
 
 msgid "Range"
-msgstr ""
+msgstr "范围"
 
 msgid "<em>Note.</em>"
 msgstr "<em>注.</em>"
 
 msgid "If not stated otherwise, all values are calculated on a normalized period of 2π."
-msgstr ""
+msgstr "除非另有说明，所有值均在 2π 的正规化周期上计算。"
 
 msgid "Value is shown with respect to the original period."
-msgstr ""
+msgstr "该值相对于原始周期显示。"
 
 msgid "Aaron Bahde and Philipp Berens (2019). University of Tuebingen."
-msgstr ""
+msgstr "Aaron Bahde 与 Philipp Berens（2019）。图宾根大学。"
 
 msgid "Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."
-msgstr ""
+msgstr "Ulric Lund 与 Claudio Agostinelli（2017）。Circular（版本 0.4-93）：循环统计 [R 软件包]。"
 
 msgid "Circular Descriptives Plots"
-msgstr ""
+msgstr "循环描述统计图"
 
 msgid "The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error: %s"
-msgstr ""
+msgstr "绘图依赖某些计算（例如平均方向）。但计算返回了以下错误：%s"
 
 msgid "The plotting for this set-up failed with: %s"
-msgstr ""
+msgstr "此设置的绘图失败，错误为：%s"
 
 msgid "The data of the dependent variable %1$s grouped on factor %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
-msgstr ""
+msgstr "按因子 %2$s 分组的因变量 %1$s 的数据超出了浓度的容差。数据显示方差几乎为零。您是否可能指定了错误的周期？"
 
 msgid "Watson-Williams"
-msgstr ""
+msgstr "Watson-Williams"
 
 msgid "Watson-Wheeler"
-msgstr ""
+msgstr "Watson-Wheeler"
 
 msgid "One-way ANOVA"
-msgstr ""
+msgstr "单因素方差分析"
 
 msgid "Cases"
 msgstr "个案"
@@ -95,67 +95,67 @@ msgid "df2"
 msgstr "df2"
 
 msgid "W"
-msgstr ""
+msgstr "W"
 
 msgid "df"
 msgstr "df"
 
 msgid "All statistics are calculated on a normalized period of 2%s."
-msgstr ""
+msgstr "所有统计量均在 2%s 的正规化周期上计算。"
 
 msgid "The degrees of freedom of the %1$s%2$s-distribution to which W is compared."
-msgstr ""
+msgstr "W 与之比较的 %1$s%2$s 分布的自由度。"
 
 msgid "<em>Warning.</em>"
-msgstr ""
+msgstr "<em>警告.</em>"
 
 msgid "Concentration parameters (%1$s) not equal between the groups of factor %2$s. The Watson-Williams test might not be applicable."
-msgstr ""
+msgstr "因子 %2$s 的各组之间的浓度参数（%1$s）不相等。Watson-Williams 检验可能不适用。"
 
 msgid "Some groups of factor %s contain less than 10 measurements. The Watson-Wheeler test might not be applicable."
-msgstr ""
+msgstr "因子 %s 的一些组包含少于 10 个测量值。Watson-Wheeler 检验可能不适用。"
 
 msgid "Two-way ANOVA (Harrison-Kanji Test)"
-msgstr ""
+msgstr "双因素方差分析（Harrison-Kanji 检验）"
 
 msgid "Sum of Square"
-msgstr ""
+msgstr "平方和"
 
 msgid "Mean Square"
 msgstr "均方"
 
 msgid "Estimated %1$s is %2$s (> 2). The respective routine was run."
-msgstr ""
+msgstr "估计的 %1$s 为 %2$s（> 2）。已运行相应的程序。"
 
 msgid "Estimated %1$s is %2$s (< 2). The respective routine was run."
-msgstr ""
+msgstr "估计的 %1$s 为 %2$s（< 2）。已运行相应的程序。"
 
 msgid "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data."
-msgstr ""
+msgstr "D. Harrison、G.K Kanji 与 R. J. Gadsden（2016）。循环数据的方差分析。"
 
 msgid "The data of the variable %1$s on level %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
-msgstr ""
+msgstr "水平 %2$s 上变量 %1$s 的数据超出了浓度的容差。数据显示方差几乎为零。您是否可能指定了错误的周期？"
 
 msgid "The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
-msgstr ""
+msgstr "变量 %s 的数据超出了浓度的容差。数据显示方差几乎为零。您是否可能指定了错误的周期？"
 
 msgid "Rao's spacing"
-msgstr ""
+msgstr "Rao 间距"
 
 msgid "Rayleigh"
-msgstr ""
+msgstr "Rayleigh"
 
 msgid "V against %s"
-msgstr ""
+msgstr "V 对 %s"
 
 msgid "Rao's Spacing"
-msgstr ""
+msgstr "Rao 间距"
 
 msgid "Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check."
-msgstr ""
+msgstr "估计的 %s 为无穷大，无法计算结果。您的数据过于集中，无法计算假设检验。"
 
 msgid "Uniformity Tests"
-msgstr ""
+msgstr "均匀性检验"
 
 msgid "Variable"
 msgstr "变量"
@@ -164,28 +164,28 @@ msgid "Level"
 msgstr "水平"
 
 msgid "Critical"
-msgstr ""
+msgstr "临界值"
 
 msgid "Statistic"
 msgstr "统计量"
 
 msgid "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."
-msgstr ""
+msgstr "Gerald Russell 与 Daniel Levitin（2007）。Rao 间距检验的概率值扩展表。"
 
 msgid "The Rao spacing test was run with %1$s = %2$s, %3$s"
-msgstr ""
+msgstr "Rao 间距检验以 %1$s = %2$s、%3$s 运行。"
 
 msgid "Von Mises Assumption Check"
-msgstr ""
+msgstr "Von Mises 假设检验"
 
 msgid "Est. %s"
-msgstr ""
+msgstr "估计 %s"
 
 msgid "R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution."
-msgstr ""
+msgstr "R. A. Lockhart 与 M. A. Stephens（1985）。Von Mises 分布的拟合检验。"
 
 msgid "Do not trust a significant result where %s is small (< 1). The data could rather be uniform."
-msgstr ""
+msgstr "当 %s 较小（< 1）时，不要相信显著的结果。数据反而可能是均匀的。"
 
 msgid "The test is run with %1$s = %2$s, so please compare the statistics to the critical value."
-msgstr ""
+msgstr "该检验以 %1$s = %2$s 运行，请将统计量与临界值比较。"
