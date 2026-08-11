@@ -1,0 +1,190 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspCircular 0.1\n"
+"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
+"POT-Creation-Date: 2026-01-01 00:00+0000\n"
+"PO-Revision-Date: 2026-01-01 00:00+0000\n"
+"Last-Translator: JASP translators\n"
+"Language-Team: Chinese (Traditional)\n"
+"Language: zh_Hant\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Circular Descriptives"
+msgstr "圓形資料的敘述性統計"
+
+msgid "Valid"
+msgstr "有效"
+
+msgid "Missing"
+msgstr "遺漏"
+
+msgid "Mean Direction"
+msgstr "平均方向"
+
+msgid "Mean Resultant Length"
+msgstr "平均合成長度"
+
+msgid "Median"
+msgstr "中位數"
+
+msgid "Standard Deviation"
+msgstr "標準差"
+
+msgid "Variance"
+msgstr "變異數"
+
+msgid "Range"
+msgstr "全距"
+
+msgid "<em>Note.</em>"
+msgstr "<em>註。</em>"
+
+msgid "If not stated otherwise, all values are calculated on a normalized period of 2π."
+msgstr "除非另有說明，所有數值均以歸一化週期 2π 計算。"
+
+msgid "Value is shown with respect to the original period."
+msgstr "數值係依原始週期顯示。"
+
+msgid "Aaron Bahde and Philipp Berens (2019). University of Tuebingen."
+msgstr "Aaron Bahde 與 Philipp Berens（2019）。蒂賓根大學。"
+
+msgid "Ulric Lund and Claudio Agostinelli (2017). Circular (Version 0.4-93): Circular Statistics [R Package]."
+msgstr "Ulric Lund 與 Claudio Agostinelli（2017）。Circular（0.4-93 版）：圓形統計 [R 套件]。"
+
+msgid "Circular Descriptives Plots"
+msgstr "圓形資料的敘述性統計圖"
+
+msgid "The plotting depends on some of the calculations (e.g. the mean direction). But the calculations returned the following error: %s"
+msgstr "繪圖取決於部分計算（例如平均方向）。但計算回傳下列錯誤：%s"
+
+msgid "The plotting for this set-up failed with: %s"
+msgstr "此設置的繪圖失敗，錯誤為：%s"
+
+msgid "The data of the dependent variable %1$s grouped on factor %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
+msgstr "依變數 %1$s 依因子 %2$s 分組後的資料超過集中度之容忍範圍。資料幾乎沒有變異。您是否指定了錯誤的週期？"
+
+msgid "Watson-Williams"
+msgstr "Watson-Williams"
+
+msgid "Watson-Wheeler"
+msgstr "Watson-Wheeler"
+
+msgid "One-way ANOVA"
+msgstr "單因子變異數分析"
+
+msgid "Cases"
+msgstr "樣本數"
+
+msgid "Test"
+msgstr "檢定"
+
+msgid "p"
+msgstr "p"
+
+msgid "F"
+msgstr "F"
+
+msgid "df1"
+msgstr "df1"
+
+msgid "df2"
+msgstr "df2"
+
+msgid "W"
+msgstr "W"
+
+msgid "df"
+msgstr "df"
+
+msgid "All statistics are calculated on a normalized period of 2%s."
+msgstr "所有統計量均以歸一化週期 2%s 計算。"
+
+msgid "The degrees of freedom of the %1$s%2$s-distribution to which W is compared."
+msgstr "與 W 比較之 %1$s%2$s 分佈的自由度。"
+
+msgid "<em>Warning.</em>"
+msgstr "<em>警告。</em>"
+
+msgid "Concentration parameters (%1$s) not equal between the groups of factor %2$s. The Watson-Williams test might not be applicable."
+msgstr "因子 %2$s 各組之間的集中參數（%1$s）不相等。Watson-Williams 檢定可能不適用。"
+
+msgid "Some groups of factor %s contain less than 10 measurements. The Watson-Wheeler test might not be applicable."
+msgstr "因子 %s 的部分組別少於 10 筆量測。Watson-Wheeler 檢定可能不適用。"
+
+msgid "Two-way ANOVA (Harrison-Kanji Test)"
+msgstr "二因子變異數分析（Harrison-Kanji 檢定）"
+
+msgid "Sum of Square"
+msgstr "平方和"
+
+msgid "Mean Square"
+msgstr "平均平方"
+
+msgid "Estimated %1$s is %2$s (> 2). The respective routine was run."
+msgstr "估計的 %1$s 為 %2$s（> 2）。已執行對應之程序。"
+
+msgid "Estimated %1$s is %2$s (< 2). The respective routine was run."
+msgstr "估計的 %1$s 為 %2$s（< 2）。已執行對應之程序。"
+
+msgid "D. Harrison, G.K Kanji and R. J. Gadsden (2016). Analysis of Variance for Circular Data."
+msgstr "D. Harrison、G.K Kanji 與 R. J. Gadsden（2016）。圓形資料之變異數分析。"
+
+msgid "The data of the variable %1$s on level %2$s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
+msgstr "變項 %1$s 在 %2$s 水準的資料超過集中度之容忍範圍。資料幾乎沒有變異。您是否指定了錯誤的週期？"
+
+msgid "The data of the variable %s exceeds the tolerance for the concentration. The data shows almost zero variance. Did you maybe specify the wrong period?"
+msgstr "變項 %s 的資料超過集中度之容忍範圍。資料幾乎沒有變異。您是否指定了錯誤的週期？"
+
+msgid "Rao's spacing"
+msgstr "Rao 間距"
+
+msgid "Rayleigh"
+msgstr "Rayleigh"
+
+msgid "V against %s"
+msgstr "V 相對於 %s"
+
+msgid "Rao's Spacing"
+msgstr "Rao 間距"
+
+msgid "Estimated %s is infinite, could not compute results. Your data is too concentrated to calculate the assumption check."
+msgstr "估計的 %s 為無限大，無法計算結果。您的資料過於集中，無法計算前提假設檢驗。"
+
+msgid "Uniformity Tests"
+msgstr "均勻性檢定"
+
+msgid "Variable"
+msgstr "變項"
+
+msgid "Level"
+msgstr "水準"
+
+msgid "Critical"
+msgstr "臨界值"
+
+msgid "Statistic"
+msgstr "統計量"
+
+msgid "Gerald Russell and Daniel Levitin (2007). An Extended Table of Probability Values for Raos Spacing Test."
+msgstr "Gerald Russell 與 Daniel Levitin（2007）。Rao 間距檢定之擴展機率值表。"
+
+msgid "The Rao spacing test was run with %1$s = %2$s, %3$s"
+msgstr "Rao 間距檢定以 %1$s = %2$s、%3$s 執行"
+
+msgid "Von Mises Assumption Check"
+msgstr "Von Mises 前提假設檢驗"
+
+msgid "Est. %s"
+msgstr "估計 %s"
+
+msgid "R. A. Lockhart and M. A. Stephens (1985). Tests of Fit for the Von Mises Distribution."
+msgstr "R. A. Lockhart 與 M. A. Stephens（1985）。Von Mises 分佈之適合度檢定。"
+
+msgid "Do not trust a significant result where %s is small (< 1). The data could rather be uniform."
+msgstr "當 %s 很小（< 1）時，請勿信任顯著結果。資料反而可能為均勻分佈。"
+
+msgid "The test is run with %1$s = %2$s, so please compare the statistics to the critical value."
+msgstr "此檢定以 %1$s = %2$s 執行，因此請將統計量與臨界值比較。"
