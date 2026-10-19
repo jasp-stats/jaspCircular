@@ -21,7 +21,7 @@
 #'
 CircularStatisticsOneSampleTests <- function(
           data = NULL,
-          version = "0.95",
+          version = "1",
           customPeriod = 360,
           modifiedRayleigh = FALSE,
           period = "pi2",
@@ -34,7 +34,7 @@ CircularStatisticsOneSampleTests <- function(
           testValue = 180,
           variables = list(types = list(), value = list()),
           vonMisesCheck = FALSE,
-          vonMisesCheckAlpha = "0.1") {
+          vonMisesCheckAlpha = "0.01") {
 
    defaultArgCalls <- formals(jaspCircular::CircularStatisticsOneSampleTests)
    defaultArgs <- lapply(defaultArgCalls, eval)

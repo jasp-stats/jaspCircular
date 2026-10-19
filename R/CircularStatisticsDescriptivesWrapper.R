@@ -17,11 +17,11 @@
 
 # This is a generated file. Don't change it!
 
-#' Hypothesis Tests
+#' Circular Descriptives
 #'
 CircularStatisticsDescriptives <- function(
           data = NULL,
-          version = "0.95",
+          version = "1",
           customPeriod = 360,
           distributionPlot = FALSE,
           distributionPlotHistogram = FALSE,
