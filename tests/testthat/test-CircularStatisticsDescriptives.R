@@ -3,6 +3,9 @@ context("Circular Descriptives")
 options <- jaspTools::analysisOptions("CircularStatisticsDescriptives")
 options$.meta <- list(splitVariable = list(shouldEncode = TRUE), variables = list(shouldEncode = TRUE))
 options$distributionPlot <- TRUE
+options$distributionPlotHistogram <- TRUE
+options$distributionPlotMeanVector <- TRUE
+options$distributionPlotPointStack <- TRUE
 options$splitVariable <- "Month"
 options$variables <- "WindDirection"
 options$customPeriod <- 360
