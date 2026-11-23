@@ -199,11 +199,11 @@ CircularStatisticsMultipleSampleTestsInternal <- function(jaspResults, dataset, 
   fac1 <- options$fixedFactors[1]
   fac2 <- options$fixedFactors[2]
 
-  # get valid data and normalize period
-  validIndices <- !is.na(dataset[[dependent]])
+  # get valid data and normalize period. Rows missing either factor are left out too, so that n and the totals match the cells.
+  validIndices <- !is.na(dataset[[dependent]]) & !is.na(dataset[[fac1]]) & !is.na(dataset[[fac2]])
   dependentColumnNormalized <- .normalizeData(dataset[[dependent]][validIndices], options$customPeriod)
-  fac1Column <- dataset[[fac1]][validIndices]
-  fac2Column <- dataset[[fac2]][validIndices]
+  fac1Column <- droplevels(dataset[[fac1]][validIndices])
+  fac2Column <- droplevels(dataset[[fac2]][validIndices])
 
   results <- list()
 
