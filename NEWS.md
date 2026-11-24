@@ -16,6 +16,8 @@
 
 # jaspCircular (development version)
 
+## Fixed
+* Harrison-Kanji test: rows with a missing factor value are now left out, so the test statistics are no longer wrong (for example a negative χ²) ([Issue #4725](https://github.com/jasp-stats/jasp-issues/issues/4725)).
 
 
 ---
